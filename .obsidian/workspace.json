@@ -1,0 +1,260 @@
+{
+  "main": {
+    "id": "a602a423f9ee9b93",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b3d503eb1511476",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1f33b02818d75c10",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Dashboard.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Dashboard"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9532e93ebf225fb1",
+    "type": "split",
+    "children": [
+      {
+        "id": "ecb9918e3d740b3c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f9a95e258ab4c7f9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "30506b1dd4b43f96",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "f48eacb89fc97e32",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      },
+      {
+        "id": "3d8ccad7e42c405d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "afb68db20fdcc81e",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "88b72d53b29d7cf2",
+    "type": "split",
+    "children": [
+      {
+        "id": "44cc1dcb8008bd5b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c8a1c6b381ed098e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "d3cc44e35eb0a526",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "1c6fd9508a144bac",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "4c65c09a2f15f65b",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "f618b25c3afe0237",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Dashboard.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Dashboard"
+            }
+          },
+          {
+            "id": "f265b99338c50cbe",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "git-view"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "system3-relay:Relay": false,
+      "obsidian-kanban:Create new board": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-excalidraw-plugin:New drawing": false
+    }
+  },
+  "active": "1f33b02818d75c10",
+  "lastOpenFiles": [
+    "Claude.md",
+    "Dashboard.md",
+    "100 Schule/M431 - Projektarbeit/Projektplan.md",
+    "100 Schule/M106 - Datenbanken/M106 Übersicht.md",
+    "New folder",
+    "100 Schule/M431 - Projektarbeit/Realisierung_Technisch.md",
+    "100 Schule/M431 - Projektarbeit/Dokumentation_Final.md",
+    "100 Schule/M431 - Projektarbeit/Dokumentation_Zwischenstand.md",
+    "100 Schule/M117 - Netzwerk/M117_Inhalte.md",
+    "100 Schule/M431 - Projektarbeit/M162_Inhalte.md",
+    "100 Schule/M431 - Projektarbeit/M187_Inhalte.md",
+    "100 Schule/M431 - Projektarbeit/M319_Inhalt.md",
+    "100 Schule/M106 - Datenbanken/SQL – Projekt‑Aufgaben.md",
+    "100 Schule/M117 - Netzwerk",
+    "100 Schule/M106 - Datenbanken/SQL - Views.md",
+    "100 Schule/M106 - Datenbanken/SQL - DML.md",
+    "index.md",
+    "100.md",
+    "Hello.md",
+    "100 Schule/M106 - Datenbanken/SQL – Funktionen.md",
+    "100 Schule/M106 - Datenbanken/SQL – Indizes.md",
+    "100 Schule/M431 - Projektarbeit/M164_Inhalte.md",
+    "100 Schule/M106 - Datenbanken/SQL – Backup & Restore.md.tmp.39640.8e59b3e147de",
+    "100 Schule/M106 - Datenbanken/SQL – Backup & Restore.md",
+    "100 Schule/M106 - Datenbanken/SQL – Ausfuehrungsplan.md",
+    "100 Schule/M106 - Datenbanken/SQL Server - Datensicherheit Aufgaben.md",
+    "100 Schule/M106 - Datenbanken/SQL – Indizes.md.tmp.23980.30dbbc7988ea",
+    "100 Schule/M106 - Datenbanken/SQL – Ausfuehrungsplan.md.tmp.23980.5dd3968781fd",
+    "000 Inbox/_Staging/M106 Day 4.md",
+    "100 Schule/M106 - Datenbanken/SQL - DQL Joins.md",
+    "().md",
+    "100 Schule/M106 - Datenbanken/M106 Übersicht.md.tmp.23980.82733cfb2029",
+    "100 Schule/M106 - Datenbanken/SQL – Backup & Restore.md.tmp.23980.14943f9b43b2",
+    "100 Schule/M106 - Datenbanken/SQL – Indizes.md.tmp.23980.011059f14791",
+    "100 Schule/M106 - Datenbanken/SQL – Ausfuehrungsplan.md.tmp.23980.0c732e487fb9",
+    "100 Schule/M106 - Datenbanken/SQL – Funktionen.md.tmp.23980.2ec776335451",
+    "500 Ressources/Pictures/SQL_SERVER_SECURITY.png",
+    "500 Ressources/Pictures/SQL_JOIN_Arten.png",
+    "Pasted image 20260522132816.png"
+  ]
+}
