@@ -49,7 +49,7 @@ Die Werte 3 und 4 existieren in beiden Tabellen — das ist die Schnittmenge. Di
 | CROSS JOIN       | Jede Zeile A × jede Zeile B (kartesisches Produkt) | 4 × 4 = 16 Kombinationen                          |
 
 ```widget
-JOIN Venn-Visualizer
+JOIN_Venn_Visualizer
 ```
 
 ---
