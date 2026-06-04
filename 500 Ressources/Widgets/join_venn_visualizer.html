@@ -59,11 +59,11 @@ table.jv-t tr.jv-out td { opacity: 0.2; }
 
 <div class="jv">
   <div class="jv-tabs">
-    <button class="jv-tab active" onclick="jvSet('inner')">INNER JOIN</button>
-    <button class="jv-tab" onclick="jvSet('left')">LEFT JOIN</button>
-    <button class="jv-tab" onclick="jvSet('right')">RIGHT JOIN</button>
-    <button class="jv-tab" onclick="jvSet('full')">FULL JOIN</button>
-    <button class="jv-tab" onclick="jvSet('cross')">CROSS JOIN</button>
+    <button class="jv-tab active" data-jvtype="inner" onclick="jvSet('inner')">INNER JOIN</button>
+    <button class="jv-tab" data-jvtype="left" onclick="jvSet('left')">LEFT JOIN</button>
+    <button class="jv-tab" data-jvtype="right" onclick="jvSet('right')">RIGHT JOIN</button>
+    <button class="jv-tab" data-jvtype="full" onclick="jvSet('full')">FULL JOIN</button>
+    <button class="jv-tab" data-jvtype="cross" onclick="jvSet('cross')">CROSS JOIN</button>
   </div>
 
   <div class="jv-body">
@@ -210,7 +210,7 @@ function drawRows(type) {
 
 function jvSet(type) {
   document.querySelectorAll('.jv-tab').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.jv-tab[onclick="jvSet('${type}')"]`).classList.add('active');
+  __qsa(`.jv-tab[data-jvtype="${type}"]`)[0].classList.add('active');
 
   document.getElementById('jv-svg').innerHTML = drawVenn(type);
   document.getElementById('jv-desc').innerHTML = TYPES[type].desc;

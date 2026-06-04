@@ -53,15 +53,15 @@ table.jq-res tr.jq-hasnull td { background: rgba(180,83,9,0.04); }
     <div class="jq-card">
       <div class="jq-slabel">JOIN-Typ</div>
       <div class="jq-join-grid">
-        <button class="jq-join-btn active" onclick="jqSet('inner')">INNER JOIN</button>
-        <button class="jq-join-btn" onclick="jqSet('left')">LEFT JOIN</button>
-        <button class="jq-join-btn" onclick="jqSet('right')">RIGHT JOIN</button>
-        <button class="jq-join-btn" onclick="jqSet('full')">FULL JOIN</button>
+        <button class="jq-join-btn active" data-jqtype="inner" onclick="jqSet('inner')">INNER JOIN</button>
+        <button class="jq-join-btn" data-jqtype="left" onclick="jqSet('left')">LEFT JOIN</button>
+        <button class="jq-join-btn" data-jqtype="right" onclick="jqSet('right')">RIGHT JOIN</button>
+        <button class="jq-join-btn" data-jqtype="full" onclick="jqSet('full')">FULL JOIN</button>
       </div>
       <hr class="jq-sep">
       <div class="jq-slabel">WHERE-Filter</div>
       <label class="jq-cb-row"><input type="checkbox" id="jq-where1" onchange="jqRender()"> Preis &gt; 10</label>
-      <label class="jq-cb-row"><input type="checkbox" id="jq-where2" onchange="jqRender()"> Nur Kunden mit Bestellung (IS NOT NULL)</label>
+      <label class="jq-cb-row"><input type="checkbox" id="jq-where2" onchange="jqRender()"> Nur Bestellungen mit Kunde (bestellid IS NOT NULL)</label>
     </div>
     <div class="jq-card">
       <div class="jq-slabel">Generierte Query</div>
@@ -119,7 +119,7 @@ let currentJoin = 'inner';
 function jqSet(type) {
   currentJoin = type;
   document.querySelectorAll('.jq-join-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.jq-join-btn[onclick="jqSet('${type}')"]`).classList.add('active');
+  __qsa(`.jq-join-btn[data-jqtype="${type}"]`)[0].classList.add('active');
   jqRender();
 }
 
@@ -234,9 +234,9 @@ function jqRender() {
 
   document.getElementById('jq-res-body').innerHTML = bodyHTML;
 
-  const passing    = allRows.filter(r => passesWhere(r, w1, w2));
-  const nullCount  = passing.filter(r => r.hasNull).length;
-  const filtered   = allRows.length - passing.length;
+  const passing   = allRows.filter(r => passesWhere(r, w1, w2));
+  const nullCount = passing.filter(r => r.hasNull).length;
+  const filtered  = allRows.length - passing.length;
 
   document.getElementById('jq-rcount').textContent =
     passing.length + (passing.length === 1 ? ' Zeile' : ' Zeilen');
@@ -247,8 +247,8 @@ function jqRender() {
     hint.textContent = 'Kein Ergebnis — alle Zeilen wurden durch WHERE herausgefiltert.';
   } else {
     const parts = [];
-    if (nullCount > 0)  parts.push(nullCount  + (nullCount  === 1 ? ' NULL-Zeile (kein Match)' : ' NULL-Zeilen (kein Match)'));
-    if (filtered > 0)   parts.push(filtered   + (filtered   === 1 ? ' Zeile durch WHERE gefiltert' : ' Zeilen durch WHERE gefiltert'));
+    if (nullCount > 0) parts.push(nullCount + (nullCount === 1 ? ' NULL-Zeile (kein Match)' : ' NULL-Zeilen (kein Match)'));
+    if (filtered  > 0) parts.push(filtered  + (filtered  === 1 ? ' Zeile durch WHERE gefiltert' : ' Zeilen durch WHERE gefiltert'));
     hint.className = 'jq-hint';
     hint.textContent = parts.length > 0 ? parts.join(' · ') : 'Alle Zeilen haben vollständige Daten.';
   }
