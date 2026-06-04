@@ -65,11 +65,7 @@ _Die 10 zuletzt erstellten Notizen._
 ```dataview
 TABLE file.folder AS Bereich, status
 FROM ""
-<<<<<<< HEAD
 WHERE file.name != "Dashboard" AND file.name != "_index" AND file.name != "log"
-=======
-WHERE file.name != "Dashboard" AND file.name != "index" AND file.name != "log"
->>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 SORT created DESC
 LIMIT 10
 ```

@@ -24,7 +24,6 @@
 
 ### Mittel
 
-<<<<<<< HEAD
 - [x] URL in Dokumentation (Kap. 4.6) eintragen
 - [x] Fazit & Reflexion schreiben (Kap. 6)
 - [x] Checkliste abschliessen (Kap. 5)
@@ -36,19 +35,6 @@
 - [x] Präsentationsfolien erstellen
 - [x] Dokumentation als PDF exportieren (Ctrl+P im Browser → `dokumentation-vorlage.html`)
 - [x] Alles per E-Mail an [kuno.schuerch@sluz.ch](mailto:kuno.schuerch@sluz.ch) senden (08.06, 23:59)
-=======
-- [ ] URL in Dokumentation (Kap. 4.6) eintragen
-- [ ] Fazit & Reflexion schreiben (Kap. 6)
-- [ ] Checkliste abschliessen (Kap. 5)
-
-### Niedrig (Abschluss)
-
-- [ ] Screenshots erstellen und in Dokumentation einfügen
-- [x] Responsivität auf Mobile abschliessend bestätigen
-- [ ] Präsentationsfolien erstellen
-- [ ] Dokumentation als PDF exportieren (Ctrl+P im Browser → `dokumentation-vorlage.html`)
-- [ ] Alles per E-Mail an [kuno.schuerch@sluz.ch](mailto:kuno.schuerch@sluz.ch) senden (08.06, 23:59)
->>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 # M431 – IT Lernplattform | Dokumentation Zwischenstand
 
@@ -169,7 +155,6 @@ Arbeit erfolgte sowohl an den Unterrichtstagen als auch zuhause unter der Woche 
 - [x] Funktionstest aller Seiten und Quiz-Logik im Browser (Chrome, Firefox)
 - [x] Test auf Schulserver (inkl. HTTPS)
 - [x] Responsivitätstest auf Mobile-Geräten
-<<<<<<< HEAD
 - [x] Gegenseitiges Review der Inhalte auf Vollständigkeit und fachliche Korrektheit
 - [x] Dokumentation auf Vollständigkeit geprüft
 
@@ -179,17 +164,6 @@ Arbeit erfolgte sowohl an den Unterrichtstagen als auch zuhause unter der Woche 
 - [x] Was lief gut, was würden wir beim nächsten Projekt anders machen?
 - [x] Dokumentation fertiggestellt und als PDF exportiert
 - [x] Präsentation vorbereitet und geprobt
-=======
-- [ ] Gegenseitiges Review der Inhalte auf Vollständigkeit und fachliche Korrektheit
-- [ ] Dokumentation auf Vollständigkeit geprüft
-
-### A – Auswerten (08.06.2026)
-
-- [ ] Reflexion über den Projektverlauf inkl. Neustart
-- [ ] Was lief gut, was würden wir beim nächsten Projekt anders machen?
-- [ ] Dokumentation fertiggestellt und als PDF exportiert
-- [ ] Präsentation vorbereitet und geprobt
->>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 
@@ -345,17 +319,10 @@ HTTPS ist über das in Plesk integrierte Let's Encrypt-Zertifikat automatisch ak
 - [x] Dark/Light Mode
 - [x] Mobile-Navigation (Hamburger-Menu)
 - [x] GitHub Repository für Teamarbeit
-<<<<<<< HEAD
 - [x] Alle Modulinhalte vollständig eingefüllt
 - [x] Alle Quizfragen aller Module eingebaut
 - [x] Responsivität auf Mobile abschliessend getestet
 - [x] Auf Schulserver deployed (finale Version)
-=======
-- [ ] Alle Modulinhalte vollständig eingefüllt
-- [ ] Alle Quizfragen aller Module eingebaut
-- [ ] Responsivität auf Mobile abschliessend getestet
-- [ ] Auf Schulserver deployed (finale Version)
->>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ### Abgabe & Prozess
 
@@ -364,17 +331,10 @@ HTTPS ist über das in Plesk integrierte Let's Encrypt-Zertifikat automatisch ak
 - [x] Zeitplan erstellt
 - [x] Aufgaben auf Teammitglieder verteilt
 - [x] Abhängigkeiten dokumentiert (kritischer Pfad)
-<<<<<<< HEAD
 - [x] Dokumentation fertiggestellt (8–10 Seiten als PDF)
 - [x] Screenshots der fertigen Plattform erstellt
 - [x] Präsentation erstellt (Herangehensweise, Herausforderungen, Produkt)
 - [x] Alles bis 08.06.2026, 23:59 abgegeben
-=======
-- [ ] Dokumentation fertiggestellt (8–10 Seiten als PDF)
-- [ ] Screenshots der fertigen Plattform erstellt
-- [ ] Präsentation erstellt (Herangehensweise, Herausforderungen, Produkt)
-- [ ] Alles bis 08.06.2026, 23:59 abgegeben
->>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 

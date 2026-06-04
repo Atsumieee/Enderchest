@@ -328,19 +328,11 @@ ORDER BY si.StockItemID ASC;
 ---
 
 ## Offene Fragen
-<<<<<<< HEAD
 - [x] Was ist der Unterschied zwischen JOIN und INNER JOIN syntaktisch — sind sie identisch?
 - [x] Warum funktioniert WHERE spalte = NULL nicht — und wie filtert man korrekt auf NULL-Werte?
 - [x] Was sind Non-EQUI JOINs und wann werden sie eingesetzt?
 - [x] Was passiert wenn beide Tabellen beim INNER JOIN mehrere Matches haben?
 - [x] Wie beeinflusst die JOIN-Reihenfolge bei mehreren JOINs die Performance?
-=======
-- [ ] Was ist der Unterschied zwischen JOIN und INNER JOIN syntaktisch — sind sie identisch?
-- [ ] Warum funktioniert WHERE spalte = NULL nicht — und wie filtert man korrekt auf NULL-Werte?
-- [ ] Was sind Non-EQUI JOINs und wann werden sie eingesetzt?
-- [ ] Was passiert wenn beide Tabellen beim INNER JOIN mehrere Matches haben?
-- [ ] Wie beeinflusst die JOIN-Reihenfolge bei mehreren JOINs die Performance?
->>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 
