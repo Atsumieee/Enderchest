@@ -4,24 +4,24 @@ tags:
   - sql
   - dql
   - joins
-  - inner-join
-  - outer-join
-  - cross-join
-  - self-join
   - schule
-  - modul-106
+  - m106
 created: 2026-05-23
 status: draft
 publish: false
+todo: false
 ---
 
 # SQL – DQL Joins
 
 ## Überblick
-JOINs verbinden mehrere Tabellen anhand von Schlüsselfeldern zu einem gemeinsamen Resultset. Die meisten JOINs sind sogenannte EQUI JOINs, bei denen zwei Tabellen über übereinstimmende Spalten mit dem Gleichheitsoperator verknüpft werden. Die verbundenen Spalten müssen dabei nicht zwingend PK/FK-Paare sein.
 
-> Voraussetzung: [[SQL - DQL]] — JOINs sind eine Erweiterung der SELECT-Abfrage.
-> Verbindung: [[SQL - Views]] — Views kapseln häufig komplexe JOIN-Abfragen.
+Eine normalisierte Datenbank speichert Informationen bewusst auf mehrere Tabellen verteilt — Kunden in einer Tabelle, Bestellungen in einer anderen, Produkte in einer dritten. Das verhindert Redundanz und Inkonsistenz (→ [[SQL - DDL]]). Der Nachteil: Eine einzelne SELECT-Abfrage liefert immer nur eine Tabelle zurück.
+
+JOINs lösen dieses Problem. Sie verknüpfen zwei oder mehr Tabellen anhand übereinstimmender Spalten — meistens ein Fremdschlüssel der auf einen Primärschlüssel zeigt — und liefern das Ergebnis als eine gemeinsame Ergebnistabelle. Der JOIN findet während `FROM` statt, noch bevor `WHERE` oder `SELECT` ausgeführt werden.
+
+> Voraussetzung: [[SQL - DQL]] — JOINs sind eine Erweiterung der SELECT-Abfrage und kombinieren sich mit allen DQL-Klauseln.
+> Verbindung: [[SQL - Views]] — Views kapseln häufig komplexe JOIN-Abfragen um sie wiederverwendbar zu machen.
 
 ---
 
@@ -29,9 +29,7 @@ JOINs verbinden mehrere Tabellen anhand von Schlüsselfeldern zu einem gemeinsam
 
 ### 1. Überblick JOIN-Arten
 
-![[SQL_JOIN_Arten.png]]
-
-Gegeben sind zwei Tabellen A und B mit je einer Spalte:
+Um die verschiedenen JOIN-Typen zu verstehen hilft eine einfache Vorstellung: Zwei Tabellen A und B haben je eine Spalte mit Zahlen. Manche Zahlen kommen in beiden Tabellen vor (die **Schnittmenge**), manche nur in A, manche nur in B.
 
 | Tabelle A | Tabelle B |
 |-----------|-----------|
@@ -40,23 +38,27 @@ Gegeben sind zwei Tabellen A und B mit je einer Spalte:
 | 3         | 5         |
 | 4         | 6         |
 
-Werte 3 und 4 existieren in beiden Tabellen (Schnittmenge).
-Werte 1, 2 nur in A — Werte 5, 6 nur in B.
+Die Werte 3 und 4 existieren in beiden Tabellen — das ist die Schnittmenge. Die Werte 1 und 2 gibt es nur in A, die Werte 5 und 6 nur in B. Je nach JOIN-Typ entscheidet man welcher Teil dieser Mengen im Ergebnis erscheint:
 
-| JOIN-Art         | Was wird zurückgegeben                      | Resultat (a / b)                          |
-|------------------|---------------------------------------------|-------------------------------------------|
-| INNER JOIN       | Nur die Schnittmenge                        | 3/3, 4/4                                  |
-| LEFT OUTER JOIN  | Alle Zeilen aus A + Schnittmenge (B = NULL) | 1/NULL, 2/NULL, 3/3, 4/4                 |
-| RIGHT OUTER JOIN | Alle Zeilen aus B + Schnittmenge (A = NULL) | 3/3, 4/4, NULL/5, NULL/6                 |
-| FULL OUTER JOIN  | Alle Zeilen beider Tabellen                 | 1/NULL, 2/NULL, 3/3, 4/4, NULL/5, NULL/6 |
+| JOIN-Art         | Was wird zurückgegeben                            | Ergebnis (a / b)                                  |
+|------------------|---------------------------------------------------|---------------------------------------------------|
+| INNER JOIN       | Nur die Schnittmenge                              | 3/3, 4/4                                          |
+| LEFT OUTER JOIN  | Alle Zeilen aus A + Schnittmenge (B-Seite = NULL) | 1/NULL, 2/NULL, 3/3, 4/4                          |
+| RIGHT OUTER JOIN | Alle Zeilen aus B + Schnittmenge (A-Seite = NULL) | 3/3, 4/4, NULL/5, NULL/6                          |
+| FULL OUTER JOIN  | Alle Zeilen beider Tabellen                       | 1/NULL, 2/NULL, 3/3, 4/4, NULL/5, NULL/6          |
+| CROSS JOIN       | Jede Zeile A × jede Zeile B (kartesisches Produkt)| 4 × 4 = 16 Kombinationen                         |
+
+```widget
+JOIN Venn-Visualizer
+```
 
 ---
 
 ### 2. Beispieldatensatz
 
-Alle nachfolgenden Beispiele basieren auf diesen zwei Tabellen:
+Alle nachfolgenden Beispiele verwenden diese zwei Tabellen. Wichtig: Die Daten sind absichtlich so gewählt dass nicht alles zusammenpasst — genau daran sieht man den Unterschied zwischen den JOIN-Typen.
 
-**Kundentabelle:**
+**Tabelle `kunde`:**
 
 | KundenId | Vorname | Nachname |
 |----------|---------|----------|
@@ -64,7 +66,7 @@ Alle nachfolgenden Beispiele basieren auf diesen zwei Tabellen:
 | 2        | Ueli    | Muster   |
 | 3        | Sepp    | Hofer    |
 
-**Bestelltabelle:**
+**Tabelle `bestellung`:**
 
 | BestellId | KundenId | Preis |
 |-----------|----------|-------|
@@ -72,19 +74,26 @@ Alle nachfolgenden Beispiele basieren auf diesen zwei Tabellen:
 | 2         | 2        | 13    |
 | 3         | 1        | 20    |
 
-> Bestellung 1 hat KundenId 4 — dieser Kunde existiert nicht in der Kundentabelle.
-> Kunde 3 (Sepp Hofer) hat keine Bestellung.
+Zwei absichtliche "Lücken" sind eingebaut:
+- Bestellung 1 hat `KundenId = 4` — dieser Kunde existiert **nicht** in der Kundentabelle (verwaiste Bestellung).
+- Kunde 3 (Sepp Hofer) hat **keine Bestellung** (Kunde ohne Bestellung).
+
+Diese zwei Fälle tauchen in jedem JOIN-Ergebnis unterschiedlich auf — das ist der zentrale Lernpunkt dieses Abschnitts.
+
+```widget
+JOIN Query Builder
+```
 
 ---
 
 ### 3. INNER JOIN
 
-Gibt **nur die Schnittmenge** zurück — Zeilen, die in **beiden** Tabellen einen übereinstimmenden Wert haben. Nicht verknüpfbare Zeilen werden ausgeblendet.
+Der INNER JOIN gibt **nur die Schnittmenge** zurück — also nur Zeilen bei denen in beiden Tabellen ein übereinstimmender Wert gefunden wird. Zeilen ohne Match werden auf beiden Seiten komplett weggelassen.
 
 ```sql
 SELECT bestellung.bestellid, kunde.vorname, kunde.nachname, bestellung.preis
 FROM bestellung
-INNER JOIN kunde ON bestellung.kundenId = kunde.KundenId;
+INNER JOIN kunde ON bestellung.kundenid = kunde.kundenid;
 ```
 
 | BestellId | Vorname | Nachname | Preis |
@@ -92,21 +101,24 @@ INNER JOIN kunde ON bestellung.kundenId = kunde.KundenId;
 | 3         | Hans    | Meier    | 20    |
 | 2         | Ueli    | Muster   | 13    |
 
-> Bestellung 1 (KundenId 4 existiert nicht) fehlt im Resultat.
-> Sepp Hofer (keine Bestellung) fehlt im Resultat.
+Bestellung 1 fehlt weil `KundenId 4` in der Kundentabelle nicht existiert. Sepp Hofer fehlt weil er keine Bestellung hat. Der INNER JOIN ist der strengste JOIN — er zeigt nur was auf beiden Seiten vollständig vorhanden ist.
+
+**Wann verwenden:** Wenn man nur vollständige, konsistente Datensätze möchte und unvollständige Zeilen das Ergebnis verfälschen würden.
+
+> `JOIN` ohne weiteres Keyword ist identisch mit `INNER JOIN` — beides ist gültige SQL-Syntax.
 
 ---
 
 ### 4. LEFT JOIN / LEFT OUTER JOIN
 
-Gibt **alle Zeilen der linken Tabelle** zurück. Wo kein Match existiert, werden die Spalten der rechten Tabelle mit NULL befüllt.
+Der LEFT JOIN gibt **alle Zeilen der linken Tabelle** zurück — egal ob ein Match existiert oder nicht. Wo kein passender Eintrag in der rechten Tabelle gefunden wird, werden die Spalten der rechten Seite mit `NULL` befüllt.
 
-«Links» = die Tabelle, die **vor** dem Keyword JOIN steht.
+**Merkhilfe: Was ist "links"?** Links bedeutet die Tabelle die **vor dem JOIN-Keyword** steht — also in `FROM bestellung LEFT JOIN kunde` ist `bestellung` die linke Tabelle. Es geht nicht darum wo die Tabelle auf dem Papier steht, sondern um die Reihenfolge im SQL-Statement.
 
 ```sql
 SELECT bestellung.bestellid, kunde.vorname, kunde.nachname, bestellung.preis
 FROM bestellung
-LEFT JOIN kunde ON bestellung.kundenId = kunde.KundenId;
+LEFT JOIN kunde ON bestellung.kundenid = kunde.kundenid;
 ```
 
 | BestellId | Vorname | Nachname | Preis |
@@ -115,20 +127,22 @@ LEFT JOIN kunde ON bestellung.kundenId = kunde.KundenId;
 | 2         | Ueli    | Muster   | 13    |
 | 3         | Hans    | Meier    | 20    |
 
-> Use-Case: Alle Bestellungen anzeigen — auch jene ohne gültigen Kunden.
+Bestellung 1 erscheint diesmal — mit `NULL` wo die Kundenangaben wären. Sepp Hofer fehlt weiterhin, weil `bestellung` die linke Tabelle ist und er dort keinen Eintrag hat.
+
+**Wann verwenden:** Wenn man alle Datensätze der linken Tabelle sehen möchte und fehlende Verknüpfungen zur rechten Tabelle als `NULL` akzeptiert — z.B. alle Bestellungen anzeigen, auch jene ohne gültigen Kunden.
 
 ---
 
 ### 5. RIGHT JOIN / RIGHT OUTER JOIN
 
-Gibt **alle Zeilen der rechten Tabelle** zurück. Wo kein Match existiert, werden die Spalten der linken Tabelle mit NULL befüllt.
+Der RIGHT JOIN ist das Spiegelbild des LEFT JOIN: Er gibt **alle Zeilen der rechten Tabelle** zurück. Wo kein Match in der linken Tabelle existiert werden die Spalten der linken Seite mit `NULL` befüllt.
 
-«Rechts» = die Tabelle, die **nach** dem Keyword JOIN steht.
+**Rechts** bedeutet die Tabelle die **nach dem JOIN-Keyword** steht.
 
 ```sql
 SELECT bestellung.bestellid, kunde.vorname, kunde.nachname, bestellung.preis
 FROM bestellung
-RIGHT JOIN kunde ON bestellung.kundenId = kunde.KundenId;
+RIGHT JOIN kunde ON bestellung.kundenid = kunde.kundenid;
 ```
 
 | BestellId | Vorname | Nachname | Preis |
@@ -137,19 +151,22 @@ RIGHT JOIN kunde ON bestellung.kundenId = kunde.KundenId;
 | 2         | Ueli    | Muster   | 13    |
 | NULL      | Sepp    | Hofer    | NULL  |
 
-> Use-Case: Alle Kunden anzeigen — auch jene ohne Bestellungen.
-> Merkhilfe: A LEFT JOIN B ist identisch zu B RIGHT JOIN A — symmetrisch durch Tauschen der Tabellenreihenfolge.
+Jetzt erscheint Sepp Hofer — mit `NULL` bei BestellId und Preis. Bestellung 1 fehlt weiterhin, weil sie keinen passenden Kunden hat und `kunde` die rechte (vollständig angezeigte) Tabelle ist.
+
+**Wann verwenden:** Wenn man alle Datensätze der rechten Tabelle sehen möchte — z.B. alle Kunden anzeigen, auch jene ohne Bestellungen.
+
+> **Merkhilfe:** `A LEFT JOIN B` liefert dasselbe Ergebnis wie `B RIGHT JOIN A` — man kann jeden RIGHT JOIN durch Tauschen der Tabellenreihenfolge in einen LEFT JOIN umschreiben. In der Praxis wird LEFT JOIN deutlich häufiger verwendet weil er intuitiver zu lesen ist.
 
 ---
 
 ### 6. FULL OUTER JOIN
 
-Gibt **alle Zeilen beider Tabellen** zurück. Nicht verknüpfbare Zeilen erhalten auf der fehlenden Seite NULL-Werte.
+Der FULL OUTER JOIN kombiniert LEFT und RIGHT JOIN: Er gibt **alle Zeilen beider Tabellen** zurück. Zeilen ohne Match bekommen auf der fehlenden Seite `NULL`-Werte — egal auf welcher Seite der Match fehlt.
 
 ```sql
 SELECT bestellung.bestellid, kunde.vorname, kunde.nachname, bestellung.preis
 FROM bestellung
-FULL JOIN kunde ON bestellung.kundenId = kunde.KundenId;
+FULL JOIN kunde ON bestellung.kundenid = kunde.kundenid;
 ```
 
 | BestellId | Vorname | Nachname | Preis |
@@ -159,57 +176,64 @@ FULL JOIN kunde ON bestellung.kundenId = kunde.KundenId;
 | 3         | Hans    | Meier    | 20    |
 | NULL      | Sepp    | Hofer    | NULL  |
 
-> Use-Case: Vollständige Übersicht beider Tabellen unabhängig vom Match.
+Jetzt erscheinen sowohl Bestellung 1 (ohne Kunde) als auch Sepp Hofer (ohne Bestellung) — beide mit `NULL` auf der jeweils fehlenden Seite.
+
+**Wann verwenden:** Wenn man eine vollständige Übersicht beider Tabellen braucht und keine Zeile verloren gehen darf — z.B. zur Datenqualitätsprüfung: Welche Bestellungen haben keinen Kunden, und welche Kunden haben keine Bestellung?
 
 ---
 
 ### 7. CROSS JOIN
 
-Bildet das **kartesische Produkt** (Kreuzprodukt): jede Zeile der linken Tabelle wird mit jeder Zeile der rechten kombiniert. Resultatgrösse = Anzahl Zeilen A multipliziert mit Anzahl Zeilen B (hier: 3 x 3 = 9 Zeilen).
+Der CROSS JOIN bildet das **kartesische Produkt**: Jede Zeile der linken Tabelle wird mit jeder Zeile der rechten Tabelle kombiniert. Es gibt keine `ON`-Bedingung — alle Kombinationen werden erzeugt.
+
+Die Ergebnismenge wächst multiplikativ: Bei 3 Kunden und 3 Bestellungen entstehen 3 × 3 = 9 Zeilen. Bei 1000 × 1000 Zeilen wären es bereits 1 Million Zeilen.
 
 ```sql
 SELECT * FROM kunde CROSS JOIN bestellung;
 
--- Ältere alternative Syntax (ohne JOIN-Keyword)
-SELECT KundenId, Vorname, Nachname FROM kunde, bestellung;
+-- Ältere alternative Syntax ohne JOIN-Keyword (gleiches Ergebnis)
+SELECT * FROM kunde, bestellung;
 ```
 
-> Use-Case: Selten in der Praxis — z.B. für Kombinationstabellen oder Tests.
-> Achtung: Bei grossen Tabellen explodiert das Resultat schnell.
+**Wann verwenden:** Selten — typische Use-Cases sind das Erzeugen aller möglichen Kombinationen (z.B. alle Produkte × alle Farboptionen) oder Test-Datengenerierung. In produktiven Abfragen auf grossen Tabellen ist der CROSS JOIN gefährlich weil die Ergebnismenge unkontrolliert explodieren kann.
 
 ---
 
 ### 8. SELF JOIN
 
-Verknüpft eine Tabelle **mit sich selbst**. Typischer Use-Case: Hierarchien (z.B. Mitarbeiter und Vorgesetzter in derselben Tabelle). Technisch ein normaler INNER JOIN mit zwei Tabellen-Aliasen auf derselben Tabelle.
+Ein SELF JOIN verknüpft eine Tabelle **mit sich selbst**. Das klingt zunächst seltsam — man stellt es sich am einfachsten vor als ob die Tabelle zweimal existiert: einmal als "linke" und einmal als "rechte" Version. Tabellen-Aliase sind dabei **zwingend notwendig**, sonst weiss die Datenbank nicht welche "Kopie" gemeint ist.
+
+Der typische Use-Case sind **Hierarchien**: Wenn Mitarbeiter und ihre Vorgesetzten in derselben Tabelle stehen, braucht man den SELF JOIN um den Namen des Vorgesetzten aufzulösen.
 
 ```sql
 SELECT
-    MA1.Id,
-    MA1.Vorname,
-    MA1.Nachname,
-    MA2.Vorname AS V_Vorname,
-    MA2.Nachname AS V_Nachname
-FROM Mitarbeiter MA1
-JOIN Mitarbeiter MA2 ON MA1.VorgesetzerId = MA2.Id;
+    ma1.id,
+    ma1.vorname,
+    ma1.nachname,
+    ma2.vorname AS vorgesetzter_vorname,
+    ma2.nachname AS vorgesetzter_nachname
+FROM mitarbeiter ma1
+JOIN mitarbeiter ma2 ON ma1.vorgesetzterid = ma2.id;
 ```
 
-| Id | Vorname | Nachname | V_Vorname | V_Nachname |
-|----|---------|----------|-----------|------------|
-| 1  | Hans    | Meier    | Roland    | Bühler     |
-| 2  | Roland  | Bühler   | Erich     | Muster     |
-| 3  | Erich   | Muster   | Sepp      | Müller     |
+| Id | Vorname | Nachname | Vorgesetzter_Vorname | Vorgesetzter_Nachname |
+|----|---------|----------|----------------------|-----------------------|
+| 1  | Hans    | Meier    | Roland               | Bühler                |
+| 2  | Roland  | Bühler   | Erich                | Muster                |
+| 3  | Erich   | Muster   | Sepp                 | Müller                |
 
-> Tabellen-Aliase (hier MA1, MA2) sind beim Self-Join **zwingend** — ohne sie ist die Abfrage nicht eindeutig auflösbar.
+`ma1` ist die "Mitarbeiter-Kopie", `ma2` ist die "Vorgesetzten-Kopie". Der JOIN verbindet `ma1.vorgesetzterid` mit `ma2.id` — so wird aus einer Zeile mit einer ID-Spalte ein lesbarer Name.
 
 ---
 
 ### 9. Mehrere JOINs kombinieren
 
-JOINs können verkettet werden um mehr als zwei Tabellen zu verbinden. Bei n:m-Beziehungen wird immer über die Zwischentabelle gejoint:
+JOINs können verkettet werden um mehr als zwei Tabellen zu verbinden. Besonders häufig ist das bei **n:m-Beziehungen**: Diese haben immer eine Zwischentabelle (z.B. `StockItemStockGroups` zwischen `StockItems` und `StockGroups`) und brauchen deshalb zwei JOINs.
+
+Das Muster ist immer gleich: Man joiniert von der ersten Tabelle zur Zwischentabelle, dann von der Zwischentabelle zur zweiten Tabelle.
 
 ```sql
--- Produkt -> Zwischentabelle -> Produktgruppe (3 Tabellen)
+-- Produkte mit ihren Produktgruppen (3 Tabellen, n:m über Zwischentabelle)
 SELECT si.StockItemID, si.StockItemName, sg.StockGroupName
 FROM Warehouse.StockItems si
 INNER JOIN Warehouse.StockItemStockGroups sisg
@@ -219,19 +243,29 @@ INNER JOIN Warehouse.StockGroups sg
 ORDER BY si.StockItemID ASC;
 ```
 
-> Muster: StockItems <-> StockItemStockGroups <-> StockGroups (n:m-Auflösung über Zwischentabelle).
+Muster: `StockItems` → `StockItemStockGroups` (Zwischentabelle) → `StockGroups`. Jeder JOIN hat seine eigene `ON`-Bedingung.
 
 ---
 
 ### 10. Ausführungsreihenfolge mit JOIN
 
-JOINs werden direkt nach FROM verarbeitet — vor WHERE, GROUP BY und SELECT:
+JOINs gehören zur `FROM`-Phase — sie werden als erstes ausgeführt, bevor `WHERE`, `GROUP BY` oder `SELECT` zum Zug kommen:
 
 ```
-FROM + JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY
+FROM + JOIN  →  WHERE  →  GROUP BY  →  HAVING  →  SELECT  →  ORDER BY
 ```
 
-> Alle DQL-Klauseln aus [[SQL - DQL#8. Ausführungsreihenfolge von SELECT]] bleiben in Kombination mit JOINs gültig.
+Das hat eine wichtige Konsequenz: `WHERE` kann bereits auf dem JOIN-Ergebnis filtern — also auf Spalten beider Tabellen gleichzeitig. Und `SELECT` wählt aus dem bereits verknüpften Ergebnis aus, nicht aus den Originaltabellen.
+
+```sql
+-- WHERE filtert auf dem JOIN-Ergebnis: beide Tabellen sind bereits verknüpft
+SELECT k.vorname, b.preis
+FROM kunde k
+INNER JOIN bestellung b ON k.kundenid = b.kundenid
+WHERE b.preis > 15;  -- greift auf bestellung-Spalte zu, obwohl FROM auf kunde zeigt
+```
+
+> Alle DQL-Klauseln aus [[SQL - DQL#8. Ausführungsreihenfolge von SELECT]] bleiben in Kombination mit JOINs vollständig gültig.
 
 ---
 
@@ -239,7 +273,7 @@ FROM + JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY
 
 ### Aufgabe 1 – In welchem Staat liegt Tucson?
 
-Tabellen im Schema Application. Spalten: StateProvinceName, CityName.
+Tabellen im Schema `Application`. Spalten: `StateProvinceName`, `CityName`.
 
 ```sql
 SELECT sp.StateProvinceName, c.CityName
@@ -281,7 +315,7 @@ LEFT JOIN Sales.Customers c
 WHERE c.CustomerName IS NULL;
 ```
 
-> Beide Varianten liefern dasselbe Resultat — LEFT und RIGHT JOIN sind symmetrisch.
+> Beide Varianten liefern dasselbe Resultat — LEFT und RIGHT JOIN sind symmetrisch durch Tauschen der Tabellenreihenfolge.
 
 ---
 
@@ -299,45 +333,35 @@ ORDER BY si.StockItemID ASC;
 
 ---
 
+## Schlüsselbegriffe
+
+- **JOIN**: Verknüpfung mehrerer Tabellen anhand übereinstimmender Spalten
+- **EQUI JOIN**: JOIN mit dem Gleichheitsoperator als Verknüpfungsbedingung — die häufigste Form
+- **INNER JOIN**: Gibt nur die Schnittmenge zurück; Zeilen ohne Match fallen auf beiden Seiten weg
+- **LEFT OUTER JOIN**: Alle Zeilen der linken Tabelle (vor JOIN-Keyword); rechte Seite ggf. NULL
+- **RIGHT OUTER JOIN**: Alle Zeilen der rechten Tabelle (nach JOIN-Keyword); linke Seite ggf. NULL
+- **FULL OUTER JOIN**: Alle Zeilen beider Tabellen; fehlende Seite jeweils NULL
+- **CROSS JOIN**: Kartesisches Produkt — jede Zeile × jede Zeile; kein ON; Ergebnis = n × m Zeilen
+- **SELF JOIN**: Eine Tabelle wird mit sich selbst verknüpft; Aliase sind zwingend
+- **Kartesisches Produkt**: Alle möglichen Kombinationen zweier Mengen (n × m)
+- **Tabellen-Alias**: Kurzname für eine Tabelle in einer Abfrage (`FROM kunden AS k` oder `FROM kunden k`)
+- **Schnittmenge**: Zeilen die in beiden Tabellen einen übereinstimmenden Wert haben
+- **n:m-Beziehung**: Tabellenbeziehung die eine Zwischentabelle erfordert; wird über zwei JOINs aufgelöst
+
+---
+
 ## Verbindungen zu anderen Themen
 
 | Thema | Verbindung |
 |-------|------------|
 | [[SQL - DQL]] | JOINs erweitern SELECT auf mehrere Tabellen; alle DQL-Klauseln bleiben kombinierbar |
-| [[SQL - Views]] | Views kapseln häufig komplexe JOINs um die Abfrage-Komplexität zu reduzieren |
-| [[SQL - DML]] | DML-Statements betreffen immer nur eine einzelne Tabelle — JOINs sind ausschliesslich DQL |
-
----
-
-## Schlüsselbegriffe
-
-- **JOIN**: Verknüpfung mehrerer Tabellen anhand übereinstimmender Spalten
-- **EQUI JOIN**: JOIN mit dem Gleichheitsoperator als Verknüpfungsoperator (häufigste Form)
-- **INNER JOIN**: Gibt nur die Schnittmenge beider Tabellen zurück
-- **LEFT OUTER JOIN**: Alle Zeilen der linken Tabelle plus Schnittmenge; rechte Seite ggf. NULL
-- **RIGHT OUTER JOIN**: Alle Zeilen der rechten Tabelle plus Schnittmenge; linke Seite ggf. NULL
-- **FULL OUTER JOIN**: Alle Zeilen beider Tabellen; fehlende Seite jeweils NULL
-- **CROSS JOIN**: Kartesisches Produkt — jede Zeile mal jede Zeile (n x m Resultate)
-- **SELF JOIN**: Eine Tabelle wird mit sich selbst verknüpft; benötigt zwingend Tabellen-Aliase
-- **Kartesisches Produkt**: Alle möglichen Kombinationen zweier Mengen (n x m)
-- **Tabellen-Alias**: Kurzname für eine Tabelle innerhalb einer Abfrage (z.B. FROM kunden AS k)
-- **Schnittmenge**: Menge der Zeilen, die in beiden Tabellen einen übereinstimmenden Wert haben
-- **NULL**: Wert der entsteht wenn beim OUTER JOIN kein Match gefunden wird
-- **n:m-Beziehung**: Tabellenbeziehung die eine Zwischentabelle erfordert; wird über zwei JOINs aufgelöst
-
----
-
-## Offene Fragen
-- [x] Was ist der Unterschied zwischen JOIN und INNER JOIN syntaktisch — sind sie identisch?
-- [x] Warum funktioniert WHERE spalte = NULL nicht — und wie filtert man korrekt auf NULL-Werte?
-- [x] Was sind Non-EQUI JOINs und wann werden sie eingesetzt?
-- [x] Was passiert wenn beide Tabellen beim INNER JOIN mehrere Matches haben?
-- [x] Wie beeinflusst die JOIN-Reihenfolge bei mehreren JOINs die Performance?
+| [[SQL - DDL]] | Normalisierung im DDL erzwingt mehrere Tabellen — JOINs machen sie wieder zusammen lesbar |
+| [[SQL - Views]] | Views kapseln häufig komplexe JOINs um Abfrage-Komplexität zu verstecken |
+| [[SQL - DML]] | DML-Statements (INSERT, UPDATE, DELETE) betreffen immer nur eine Tabelle — JOINs sind ausschliesslich DQL |
 
 ---
 
 ## Quellen & Links
 - Kursunterlagen: https://m106.ict-bz.ch/tag-2/operationen-dql/join
-- Diagramm: [[SQL_JOIN_Arten.png]]
 - Modul 106 – Datenbanken abfragen und bearbeiten (ICT-BZ)
-- Verwandte Notizen: [[SQL - DQL]] | [[SQL - Views]] | [[SQL - DML]]
+- Verwandte Notizen: [[SQL - DQL]] | [[SQL - Views]] | [[SQL - DML]] | [[SQL - DDL]]

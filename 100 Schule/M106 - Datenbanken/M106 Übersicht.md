@@ -1,11 +1,14 @@
 ---
-
-title: "M106 — Datenbanken"
-tags: [übersicht, sql, m106]
+title: M106 — Datenbanken
+tags:
+  - übersicht
+  - sql
+  - m106
 created: 2026-05-22
 status: permanent
 publish: false
 todo: false
+moc: true
 ---
 
 # 🗄️ M106 — Datenbanken abfragen und bearbeiten
