@@ -8,7 +8,7 @@ tags:
   - m106
 created: 2026-05-23
 status: draft
-publish: false
+publish: true
 todo: false
 ---
 
@@ -81,7 +81,7 @@ Zwei absichtliche "Lücken" sind eingebaut:
 Diese zwei Fälle tauchen in jedem JOIN-Ergebnis unterschiedlich auf — das ist der zentrale Lernpunkt dieses Abschnitts.
 
 ```widget
-JOIN Query Builder
+JOIN_Query_Builder
 ```
 
 ---
