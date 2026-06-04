@@ -50,6 +50,7 @@ jobs:
         working-directory: web
         env:
           VAULT_PATH: ${{ github.workspace }}/vault
+          ELEVENTY_PATH_PREFIX: /Enderchest/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
