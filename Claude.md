@@ -1,8 +1,12 @@
 # CLAUDE.md — Enderchest Wiki Schema
 
+<<<<<<< HEAD
 Dieses Dokument ist die verbindliche Arbeitsanleitung für den Claude-Agenten.
 Es definiert wie Notizen geschrieben, strukturiert, verlinkt und verwaltet werden.
 Bei Unklarheiten gilt: dieses Dokument hat Vorrang vor allem anderen.
+=======
+Dieses Dokument ist die verbindliche Arbeitsanleitung für den Claude-Agenten. Es definiert wie Notizen geschrieben, strukturiert, verlinkt und verwaltet werden. Bei Unklarheiten gilt: dieses Dokument hat Vorrang vor allem anderen.
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 
@@ -12,8 +16,12 @@ Bei Unklarheiten gilt: dieses Dokument hat Vorrang vor allem anderen.
 Enderchest/
 ├── CLAUDE.md                  ← dieses Dokument
 ├── Dashboard.md               ← Master-Übersicht: Tasks, Drafts, Todo-Notizen
+<<<<<<< HEAD
 ├── index.md                   ← Öffentliche Homepage (publish: true)
 ├── _index.md                  ← Interner Master-Index (vom Agenten gepflegt, publish: false)
+=======
+├── index.md                   ← Master-Index (vom Agenten gepflegt)
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ├── log.md                     ← Chronologisches Log aller Operationen
 │
 ├── 000 Inbox/                 ← Rohmaterial, noch nicht verarbeitet
@@ -65,6 +73,7 @@ todo: true | false
 
 **title** — Vollständiger, lesbarer Titel. Nicht der Dateiname.
 
+<<<<<<< HEAD
 **tags** — 1 bis 4 Tags total. Nur Tags die Navigation oder Filterung tatsächlich nützen.
 Erlaubte Tags-Kategorien:
 
@@ -78,21 +87,43 @@ Erlaubte Tags-Kategorien:
 
 - **Typ** (optional, 1 Tag): Nur setzen wenn der Typ für die Navigation relevant ist.
   `übersicht`, `aufgabe`, `projekt`, `referenz`
+=======
+**tags** — 1 bis 4 Tags total. Nur Tags die Navigation oder Filterung tatsächlich nützen. Erlaubte Tags-Kategorien:
+
+- **Fachbereich** (1–3 Tags): Das Themengebiet der Notiz. Mehrere Tags nur wenn der Inhalt wirklich mehrere Bereiche abdeckt — z.B. DDNS gehört zu `netzwerk` und `security`. Beispiele: `sql`, `powershell`, `netzwerk`, `security`, `python`, `linux`, `mathematik`, `englisch`, `französisch`, `physik`
+    
+- **Kontext/Modul** (1 Tag): Woher kommt der Inhalt? Modulnotizen bekommen ihre Modulnummer, alles andere bekommt den Bereich. Modulnotizen: `m106`, `m122`, `m164` etc. Nicht-Modul-Schulfächer: `schule` Sonstiges: `arbeit`, `privat`
+    
+- **Typ** (optional, 1 Tag): Nur setzen wenn der Typ für die Navigation relevant ist. `übersicht`, `aufgabe`, `projekt`, `referenz`
+    
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 Kein Tag-Spam. Wenn ein Tag nicht als Dataview-Filter sinnvoll ist, gehört er nicht rein.
 
 **created** — Erstellungsdatum im Format YYYY-MM-DD. Wird nie nachträglich geändert.
 
 **status** — Aktueller Zustand der Notiz:
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 - `draft` — in Bearbeitung, unvollständig
 - `permanent` — fertig, gepflegt, verlässlich
 - `archived` — nicht mehr aktuell, aber historisch wertvoll
 
 **publish** — Sichtbarkeit für die öffentliche Website:
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 - `true` — wird auf der öffentlichen Website publiziert
 - `false` — bleibt privat, nur im eigenen Vault sichtbar
 
 **todo** — Zeigt an ob diese Notiz noch offene Fragen oder unvollständige Abschnitte hat:
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 - `true` — es gibt noch etwas zu klären oder zu ergänzen
 - `false` — Notiz ist inhaltlich vollständig (für den aktuellen Stand)
 
@@ -109,12 +140,20 @@ Dies ist die wichtigste Einschränkung beim Schreiben von Notizen.
 Warum: Die publizierte Website ist ein eigenständiger, in sich geschlossener Graph. Kaputte Links zu nicht-publizierten Seiten führen zu Fehlerseiten.
 
 **Beim Schreiben einer publish: true Notiz:**
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 1. Jeden `[[Link]]` prüfen — existiert die Zielnotiz?
 2. Hat die Zielnotiz `publish: true`?
 3. Wenn nein → entweder Link entfernen, oder Zielnotiz ebenfalls auf `publish: true` setzen (nur wenn inhaltlich sinnvoll)
 4. Im Zweifel: Link weglassen, statt eine kaputte Referenz zu erstellen
 
 **Faustregel für publish: true:**
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 - `100 Schule/` Lernnotizen → meistens `publish: true`
 - `200 Arbeit/` → immer `publish: false`
 - `300 Privat/` → immer `publish: false`
@@ -126,6 +165,7 @@ Warum: Die publizierte Website ist ein eigenständiger, in sich geschlossener Gr
 ## 4. Schreibstil
 
 ### Zielgruppe
+<<<<<<< HEAD
 Klassenkameraden, die das Thema lernen wollen — keine Experten.
 Schreib so, als würdest du jemandem in der Pause erklären, was ihr heute gelernt habt.
 
@@ -149,6 +189,30 @@ Zeig zuerst ein Beispiel, erkläre dann warum es so funktioniert.
 
 **Warum erklären, nicht nur Was.**
 Nicht nur was ein Befehl tut, sondern warum man ihn braucht und wann man ihn einsetzt.
+=======
+
+Klassenkameraden, die das Thema lernen wollen — keine Experten. Schreib so, als würdest du jemandem in der Pause erklären, was ihr heute gelernt habt.
+
+### Kernregeln
+
+**Erkläre zuerst, dann zeige das Detail.** Jedes Konzept bekommt zuerst einen Satz in einfachem Deutsch, bevor technische Details folgen.
+
+Schlecht:
+
+> `SELECT` gibt Spalten aus einer Tabelle zurück.
+
+Gut:
+
+> Mit `SELECT` sagst du der Datenbank: "Zeig mir diese Spalten." Es ist der Grundbefehl für jede Abfrage.
+
+**Merkhilfen einbauen.** Wenn es eine einfache Eselsbrücke gibt, schreib sie rein. Markiert mit:
+
+> **Merkhilfe:** ...
+
+**Konkrete Beispiele vor abstrakten Regeln.** Zeig zuerst ein Beispiel, erkläre dann warum es so funktioniert.
+
+**Warum erklären, nicht nur Was.** Nicht nur was ein Befehl tut, sondern warum man ihn braucht und wann man ihn einsetzt.
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 **Sprache:** Deutsch. Fachbegriffe auf Englisch wenn sie im Original englisch sind (z.B. `SELECT`, `Pipeline`, `Commit`). Keine Mischsprache in Erklärungen.
 
@@ -210,8 +274,12 @@ _Kein Vorwissen voraussetzen._
 
 ## 5b. Projektstruktur
 
+<<<<<<< HEAD
 Projekte sind eigenständige Einheiten mit Tasks, Dokumentation und verlinkten Wissensnotizen.
 Ein Projekt besteht immer aus mindestens zwei Dateien: `Übersicht.md` und `Kanban.md`.
+=======
+Projekte sind eigenständige Einheiten mit Tasks, Dokumentation und verlinkten Wissensnotizen. Ein Projekt besteht immer aus mindestens zwei Dateien: `Übersicht.md` und `Kanban.md`.
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ### Projekt-Übersicht Frontmatter
 
@@ -226,8 +294,12 @@ due: YYYY-MM-DD
 ---
 ```
 
+<<<<<<< HEAD
 **due** — Abgabe- oder Zieldatum. Optional, aber empfohlen für Schulprojekte.
 **status** für Projekte: `active` (läuft), `completed` (fertig), `on-hold` (pausiert), `archived` (abgeschlossen und archiviert)
+=======
+**due** — Abgabe- oder Zieldatum. Optional, aber empfohlen für Schulprojekte. **status** für Projekte: `active` (läuft), `completed` (fertig), `on-hold` (pausiert), `archived` (abgeschlossen und archiviert)
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ### Projekt-Übersicht Struktur
 
@@ -253,8 +325,12 @@ _Wichtige Entscheide, Erkenntnisse, Probleme und wie sie gelöst wurden._
 
 ### Kanban-Board Struktur
 
+<<<<<<< HEAD
 Das Kanban-Board (`Kanban.md`) wird mit dem **Obsidian Kanban Plugin** verwaltet.
 Spalten-Schema für alle Projekte:
+=======
+Das Kanban-Board (`Kanban.md`) wird mit dem **Obsidian Kanban Plugin** verwaltet. Spalten-Schema für alle Projekte:
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ```
 Backlog | In Progress | Review / Warten | Erledigt
@@ -279,12 +355,19 @@ Kleine Aufgaben die kein vollständiges Projekt rechtfertigen (einzelne Übungsb
 
 Faustregel: Mehr als 3 zusammenhängende Tasks oder Abgabe mit Dokumentation → eigener Projektordner. Weniger → Checkliste in der Übersicht.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ---
 
 ## 6. Namenskonventionen
 
 ### Dateinamen
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 - Lesbar, keine Sonderzeichen ausser `-` und `–`
 - Modulnotizen: `SQL - DQL.md`, `SQL - DML.md`, `PowerShell - Variablen.md`
 - Übersichten: `M106 Übersicht.md`
@@ -292,6 +375,7 @@ Faustregel: Mehr als 3 zusammenhängende Tasks oder Abgabe mit Dokumentation →
 - Keine Nummern-Präfixe in Notizen (nur in Ordnernamen)
 
 ### Ordner
+<<<<<<< HEAD
 Bestehende Struktur beibehalten. Neue Ordner in `100 Schule/` folgen diesen Schemata:
 
 Modulbasierte Fächer: `M[xxx] - [Modulname]/`
@@ -300,6 +384,14 @@ Beispiel: `M106 - Datenbanken/`, `M122 - PowerShell/`
 Nicht-Modul-Schulfächer (Sprachen, Naturwissenschaften, Berufsmatura-Fächer):
 `[Fachname]/`
 Beispiel: `Englisch/`, `Mathematik/`, `Französisch/`, `Physik/`, `Berufsmatura/`
+=======
+
+Bestehende Struktur beibehalten. Neue Ordner in `100 Schule/` folgen diesen Schemata:
+
+Modulbasierte Fächer: `M[xxx] - [Modulname]/` Beispiel: `M106 - Datenbanken/`, `M122 - PowerShell/`
+
+Nicht-Modul-Schulfächer (Sprachen, Naturwissenschaften, Berufsmatura-Fächer): `[Fachname]/` Beispiel: `Englisch/`, `Mathematik/`, `Französisch/`, `Physik/`, `Berufsmatura/`
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 Innerhalb dieser Ordner gelten dieselben Dateinamen-Regeln wie bei Modulnotizen.
 
@@ -307,18 +399,27 @@ Innerhalb dieser Ordner gelten dieselben Dateinamen-Regeln wie bei Modulnotizen.
 
 ## 7. Verlinkung
 
+<<<<<<< HEAD
 **Interne Links:** `[[Dateiname]]` ohne Pfad — Obsidian findet sie automatisch.
 Wenn der Anzeigetext angepasst werden soll: `[[Dateiname|Anzeigetext]]`
 
 **Verbindungen aktiv pflegen:** Jede neue Notiz bekommt mindestens einen eingehenden Link von einer bestehenden Notiz oder MOC-Seite. Keine Waisen-Notizen.
 
 **Backlinks nutzen:** Die "Verbindungen"-Tabelle am Ende jeder Notiz soll erklären *warum* zwei Themen verbunden sind — nicht nur dass sie es sind.
+=======
+**Interne Links:** `[[Dateiname]]` ohne Pfad — Obsidian findet sie automatisch. Wenn der Anzeigetext angepasst werden soll: `[[Dateiname|Anzeigetext]]`
+
+**Verbindungen aktiv pflegen:** Jede neue Notiz bekommt mindestens einen eingehenden Link von einer bestehenden Notiz oder MOC-Seite. Keine Waisen-Notizen.
+
+**Backlinks nutzen:** Die "Verbindungen"-Tabelle am Ende jeder Notiz soll erklären _warum_ zwei Themen verbunden sind — nicht nur dass sie es sind.
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 
 ## 8. Navigation — MOC-Seiten und Dataview
 
 ### MOC-Seiten (Maps of Content)
+<<<<<<< HEAD
 Jeder Modulordner hat eine `[Modul] Übersicht.md` — die Einstiegsseite für dieses Modul.
 Jeder Fachbereich hat eine `_Übersicht [Thema].md` in `100 Schule/_Übersichten/`.
 
@@ -326,6 +427,15 @@ MOC-Seiten listen alle Notizen im Bereich auf, gruppiert nach Thema.
 Sie werden vom Agenten bei jeder neuen Notiz aktualisiert.
 
 ### Dataview-Queries
+=======
+
+Jeder Modulordner hat eine `[Modul] Übersicht.md` — die Einstiegsseite für dieses Modul. Jeder Fachbereich hat eine `_Übersicht [Thema].md` in `100 Schule/_Übersichten/`.
+
+MOC-Seiten listen alle Notizen im Bereich auf, gruppiert nach Thema. Sie werden vom Agenten bei jeder neuen Notiz aktualisiert.
+
+### Dataview-Queries
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 MOC-Seiten können dynamische Tabellen enthalten. Beispiele:
 
 ```dataview
@@ -339,6 +449,7 @@ WHERE contains(tags, "sql")
 SORT file.name ASC
 ```
 
+<<<<<<< HEAD
 Dataview-Queries werden in MOC-Seiten eingebaut — nicht in regulären Notizen.
 ---
 
@@ -350,6 +461,17 @@ Sie wird vom Agenten nicht automatisch verändert — sie enthält nur statische
 ### Inhalt des Dashboards
 
 ```markdown
+=======
+## Dataview-Queries werden in MOC-Seiten eingebaut — nicht in regulären Notizen.
+
+## 8b. Dashboard.md
+
+`Dashboard.md` liegt im Vault-Root und ist die tägliche Startseite. Sie wird vom Agenten nicht automatisch verändert — sie enthält nur statische Dataview-Queries die sich selbst aktualisieren.
+
+### Inhalt des Dashboards
+
+````markdown
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 # Dashboard
 
 ## Offene Tasks
@@ -359,11 +481,19 @@ _Alle unerledigten Aufgaben aus allen Projekten, gruppiert nach Projekt._
 TASK FROM "100 Schule" OR "200 Arbeit" OR "300 Privat"
 WHERE !completed
 GROUP BY file.link
+<<<<<<< HEAD
 ```
+=======
+````
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 
 ## Notizen mit offenen Fragen (todo: true)
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ```dataview
 TABLE file.folder AS Bereich, status, created
 FROM ""
@@ -374,6 +504,10 @@ SORT created DESC
 ---
 
 ## Drafts älter als 14 Tage
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ```dataview
 TABLE file.folder AS Bereich, created
 FROM ""
@@ -384,6 +518,10 @@ SORT created ASC
 ---
 
 ## Aktive Projekte
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ```dataview
 TABLE due, status, file.folder AS Bereich
 FROM ""
@@ -394,6 +532,10 @@ SORT due ASC
 ---
 
 ## Zuletzt erstellt
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ```dataview
 TABLE file.folder AS Bereich, status
 FROM ""
@@ -401,6 +543,10 @@ WHERE file.name != "Dashboard" AND file.name != "index" AND file.name != "log"
 SORT created DESC
 LIMIT 10
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ```
 
 
@@ -418,14 +564,22 @@ Auslöser: "Erstelle eine Notiz über [Thema]" oder "Erkläre mir [Thema] und sp
 4. Setze `publish` korrekt gemäss Abschnitt 3
 5. Aktualisiere die zugehörige MOC-Seite / Übersicht
 6. Füge einen eingehenden Link von einer verwandten Notiz hinzu
+<<<<<<< HEAD
 7. Aktualisiere `_index.md`
+=======
+7. Aktualisiere `index.md`
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 8. Schreibe einen Eintrag in `log.md`
 
 ### Workflow B — Frage beantworten
 
 Auslöser: Inhaltliche Frage zu einem Thema
 
+<<<<<<< HEAD
 1. Lese `_index.md` um relevante Notizen zu finden
+=======
+1. Lese `index.md` um relevante Notizen zu finden
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 2. Lese die relevanten Notizen
 3. Beantworte die Frage — **mit Bezug auf die eigenen Notizen** wenn vorhanden
 4. Falls das Thema nicht im Wiki ist: Web-Recherche → Antwort geben → neue Notiz erstellen (Workflow A)
@@ -439,8 +593,12 @@ Auslöser: "Verarbeite diese URL / diesen Text / dieses Dokument"
 2. Bespreche kurz die wichtigsten Erkenntnisse
 3. Erstelle eine Notiz nach Workflow A
 4. Verlinke mit bestehenden Notizen zum Thema
+<<<<<<< HEAD
 5. Aktualisiere `_index.md`
 6. Notiere in `log.md`
+=======
+5. Notiere in `log.md`
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ### Workflow E — Neues Projekt erstellen
 
@@ -452,7 +610,11 @@ Auslöser: "Erstelle ein Projekt für [Name]" oder wenn eine Aufgabe klar mehr a
 4. Erstelle `Kanban.md` mit den vier Standardspalten (Backlog / In Progress / Review / Erledigt)
 5. Frage nach bekannten Tasks um das Backlog initial zu befüllen
 6. Verlinke das Projekt in der zugehörigen Modul-Übersicht oder MOC-Seite
+<<<<<<< HEAD
 7. Aktualisiere `_index.md` und `log.md`
+=======
+7. Aktualisiere `index.md` und `log.md`
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 
 ### Workflow D — Wiki-Pflege (Lint)
@@ -472,6 +634,7 @@ Bericht erstellen, Fixes vorschlagen, auf Bestätigung warten.
 
 ## 10. index.md und log.md
 
+<<<<<<< HEAD
 ### _index.md
 - Interner Master-Index, nur für den Agenten und dich
 - Organisiert nach Ordner/Fachbereich
@@ -484,6 +647,13 @@ Bericht erstellen, Fixes vorschlagen, auf Bestätigung warten.
 - Wird vom Agenten **nicht** automatisch bearbeitet
 - Nur manuell oder auf explizite Anfrage anpassen
 - `publish: true`
+=======
+### index.md
+- Master-Übersicht aller Notizen im Vault
+- Organisiert nach Ordner/Fachbereich
+- Format pro Eintrag: `[[Dateiname]] — Kurzbeschreibung`
+- Wird bei jedem Workflow A/C aktualisiert
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ### log.md
 - Append-only — niemals bestehende Einträge bearbeiten
@@ -502,3 +672,7 @@ Bericht erstellen, Fixes vorschlagen, auf Bestätigung warten.
 - Keine Frontmatter-Felder hinzufügen die nicht im Schema stehen
 - Nie in `Templates/` schreiben
 - Nie `log.md` rückwirkend bearbeiten
+<<<<<<< HEAD
+=======
+```
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6

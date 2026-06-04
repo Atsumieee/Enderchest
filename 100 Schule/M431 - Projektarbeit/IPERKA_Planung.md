@@ -59,6 +59,7 @@
 - **Projekt genehmigt durch Lehrperson Kuno Schürch**
 
 ### R – Realisieren (19.05.2026 – 02.06.2026)
+<<<<<<< HEAD
 - [x] Grundstruktur der Website (Navigation, Sidebar, Seitenaufbau) ✅ erstellt
 - [x] Quiz-Logik mit JavaScript implementiert ✅
 - [x] Inhalte M117 (Roni) einfügen
@@ -81,6 +82,30 @@
 - [x] Was lief gut / was würden wir anders machen?
 - [x] Dokumentation fertiggestellt und als PDF exportiert
 - [x] Präsentation vorbereitet und geprobt
+=======
+- [ ] Grundstruktur der Website (Navigation, Sidebar, Seitenaufbau) ✅ erstellt
+- [ ] Quiz-Logik mit JavaScript implementiert ✅
+- [ ] Inhalte M117 (Roni) einfügen
+- [ ] Inhalte M122 (Marvin) einfügen
+- [ ] Inhalte M319 (Marvin) einfügen
+- [ ] Inhalte M187 (Anna) einfügen
+- [ ] Inhalte M162 (Milan) einfügen
+- [ ] Quizfragen aller Module einbauen
+- [ ] Design verfeinern
+- [ ] Website auf Schulserver deployed
+
+### K – Kontrollieren (02.06.2026 – 08.06.2026)
+- [ ] Funktionstest aller Seiten und Quiz-Logik
+- [ ] Inhalte fachlich geprüft (gegenseitiges Review)
+- [ ] Test auf Schulserver (Chrome, Firefox, Mobile)
+- [ ] Dokumentation auf Vollständigkeit geprüft
+
+### A – Auswerten (08.06.2026)
+- [ ] Reflexion über Projektverlauf inkl. Neustart
+- [ ] Was lief gut / was würden wir anders machen?
+- [ ] Dokumentation fertiggestellt und als PDF exportiert
+- [ ] Präsentation vorbereitet und geprobt
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 

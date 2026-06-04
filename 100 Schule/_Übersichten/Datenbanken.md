@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: "Übersicht Datenbanken"
 tags: [übersicht, sql]
 created: 2026-06-02
@@ -32,3 +33,8 @@ WHERE contains(tags, "sql")
 AND file.name != "_Übersicht Datenbanken"
 SORT file.folder ASC, file.name ASC
 ```
+=======
+publish: true
+---
+[[M106 Übersicht]]
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6

@@ -1,5 +1,6 @@
 [
   "obsidian-style-settings",
+<<<<<<< HEAD
   "dataview",
   "realclaudian",
   "obsidian-git",
@@ -9,4 +10,14 @@
   "system3-relay",
   "obsidian-tasks-plugin",
   "templater-obsidian"
+=======
+  "system3-relay",
+  "obsidian-kanban",
+  "dataview",
+  "templater-obsidian",
+  "obsidian-tasks-plugin",
+  "quickadd",
+  "obsidian-git",
+  "obsidian-excalidraw-plugin"
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 ]

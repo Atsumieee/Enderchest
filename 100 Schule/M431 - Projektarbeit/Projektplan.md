@@ -225,9 +225,15 @@ Vollständige Planung in [[IPERKA_Planung]] — hier die Kurzübersicht.
 - [x] I – 19.05: Neue Anforderungen analysiert, Themen festgelegt
 - [x] P – 19.05: Struktur, Aufgaben, Zeitplan definiert
 - [x] E – 19.05: Projekt genehmigt durch Lehrperson
+<<<<<<< HEAD
 - [x] R – 19.05–02.06: **Inhalte einfügen, Quiz fertigstellen, Deployment**
 - [x] K – 02.06–08.06: Testing, Review, Fehlerbehebung
 - [x] A – 08.06: Reflexion, Dokumentation, Abgabe
+=======
+- [ ] R – 19.05–02.06: **Inhalte einfügen, Quiz fertigstellen, Deployment**
+- [ ] K – 02.06–08.06: Testing, Review, Fehlerbehebung
+- [ ] A – 08.06: Reflexion, Dokumentation, Abgabe
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 
 ---
 
@@ -253,6 +259,7 @@ Vollständige Planung in [[IPERKA_Planung]] — hier die Kurzübersicht.
 ## ✅ Offene TODOs nach Priorität
 
 ### 🔴 Hoch (blockiert andere Aufgaben)
+<<<<<<< HEAD
 - [x] Inhalte aller Module in `it-lernplattform.html` einfüllen (26.05)
 - [x] Quizfragen pro Modul ins `quizData`-Objekt eintragen (26.05)
 - [x] Namen im Titelblatt der Dokumentation eintragen
@@ -264,6 +271,19 @@ Vollständige Planung in [[IPERKA_Planung]] — hier die Kurzübersicht.
 
 ### 🟢 Niedrig (polish & abschluss)
 - [x] Screenshots erstellen und in Dokumentation einfügen
+=======
+- [ ] Inhalte aller Module in `it-lernplattform.html` einfüllen (26.05)
+- [ ] Quizfragen pro Modul ins `quizData`-Objekt eintragen (26.05)
+- [ ] Namen im Titelblatt der Dokumentation eintragen
+
+### 🟡 Mittel (wichtig, aber nicht blockierend)
+- [ ] Zeitplan in Dokumentation mit Verantwortlichen befüllen
+- [ ] Deployment auf Schulserver (02.06)
+- [ ] URL in Dokumentation eintragen
+
+### 🟢 Niedrig (polish & abschluss)
+- [ ] Screenshots erstellen und in Dokumentation einfügen
+>>>>>>> f78cc396527ec1cac21822d854817a0a296012a6
 - [x] Fazit & Reflexion schreiben (Kapitel 6)
 - [x] Responsivität auf Mobile testen
 - [x] Präsentation als Datei erstellen
