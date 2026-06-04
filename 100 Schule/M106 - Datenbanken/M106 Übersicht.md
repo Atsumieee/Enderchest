@@ -6,7 +6,7 @@ tags:
   - m106
 created: 2026-05-22
 status: permanent
-publish: false
+publish: true
 todo: false
 moc: true
 ---

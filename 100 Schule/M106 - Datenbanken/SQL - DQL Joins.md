@@ -40,13 +40,13 @@ Um die verschiedenen JOIN-Typen zu verstehen hilft eine einfache Vorstellung: Zw
 
 Die Werte 3 und 4 existieren in beiden Tabellen — das ist die Schnittmenge. Die Werte 1 und 2 gibt es nur in A, die Werte 5 und 6 nur in B. Je nach JOIN-Typ entscheidet man welcher Teil dieser Mengen im Ergebnis erscheint:
 
-| JOIN-Art         | Was wird zurückgegeben                            | Ergebnis (a / b)                                  |
-|------------------|---------------------------------------------------|---------------------------------------------------|
-| INNER JOIN       | Nur die Schnittmenge                              | 3/3, 4/4                                          |
-| LEFT OUTER JOIN  | Alle Zeilen aus A + Schnittmenge (B-Seite = NULL) | 1/NULL, 2/NULL, 3/3, 4/4                          |
-| RIGHT OUTER JOIN | Alle Zeilen aus B + Schnittmenge (A-Seite = NULL) | 3/3, 4/4, NULL/5, NULL/6                          |
-| FULL OUTER JOIN  | Alle Zeilen beider Tabellen                       | 1/NULL, 2/NULL, 3/3, 4/4, NULL/5, NULL/6          |
-| CROSS JOIN       | Jede Zeile A × jede Zeile B (kartesisches Produkt)| 4 × 4 = 16 Kombinationen                         |
+| JOIN-Art         | Was wird zurückgegeben                             | Ergebnis (a / b)                                  |
+|------------------|----------------------------------------------------|---------------------------------------------------|
+| INNER JOIN       | Nur die Schnittmenge                               | 3/3, 4/4                                          |
+| LEFT OUTER JOIN  | Alle Zeilen aus A + Schnittmenge (B-Seite = NULL)  | 1/NULL, 2/NULL, 3/3, 4/4                          |
+| RIGHT OUTER JOIN | Alle Zeilen aus B + Schnittmenge (A-Seite = NULL)  | 3/3, 4/4, NULL/5, NULL/6                          |
+| FULL OUTER JOIN  | Alle Zeilen beider Tabellen                        | 1/NULL, 2/NULL, 3/3, 4/4, NULL/5, NULL/6          |
+| CROSS JOIN       | Jede Zeile A × jede Zeile B (kartesisches Produkt) | 4 × 4 = 16 Kombinationen                          |
 
 ```widget
 JOIN Venn-Visualizer
