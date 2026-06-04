@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M164 Block 2 – DML | IT Lernplattform</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <div class="platform">
+    <div class="sidebar" id="app-nav"></div>
+    <div class="content">
+
+      <div class="breadcrumb">IT Lernplattform › M164 – SQL › Block 2</div>
+      <div class="page-title"><i class="ti ti-edit"></i> DML — Daten manipulieren</div>
+      <div class="page-subtitle">M164 Block 2 von 5 — INSERT, UPDATE, DELETE</div>
+
+      <div class="warn-box">
+        <i class="ti ti-alert-triangle"></i>
+        <div>
+          DML-Befehle verändern den Datenbestand <strong>dauerhaft und ohne Rückfrage</strong>. Ein fehlendes
+          <code>WHERE</code> betrifft alle Zeilen der Tabelle!
+        </div>
+      </div>
+
+      <!-- INSERT -->
+      <div class="section-block">
+        <h3>INSERT — Daten einfügen</h3>
+        <p><code>INSERT INTO</code> fügt neue Zeilen in eine Tabelle ein. Die Spalten werden in Klammern aufgelistet,
+          danach folgen die Werte mit <code>VALUES</code>.</p>
+        <pre class="code-block"><code class="language-sql">-- Einen Datensatz einfügen (empfohlen: explizite Spalten)
+INSERT INTO kunden (vorname, nachname, land)
+VALUES ('Hans', 'Meier', 'CH');
+
+-- Mehrere Datensätze auf einmal
+INSERT INTO kunden (vorname, nachname)
+VALUES ('Helen', 'Müller'),
+       ('Mark', 'Bauer'),
+       ('Jost', 'Keller');
+
+-- Aus einer anderen Tabelle kopieren (INSERT + SELECT)
+INSERT INTO kunden_archiv (vorname, nachname)
+SELECT vorname, nachname FROM kunden
+WHERE land = 'DE';</code></pre>
+        <p>Spalten mit <code>NOT NULL</code> ohne <code>DEFAULT</code>-Wert müssen immer angegeben werden — sonst wirft
+          SQL einen Fehler.</p>
+      </div>
+
+      <!-- UPDATE -->
+      <div class="section-block">
+        <h3>UPDATE — Daten ändern</h3>
+        <p><code>UPDATE</code> ändert Felder in bestehenden Datensätzen. Mit <code>SET</code> werden die neuen Werte
+          angegeben. Mehrere Spalten werden durch Komma getrennt.</p>
+        <pre class="code-block"><code class="language-sql">-- Einen bestimmten Kunden aktualisieren
+UPDATE kunden
+SET nachname = 'Meyer', land = 'DE'
+WHERE kundenid = 2;
+
+-- Alle Kunden mit Nachname 'Meier' umbenennen
+UPDATE kunden
+SET nachname = 'Meyer'
+WHERE nachname = 'Meier';</code></pre>
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle"></i>
+          <div>
+            <strong>Ohne WHERE</strong> werden alle Zeilen der Tabelle geändert! Vor einem UPDATE immer zuerst mit
+            <code>SELECT</code> prüfen welche Zeilen betroffen wären.
+          </div>
+        </div>
+        <pre class="code-block"><code class="language-sql">-- GEFÄHRLICH: Alle Kunden erhalten land = 'DE'
+UPDATE kunden SET land = 'DE';
+
+-- BESSER: Erst prüfen
+SELECT * FROM kunden WHERE nachname = 'Meyer';
+-- Dann erst UPDATE ausführen</code></pre>
+      </div>
+
+      <!-- DELETE -->
+      <div class="section-block">
+        <h3>DELETE — Daten löschen</h3>
+        <p><code>DELETE FROM</code> löscht ganze Zeilen aus einer Tabelle. Mit <code>WHERE</code> wird eingeschränkt
+          welche Zeilen betroffen sind.</p>
+        <pre class="code-block"><code class="language-sql">-- Einen bestimmten Datensatz löschen
+DELETE FROM produkte WHERE produktid = 5;
+
+-- Alle inaktiven Kunden löschen
+DELETE FROM kunden WHERE status = 'inaktiv';</code></pre>
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle"></i>
+          <div>
+            <strong>Ohne WHERE</strong> werden alle Zeilen der Tabelle gelöscht! Der Befehl kann nicht rückgängig
+            gemacht werden (ausser mit Transaktionen).
+          </div>
+        </div>
+
+        <p><strong>DELETE vs. TRUNCATE:</strong></p>
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Merkmal</th>
+              <th>DELETE</th>
+              <th>TRUNCATE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Einzelne Zeilen löschbar</td>
+              <td>✅ Ja (mit WHERE)</td>
+              <td>❌ Nein (immer alles)</td>
+            </tr>
+            <tr>
+              <td>Protokollierung</td>
+              <td>✅ Ja (langsamer)</td>
+              <td>❌ Nein (schneller)</td>
+            </tr>
+            <tr>
+              <td>IDENTITY-Zähler</td>
+              <td>Wird nicht zurückgesetzt</td>
+              <td>Wird zurückgesetzt</td>
+            </tr>
+            <tr>
+              <td>WHERE-Klausel</td>
+              <td>✅ Möglich</td>
+              <td>❌ Nicht möglich</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Referentielle Integrität -->
+      <div class="section-block">
+        <h3>Referentielle Integrität &amp; Cascading</h3>
+        <p>Wenn ein Fremdschlüssel aus einer anderen Tabelle auf den zu löschenden Datensatz zeigt, schlägt das
+          <code>DELETE</code> mit einem Fehler fehl:</p>
+        <pre class="code-block"><code class="language-sql">-- Fehler! Kunde 2 hat noch Bestellungen → FK-Verletzung
+DELETE FROM kunden WHERE kundenid = 2;</code></pre>
+        <p>Lösung 1: Abhängige Datensätze zuerst löschen. Lösung 2: <code>ON DELETE CASCADE</code> beim Fremdschlüssel
+          aktivieren — dann werden Child-Datensätze automatisch mitgelöscht:</p>
+        <pre class="code-block"><code class="language-sql">-- Fremdschlüssel mit Cascade-Option
+ALTER TABLE bestellungen
+ADD CONSTRAINT fk_bestell_kunde
+  FOREIGN KEY (kundenid)
+  REFERENCES kunden(kundenid)
+  ON DELETE CASCADE;
+
+-- Jetzt löscht dieses Statement den Kunden UND seine Bestellungen
+DELETE FROM kunden WHERE kundenid = 2;</code></pre>
+      </div>
+
+      <!-- Quiz -->
+      <div id="quiz-container"></div>
+
+      <div class="page-nav">
+        <a href="./sql-block1.html" class="btn"><i class="ti ti-arrow-left"></i> Block 1: DQL</a>
+        <a href="./sql-block3.html" class="btn primary page-nav-right">Block 3: DQL <i
+            class="ti ti-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    window.BASE = '../';
+    window.PAGES = './';
+    window.CURRENT_PAGE = 'sql-block2';
+  </script>
+  <script src="../js/app.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script>
+    initQuiz('quiz-container', [
+      {
+        q: "Was passiert bei diesem Befehl: UPDATE kunden SET land = 'DE'  (ohne WHERE)?",
+        options: [
+          "Nur der erste Kunde wird geändert",
+          "SQL gibt einen Fehler aus",
+          "Nichts — ohne WHERE passiert nichts",
+          "Alle Kunden in der Tabelle erhalten land = 'DE'"
+        ],
+        correct: 3,
+        explanation: "Ohne WHERE-Klausel betrifft UPDATE alle Zeilen der Tabelle. Daher immer zuerst mit SELECT prüfen welche Zeilen betroffen wären."
+      },
+      {
+        q: "Welcher Befehl fügt einen neuen Datensatz in eine Tabelle ein?",
+        options: ["UPDATE", "SELECT INTO", "INSERT", "ADD ROW"],
+        correct: 2,
+        explanation: "INSERT INTO fügt neue Zeilen in eine Tabelle ein. Die Werte werden nach VALUES angegeben — einzeln oder als kommagetrennte Liste für mehrere Datensätze."
+      },
+      {
+        q: "Was ist der Hauptunterschied zwischen DELETE und TRUNCATE?",
+        options: [
+          "TRUNCATE löscht nur eine Zeile, DELETE alle",
+          "DELETE kann mit WHERE einzelne Zeilen löschen, TRUNCATE löscht immer die ganze Tabelle",
+          "Es gibt keinen Unterschied",
+          "DELETE ist schneller als TRUNCATE"
+        ],
+        correct: 1,
+        explanation: "DELETE ist flexibel (WHERE möglich, protokolliert). TRUNCATE löscht immer alle Zeilen ohne Protokollierung — dafür deutlich schneller bei grossen Tabellen."
+      }
+    ]);
+  </script>
+</body>
+
+</html>

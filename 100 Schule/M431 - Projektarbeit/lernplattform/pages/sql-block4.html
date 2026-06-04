@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M164 Block 4 – Sortieren &amp; Aggregieren | IT Lernplattform</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <div class="platform">
+    <div class="sidebar" id="app-nav"></div>
+    <div class="content">
+
+      <div class="breadcrumb">IT Lernplattform › M164 – SQL › Block 4</div>
+      <div class="page-title"><i class="ti ti-chart-bar"></i> Sortieren &amp; Aggregieren</div>
+      <div class="page-subtitle">M164 Block 4 von 5 — ORDER BY, Aggregatfunktionen, GROUP BY</div>
+
+      <div class="info-box">
+        <i class="ti ti-info-circle"></i>
+        <div>
+          Aufbauend auf Block 3. Hier lernst du, Ergebnisse zu sortieren, Duplikate zu entfernen und Berechnungen über
+          mehrere Zeilen durchzuführen.
+        </div>
+      </div>
+
+      <!-- ORDER BY & DISTINCT -->
+      <div class="section-block">
+        <h3>ORDER BY &amp; DISTINCT</h3>
+        <p><code>ORDER BY</code> sortiert das Ergebnis. Standard ist aufsteigend (<code>ASC</code>), mit
+          <code>DESC</code> sortiert man absteigend. Mehrere Spalten sind möglich.
+        </p>
+        <pre class="code-block"><code class="language-sql">-- Aufsteigend (Standard)
+SELECT * FROM produkte ORDER BY preis ASC;
+
+-- Absteigend
+SELECT * FROM produkte ORDER BY preis DESC;
+
+-- Erst nach Nachname, dann Vorname
+SELECT * FROM kunden ORDER BY nachname ASC, vorname ASC;</code></pre>
+        <p><code>DISTINCT</code> entfernt doppelte Zeilen aus dem Ergebnis. Nützlich um alle verschiedenen Werte einer
+          Spalte zu sehen:</p>
+        <pre class="code-block"><code class="language-sql">-- Alle einzigartigen Länder in der Kundentabelle
+SELECT DISTINCT land FROM kunden;</code></pre>
+      </div>
+
+      <!-- Aggregatfunktionen -->
+      <div class="section-block">
+        <h3>Aggregatfunktionen</h3>
+        <p>Aggregatfunktionen fassen mehrere Zeilen zu einem einzigen Ergebniswert zusammen. Sie werden immer im
+          <code>SELECT</code>-Teil angegeben.
+        </p>
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Funktion</th>
+              <th>Bedeutung</th>
+              <th>Beispiel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>COUNT(*)</code></td>
+              <td>Anzahl Zeilen zählen</td>
+              <td><code>SELECT COUNT(*) FROM kunden</code></td>
+            </tr>
+            <tr>
+              <td><code>SUM(spalte)</code></td>
+              <td>Summe berechnen</td>
+              <td><code>SELECT SUM(preis) FROM bestellungen</code></td>
+            </tr>
+            <tr>
+              <td><code>AVG(spalte)</code></td>
+              <td>Durchschnitt berechnen</td>
+              <td><code>SELECT AVG(alter) FROM kunden</code></td>
+            </tr>
+            <tr>
+              <td><code>MIN(spalte)</code></td>
+              <td>Kleinster Wert</td>
+              <td><code>SELECT MIN(preis) FROM produkte</code></td>
+            </tr>
+            <tr>
+              <td><code>MAX(spalte)</code></td>
+              <td>Grösster Wert</td>
+              <td><code>SELECT MAX(preis) FROM produkte</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <pre class="code-block"><code class="language-sql">-- Wie viele Kunden gibt es insgesamt?
+SELECT COUNT(*) AS anzahl_kunden FROM kunden;
+
+-- Durchschnittspreis aller Produkte
+SELECT AVG(preis) AS durchschnittspreis FROM produkte;
+
+-- Teuerste und günstigste Bestellung
+SELECT MAX(preis) AS max, MIN(preis) AS min FROM bestellungen;</code></pre>
+      </div>
+
+      <!-- GROUP BY & HAVING -->
+      <div class="section-block">
+        <h3>GROUP BY &amp; HAVING</h3>
+        <p><code>GROUP BY</code> fasst Zeilen mit gleichem Wert zusammen. Aggregatfunktionen wirken dann auf jede Gruppe
+          separat.</p>
+        <p><code>HAVING</code> filtert die fertigen Gruppen — analog zu <code>WHERE</code>, aber nach der Gruppierung.
+        </p>
+        <pre class="code-block"><code class="language-sql">-- Anzahl Bestellungen pro Kunde
+SELECT kunden_id, COUNT(*) AS anzahl
+FROM bestellungen
+GROUP BY kunden_id;
+
+-- Nur Kunden mit mehr als 5 Bestellungen
+SELECT kunden_id, COUNT(*) AS anzahl
+FROM bestellungen
+GROUP BY kunden_id
+HAVING COUNT(*) &gt; 5;
+
+-- Umsatz pro Land, nur Länder über 10 000 CHF
+SELECT land, SUM(preis) AS umsatz
+FROM bestellungen
+JOIN kunden ON bestellungen.kunden_id = kunden.id
+GROUP BY land
+HAVING SUM(preis) &gt; 10000;</code></pre>
+        <div class="warn-box">
+          <i class="ti ti-bulb"></i>
+          <div>
+            <strong>Merkhilfe:</strong> <code>WHERE</code> filtert <em>vor</em> dem Gruppieren (einzelne Zeilen).
+            <code>HAVING</code> filtert <em>nach</em> dem Gruppieren (ganze Gruppen).
+          </div>
+        </div>
+      </div>
+
+      <!-- Ausführungsreihenfolge -->
+      <div class="section-block">
+        <h3>Vollständige Ausführungsreihenfolge</h3>
+        <p>SQL verarbeitet alle Klauseln intern in dieser festen Reihenfolge — unabhängig davon, wie sie geschrieben
+          stehen:</p>
+        <pre
+          class="code-block"><code class="language-sql">FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY</code></pre>
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Schritt</th>
+              <th>Was passiert</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>FROM</code></td>
+              <td>Tabelle(n) laden (inkl. JOINs)</td>
+            </tr>
+            <tr>
+              <td><code>WHERE</code></td>
+              <td>Einzelne Zeilen filtern</td>
+            </tr>
+            <tr>
+              <td><code>GROUP BY</code></td>
+              <td>Zeilen in Gruppen zusammenfassen</td>
+            </tr>
+            <tr>
+              <td><code>HAVING</code></td>
+              <td>Gruppen filtern</td>
+            </tr>
+            <tr>
+              <td><code>SELECT</code></td>
+              <td>Spalten auswählen &amp; Aliase vergeben</td>
+            </tr>
+            <tr>
+              <td><code>ORDER BY</code></td>
+              <td>Ergebnis sortieren</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Das erklärt, warum ein in <code>SELECT</code> definierter Alias in <code>WHERE</code> nicht verwendet werden
+          kann — <code>WHERE</code> wird vor <code>SELECT</code> ausgeführt.</p>
+      </div>
+
+      <!-- Quiz -->
+      <div id="quiz-container"></div>
+
+      <!-- Navigation -->
+      <div class="page-nav">
+        <a href="./sql-block3.html" class="btn"><i class="ti ti-arrow-left"></i> Block 3: DQL</a>
+        <a href="./sql-block5.html" class="btn primary page-nav-right">Block 5: JOINs <i
+            class="ti ti-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    window.BASE = '../';
+    window.PAGES = './';
+    window.CURRENT_PAGE = 'sql-block4';
+  </script>
+  <script src="../js/app.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script>
+    initQuiz('quiz-container', [
+      {
+        q: "Welche Aggregatfunktion berechnet den Durchschnitt einer Spalte?",
+        options: ["COUNT()", "SUM()", "AVG()", "MAX()"],
+        correct: 2,
+        explanation: "AVG() (Average) berechnet den Durchschnittswert aller Werte einer Spalte. COUNT() zählt Zeilen, SUM() summiert, MAX() gibt den grössten Wert zurück."
+      },
+      {
+        q: "Was ist der Unterschied zwischen WHERE und HAVING?",
+        options: [
+          "Es gibt keinen Unterschied",
+          "WHERE funktioniert nur mit JOINs",
+          "WHERE filtert vor der Gruppierung, HAVING nach der Gruppierung",
+          "HAVING kann nur mit COUNT() verwendet werden"
+        ],
+        correct: 2,
+        explanation: "WHERE filtert einzelne Zeilen bevor sie gruppiert werden. HAVING filtert die fertigen Gruppen nach GROUP BY — z.B. nur Gruppen mit COUNT(*) > 5."
+      },
+      {
+        q: "Was macht SELECT DISTINCT?",
+        options: [
+          "Sortiert die Ergebnisse alphabetisch",
+          "Wählt eine zufällige Zeile aus",
+          "Gibt nur Zeilen zurück die eine bestimmte Bedingung erfüllen",
+          "Entfernt doppelte Zeilen aus dem Ergebnis"
+        ],
+        correct: 3,
+        explanation: "DISTINCT gibt jeden Wert nur einmal zurück — Duplikate werden herausgefiltert. Nützlich z.B. um alle verschiedenen Länder in einer Tabelle aufzulisten."
+      }
+    ]);
+  </script>
+</body>
+
+</html>

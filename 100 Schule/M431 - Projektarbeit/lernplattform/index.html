@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Lernplattform - Übersicht</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="platform">
+
+    <!-- Sidebar (filled by app.js) -->
+    <div class="sidebar" id="app-nav"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <div class="breadcrumb">IT Lernplattform</div>
+      <div class="page-title"><i class="ti ti-home"></i> Übersicht</div>
+      <div class="page-subtitle">Wähle ein Modul und starte das Lernmodul.</div>
+
+      <div class="module-cards">
+
+        <!-- M117 -->
+        <a class="module-card" href="./pages/m117.html">
+          <div class="module-card-icon">🌐</div>
+          <div class="module-card-title">M117 - Netzwerk</div>
+          <div class="module-card-desc">IP-Adressen, Protokolle, Topologien, OSI-Modell</div>
+          <div class="module-card-status">
+            <span class="badge badge-wip">Roni - in Arbeit</span>
+          </div>
+        </a>
+
+        <!-- M122 -->
+        <a class="module-card" href="./pages/m122.html">
+          <div class="module-card-icon">📜</div>
+          <div class="module-card-title">M122 - Scriptsprache</div>
+          <div class="module-card-desc">Algorithmen, Variablen, Schleifen, Skripte</div>
+          <div class="module-card-status">
+            <span class="badge badge-wip">Marvin - in Arbeit</span>
+          </div>
+        </a>
+
+        <!-- M319 -->
+        <a class="module-card" href="./pages/m319.html">
+          <div class="module-card-icon">💡</div>
+          <div class="module-card-title">M319 - Applikationen</div>
+          <div class="module-card-desc">OOP Grundlagen, UML, Softwareentwicklung</div>
+          <div class="module-card-status">
+            <span class="badge badge-wip">Marvin - in Arbeit</span>
+          </div>
+        </a>
+
+        <!-- M187 -->
+        <a class="module-card" href="./pages/m187.html">
+          <div class="module-card-icon">☁️</div>
+          <div class="module-card-title">M187 - ICT-Benutzerendgeräte</div>
+          <div class="module-card-desc">Betriebssystem, Arbeitsplatz, Ergonomie</div>
+          <div class="module-card-status">
+            <span class="badge badge-wip">Anna - in Arbeit</span>
+          </div>
+        </a>
+
+        <!-- M162 -->
+        <a class="module-card" href="./pages/m162.html">
+          <div class="module-card-icon">🗂️</div>
+          <div class="module-card-title">M162 - Datenbankdesign</div>
+          <div class="module-card-desc">ER-Modell, Normalisierung, Tabellendesign</div>
+          <div class="module-card-status">
+            <span class="badge badge-wip">Milan - in Arbeit</span>
+          </div>
+        </a>
+
+        <!-- M164 SQL - full-width card with 5 block links -->
+        <div class="module-card sql-card">
+          <div class="sql-card-header">
+            <div class="module-card-icon">🗄️</div>
+            <div>
+              <div class="module-card-title">M164 - SQL</div>
+              <div class="module-card-desc">Datenbanken abfragen und manipulieren</div>
+            </div>
+          </div>
+          <div class="sql-blocks-grid">
+            <a class="sql-block-link" href="./pages/sql-block1.html" data-block="sql-block1">
+              <span class="block-num">Block 1</span>DDL
+            </a>
+            <a class="sql-block-link" href="./pages/sql-block2.html" data-block="sql-block2">
+              <span class="block-num">Block 2</span>DML
+            </a>
+            <a class="sql-block-link" href="./pages/sql-block3.html" data-block="sql-block3">
+              <span class="block-num">Block 3</span>SELECT &amp; WHERE
+            </a>
+            <a class="sql-block-link" href="./pages/sql-block4.html" data-block="sql-block4">
+              <span class="block-num">Block 4</span>Sortieren &amp; Aggregieren
+            </a>
+            <a class="sql-block-link" href="./pages/sql-block5.html" data-block="sql-block5">
+              <span class="block-num">Block 5</span>JOINs
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /.module-cards -->
+    </div><!-- /.content -->
+  </div><!-- /.platform -->
+
+  <script>
+    window.BASE = './';
+    window.PAGES = './pages/';
+    window.CURRENT_PAGE = 'home';
+  </script>
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
