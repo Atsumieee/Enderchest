@@ -6,7 +6,7 @@ tags:
   - übersicht
 created: 2026-06-04
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 

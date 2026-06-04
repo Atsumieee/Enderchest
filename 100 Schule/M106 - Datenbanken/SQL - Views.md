@@ -8,7 +8,7 @@ tags:
   - modul-106
 created: 2026-05-22
 status: draft
-publish: true
+publish: false
 ---
 
 # SQL – Views

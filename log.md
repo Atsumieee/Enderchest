@@ -9,6 +9,7 @@ todo: false
 
 # Log
 
+## [2026-06-04] lint | Alle 22 Pages mit `publish: true` auf `publish: false` gesetzt. Website wird auf 0 Seiten zurückgesetzt; nur qualitätsgeprüfte Seiten werden später wieder publiziert.
 ## [2026-06-04] update | Datenbanken MOC von 400 Areas/Datenbanken.md → 400 Areas/Datenbanken/Datenbanken.md verschoben (korrekte Ordnerstruktur). _index.md aktualisiert.
 ## [2026-06-04] new-note | Datenbanken MOC in 400 Areas erstellt. Verbindet M106 und M164 SQL-Notizen, organisiert nach Themen (DQL, DML, Struktur, Sicherheit, Performance). _index.md aktualisiert.
 ## [2026-06-03] update | M164 B3.2 Stundenplan Lösungen vervollständigt (Aufgaben 12–18 ergänzt, Frontmatter korrigiert, Erklärungen hinzugefügt)

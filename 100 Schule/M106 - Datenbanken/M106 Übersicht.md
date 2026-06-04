@@ -4,7 +4,7 @@ title: "M106 — Datenbanken"
 tags: [übersicht, sql, m106]
 created: 2026-05-22
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 

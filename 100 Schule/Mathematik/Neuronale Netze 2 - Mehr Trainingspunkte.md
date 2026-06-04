@@ -3,7 +3,7 @@ title: "Neuronale Netze 2 — Mehr Trainingspunkte und die automatische Lernschl
 tags: [mathematik, schule]
 created: 2026-06-02
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 

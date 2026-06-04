@@ -3,7 +3,7 @@ title: "M122 — PowerShell"
 tags: [übersicht, powershell, m122]
 created: 2026-06-02
 status: draft
-publish: true
+publish: false
 todo: false
 ---
 

@@ -12,7 +12,7 @@ Bei Unklarheiten gilt: dieses Dokument hat Vorrang vor allem anderen.
 Enderchest/
 ├── CLAUDE.md                  ← dieses Dokument
 ├── Dashboard.md               ← Master-Übersicht: Tasks, Drafts, Todo-Notizen
-├── index.md                   ← Öffentliche Homepage (publish: true)
+├── index.md                   ← Öffentliche Homepage (publish: false)
 ├── _index.md                  ← Interner Master-Index (vom Agenten gepflegt, publish: false)
 ├── log.md                     ← Chronologisches Log aller Operationen
 │
@@ -56,7 +56,7 @@ title: "Titel der Notiz"
 tags: [tag1, tag2]
 created: YYYY-MM-DD
 status: draft | permanent | archived
-publish: true | false
+publish: false | false
 todo: true | false
 ---
 ```
@@ -104,22 +104,22 @@ Statt einer "Offene Fragen"-Sektion in der Notiz selbst wird dieses Flag gesetzt
 
 Dies ist die wichtigste Einschränkung beim Schreiben von Notizen.
 
-**Regel:** Eine Notiz mit `publish: true` darf **niemals** auf eine Notiz mit `publish: false` verlinken.
+**Regel:** Eine Notiz mit `publish: false` darf **niemals** auf eine Notiz mit `publish: false` verlinken.
 
 Warum: Die publizierte Website ist ein eigenständiger, in sich geschlossener Graph. Kaputte Links zu nicht-publizierten Seiten führen zu Fehlerseiten.
 
-**Beim Schreiben einer publish: true Notiz:**
+**Beim Schreiben einer publish: false Notiz:**
 1. Jeden `[[Link]]` prüfen — existiert die Zielnotiz?
-2. Hat die Zielnotiz `publish: true`?
-3. Wenn nein → entweder Link entfernen, oder Zielnotiz ebenfalls auf `publish: true` setzen (nur wenn inhaltlich sinnvoll)
+2. Hat die Zielnotiz `publish: false`?
+3. Wenn nein → entweder Link entfernen, oder Zielnotiz ebenfalls auf `publish: false` setzen (nur wenn inhaltlich sinnvoll)
 4. Im Zweifel: Link weglassen, statt eine kaputte Referenz zu erstellen
 
-**Faustregel für publish: true:**
-- `100 Schule/` Lernnotizen → meistens `publish: true`
+**Faustregel für publish: false:**
+- `100 Schule/` Lernnotizen → meistens `publish: false`
 - `200 Arbeit/` → immer `publish: false`
 - `300 Privat/` → immer `publish: false`
 - Aufgabenblätter, Lösungen, Projektdokumente → `publish: false`
-- Konzeptseiten, Erklärungen, Übersichten → `publish: true`
+- Konzeptseiten, Erklärungen, Übersichten → `publish: false`
 
 ---
 
@@ -461,7 +461,7 @@ Auslöser: "Pflege das Wiki" oder "Lint"
 
 Prüfe auf:
 - Notizen ohne eingehende Links (Waisen)
-- `publish: true` Notizen die auf `publish: false` Notizen zeigen
+- `publish: false` Notizen die auf `publish: false` Notizen zeigen
 - MOC-Seiten die neue Notizen noch nicht listen
 - Notizen mit `status: draft` die älter als 30 Tage sind
 - Fehlende Schlüsselbegriffe-Abschnitte
@@ -483,7 +483,7 @@ Bericht erstellen, Fixes vorschlagen, auf Bestätigung warten.
 - Öffentliche Homepage der Website
 - Wird vom Agenten **nicht** automatisch bearbeitet
 - Nur manuell oder auf explizite Anfrage anpassen
-- `publish: true`
+- `publish: false`
 
 ### log.md
 - Append-only — niemals bestehende Einträge bearbeiten

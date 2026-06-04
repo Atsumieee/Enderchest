@@ -4,8 +4,8 @@
   "title": "Create Datenbanken MOC in Areas",
   "titleGenerationStatus": "success",
   "createdAt": 1780574427588,
-  "updatedAt": 1780574612730,
-  "lastResponseAt": 1780574612730,
+  "updatedAt": 1780605713986,
+  "lastResponseAt": 1780605713986,
   "sessionId": "02c90d34-fb46-4493-8e52-0fd201ebdb9e",
   "providerState": {
     "providerSessionId": "02c90d34-fb46-4493-8e52-0fd201ebdb9e"
@@ -13,11 +13,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 446,
-    "cacheReadInputTokens": 35863,
+    "cacheCreationInputTokens": 424,
+    "cacheReadInputTokens": 39374,
     "contextWindow": 200000,
-    "contextTokens": 36317,
-    "percentage": 18,
+    "contextTokens": 39806,
+    "percentage": 20,
     "contextWindowIsAuthoritative": true
   }
 }

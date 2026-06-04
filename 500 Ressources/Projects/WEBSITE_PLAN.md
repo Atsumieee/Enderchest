@@ -3,7 +3,7 @@
 ## Übersicht
 
 Statische Website die automatisch aus dem Obsidian-Vault generiert wird.
-Notizen mit `publish: true` werden als Pages gebaut, alles andere bleibt privat.
+Notizen mit `publish: false` werden als Pages gebaut, alles andere bleibt privat.
 
 **Tech Stack:**
 - **Eleventy 3.x** — Static Site Generator, versteht Markdown nativ
@@ -121,7 +121,7 @@ Pagefind generiert nach dem Build automatisch einen Suchindex aus allen Pages.
 Obsidian Git (auto-push)
   └── github.com/[user]/Enderchest
       └── GitHub Actions in enderchest-web (auf push zu Enderchest/main)
-          └── Vault auschecken → publish: true Filter
+          └── Vault auschecken → publish: false Filter
           └── Eleventy build
           └── Pagefind index
           └── Deploy → GitHub Pages
@@ -133,7 +133,7 @@ Vault-Repo (`Enderchest`) gepusht wird — via `repository_dispatch` oder
 `workflow_dispatch` Event vom Vault-Repo.
 
 **Publish-Filter Regel:**
-Nur Files mit `publish: true` im Frontmatter werden gebaut.
+Nur Files mit `publish: false` im Frontmatter werden gebaut.
 Links zu nicht-publizierten Pages werden entfernt.
 
 **Wikilink-Konvertierung:**

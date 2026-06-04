@@ -3,7 +3,7 @@ title: "Übersicht Schule"
 tags: [übersicht, schule]
 created: 2026-06-02
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 

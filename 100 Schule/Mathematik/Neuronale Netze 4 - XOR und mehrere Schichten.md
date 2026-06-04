@@ -3,7 +3,7 @@ title: "Neuronale Netze 4 — Wenn eine Linie nicht reicht (XOR und Schichten)"
 tags: [mathematik, schule]
 created: 2026-06-02
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 

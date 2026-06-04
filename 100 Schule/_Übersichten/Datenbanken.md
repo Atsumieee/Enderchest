@@ -3,7 +3,7 @@ title: "Übersicht Datenbanken"
 tags: [übersicht, sql]
 created: 2026-06-02
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 

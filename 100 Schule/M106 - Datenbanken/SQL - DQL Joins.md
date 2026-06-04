@@ -12,7 +12,7 @@ tags:
   - modul-106
 created: 2026-05-23
 status: draft
-publish: true
+publish: false
 ---
 
 # SQL – DQL Joins

@@ -52,9 +52,9 @@ enderchest-web/
 ```
 C:\Users\Public\Obsidian\Enderchest\
 ├── CLAUDE.md                   ← Obsidian-Agent (NICHT für Website)
-├── index.md                    ← publish: true
+├── index.md                    ← publish: false
 ├── 100 Schule/
-│   ├── M106 - Datenbanken/     ← Notizen mit publish: true/false
+│   ├── M106 - Datenbanken/     ← Notizen mit publish: false/false
 │   ├── M122 - PowerShell/
 │   ├── M164 - SQL/
 │   ├── M431 - Projektarbeit/   ← publish: false
@@ -77,12 +77,12 @@ title: "Titel"
 tags: [sql, m106]
 created: 2026-06-02
 status: draft | permanent | archived
-publish: true | false
+publish: false | false
 todo: false
 ---
 ```
 
-**Publish-Regel:** Nur `publish: true` wird gebaut. Alles andere ignorieren.
+**Publish-Regel:** Nur `publish: false` wird gebaut. Alles andere ignorieren.
 
 ---
 
@@ -121,7 +121,7 @@ Wichtige Punkte:
 ### 3. notes.js — Vault-Daten aufbereiten
 
 Liest rekursiv alle `.md` Files aus dem Vault-Pfad.
-Filtert auf `publish: true`.
+Filtert auf `publish: false`.
 Gibt strukturiertes Array zurück:
 
 ```javascript

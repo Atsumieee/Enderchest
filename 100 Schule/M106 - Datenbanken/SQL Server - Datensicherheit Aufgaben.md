@@ -11,7 +11,7 @@ tags:
   - aufgaben
 created: 2026-05-22
 status: draft
-publish: true
+publish: false
 ---
 
 # SQL Server – Datensicherheit – Aufgaben

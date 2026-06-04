@@ -3,7 +3,7 @@ title: "Neuronale Netze 3 — Gute und schlechte Lernraten"
 tags: [mathematik, schule]
 created: 2026-06-02
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 
