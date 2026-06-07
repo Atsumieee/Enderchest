@@ -104,9 +104,9 @@ Statt einer "Offene Fragen"-Sektion in der Notiz selbst wird dieses Flag gesetzt
 
 Dies ist die wichtigste Einschränkung beim Schreiben von Notizen.
 
-**Regel:** Eine Notiz mit `publish: false` darf **niemals** auf eine Notiz mit `publish: false` verlinken.
+**Regel:** Eine Notiz mit `publish: false` darf **niemals** aktiv auf eine Notiz mit `publish: false` referenzieren.
 
-Warum: Die publizierte Website ist ein eigenständiger, in sich geschlossener Graph. Kaputte Links zu nicht-publizierten Seiten führen zu Fehlerseiten.
+Warum: Die publizierte Website ist ein eigenständiger, in sich geschlossener Graph. Kaputte Links zu nicht-publizierten Seiten werden ausgegraut und sind daher für direkte referenzen nutzlos.
 
 **Beim Schreiben einer publish: false Notiz:**
 1. Jeden `[[Link]]` prüfen — existiert die Zielnotiz?
@@ -115,11 +115,11 @@ Warum: Die publizierte Website ist ein eigenständiger, in sich geschlossener Gr
 4. Im Zweifel: Link weglassen, statt eine kaputte Referenz zu erstellen
 
 **Faustregel für publish: false:**
-- `100 Schule/` Lernnotizen → meistens `publish: false`
+- `100 Schule/` Lernnotizen → meistens `publish: true`
 - `200 Arbeit/` → immer `publish: false`
 - `300 Privat/` → immer `publish: false`
 - Aufgabenblätter, Lösungen, Projektdokumente → `publish: false`
-- Konzeptseiten, Erklärungen, Übersichten → `publish: false`
+- Konzeptseiten, Erklärungen, Übersichten → `publish: true`
 
 ---
 
