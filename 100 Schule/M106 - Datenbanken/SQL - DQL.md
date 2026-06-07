@@ -391,5 +391,3 @@ SELECT land, COUNT(*) FROM kunden GROUP BY land HAVING COUNT(*) > 1;
 - SQL Standard: ISO/IEC 9075
 - Modul 106 – Datenbanken abfragen und bearbeiten (ICT-BZ)
 
-
-[!Warning] Hello
