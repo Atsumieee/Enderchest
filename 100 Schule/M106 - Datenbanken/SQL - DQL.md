@@ -49,13 +49,13 @@ ORDER BY spalte ASC|DESC; -- Optional: In welcher Reihenfolge soll sortiert werd
 
 Als Beispiel verwenden wir durchgehend diese fiktive `kunden`-Tabelle:
 
-| id | vorname | nachname | land | alter | email                  |
-|----|---------|----------|------|-------|------------------------|
-| 1  | Anna    | Meier    | CH   | 32    | anna@example.com       |
-| 2  | Ben     | Müller   | DE   | 17    | ben@example.com        |
-| 3  | Clara   | Schmidt  | AT   | 25    | NULL                   |
-| 4  | David   | Meier    | CH   | 41    | david@example.com      |
-| 5  | Eva     | Braun    | DE   | 17    | eva@example.com        |
+| id  | vorname | nachname | land | alter | email             |
+| --- | ------- | -------- | ---- | ----- | ----------------- |
+| 1   | Anna    | Meier    | CH   | 32    | anna@example.com  |
+| 2   | Ben     | Müller   | DE   | 17    | ben@example.com   |
+| 3   | Clara   | Schmidt  | AT   | 25    | NULL              |
+| 4   | David   | Meier    | CH   | 41    | david@example.com |
+| 5   | Eva     | Braun    | DE   | 17    | eva@example.com   |
 
 **Alle Spalten auswählen mit `*`:**
 
@@ -105,16 +105,16 @@ FROM kunden AS k;
 
 **Vergleichsoperatoren:**
 
-| Operator       | Bedeutung              | Beispiel                          |
-|----------------|------------------------|-----------------------------------|
-| `=`            | Gleich                 | `WHERE land = 'CH'`               |
-| `<>` oder `!=` | Ungleich               | `WHERE land <> 'DE'`              |
-| `>`, `<`       | Grösser / Kleiner      | `WHERE alter > 18`                |
-| `>=`, `<=`     | Grösser-gleich / ...   | `WHERE alter >= 18`               |
-| `BETWEEN`      | Wertebereich (inklusiv)| `WHERE alter BETWEEN 18 AND 30`   |
-| `LIKE`         | Muster-Vergleich       | `WHERE nachname LIKE 'M%'`        |
-| `IN`           | Liste von Werten       | `WHERE land IN ('CH', 'DE', 'AT')`|
-| `IS NULL`      | Kein Wert vorhanden    | `WHERE email IS NULL`             |
+| Operator       | Bedeutung               | Beispiel                           |
+| -------------- | ----------------------- | ---------------------------------- |
+| `=`            | Gleich                  | `WHERE land = 'CH'`                |
+| `<>` oder `!=` | Ungleich                | `WHERE land <> 'DE'`               |
+| `>`, `<`       | Grösser / Kleiner       | `WHERE alter > 18`                 |
+| `>=`, `<=`     | Grösser-gleich / ...    | `WHERE alter >= 18`                |
+| `BETWEEN`      | Wertebereich (inklusiv) | `WHERE alter BETWEEN 18 AND 30`    |
+| `LIKE`         | Muster-Vergleich        | `WHERE nachname LIKE 'M%'`         |
+| `IN`           | Liste von Werten        | `WHERE land IN ('CH', 'DE', 'AT')` |
+| `IS NULL`      | Kein Wert vorhanden     | `WHERE email IS NULL`              |
 
 **Logische Operatoren — mehrere Bedingungen kombinieren:**
 
@@ -238,14 +238,14 @@ SELECT land FROM kunden;
 
 Aggregat-funktionen fassen mehrere Zeilen zu einem einzigen Ergebniswert zusammen. Sie sind besonders nützlich für Statistiken und Auswertungen.
 
-| Funktion    | Bedeutung                              | Beispiel                             |
-|-------------|----------------------------------------|--------------------------------------|
-| `COUNT(*)`  | Anzahl aller Zeilen                    | `SELECT COUNT(*) FROM kunden`        |
-| `COUNT(sp)` | Anzahl Zeilen wo Spalte nicht NULL ist | `SELECT COUNT(email) FROM kunden`    |
-| `SUM(sp)`   | Summe aller Werte in der Spalte        | `SELECT SUM(alter) FROM kunden`      |
-| `AVG(sp)`   | Durchschnitt der Werte                 | `SELECT AVG(alter) FROM kunden`      |
-| `MIN(sp)`   | Kleinster Wert                         | `SELECT MIN(alter) FROM kunden`      |
-| `MAX(sp)`   | Grösster Wert                          | `SELECT MAX(alter) FROM kunden`      |
+| Funktion    | Bedeutung                              | Beispiel                          |
+| ----------- | -------------------------------------- | --------------------------------- |
+| `COUNT(*)`  | Anzahl aller Zeilen                    | `SELECT COUNT(*) FROM kunden`     |
+| `COUNT(sp)` | Anzahl Zeilen wo Spalte nicht NULL ist | `SELECT COUNT(email) FROM kunden` |
+| `SUM(sp)`   | Summe aller Werte in der Spalte        | `SELECT SUM(alter) FROM kunden`   |
+| `AVG(sp)`   | Durchschnitt der Werte                 | `SELECT AVG(alter) FROM kunden`   |
+| `MIN(sp)`   | Kleinster Wert                         | `SELECT MIN(alter) FROM kunden`   |
+| `MAX(sp)`   | Grösster Wert                          | `SELECT MAX(alter) FROM kunden`   |
 
 **Wichtiger Unterschied: `COUNT(*)` vs `COUNT(spalte)`**
 
@@ -375,14 +375,14 @@ SELECT land, COUNT(*) FROM kunden GROUP BY land HAVING COUNT(*) > 1;
 
 ## Verbindungen zu anderen Themen
 
-| Thema | Verbindung |
-|-------|------------|
-| [[SQL - DQL Joins]] | JOINs erweitern `SELECT` auf mehrere Tabellen gleichzeitig; alle hier gelernten Klauseln bleiben kombinierbar |
-| [[SQL - Views]] | Eine View ist eine gespeicherte `SELECT`-Abfrage; sie wird selbst wieder mit DQL abgefragt |
-| [[SQL – Funktionen]] | Vordefinierte Funktionen (`LEN`, `ROUND`, `GETDATE` etc.) können in `SELECT` und `WHERE` verwendet werden |
+| Thema                            | Verbindung                                                                                                                   |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| [[SQL - DQL Joins]]              | JOINs erweitern `SELECT` auf mehrere Tabellen gleichzeitig; alle hier gelernten Klauseln bleiben kombinierbar                |
+| [[SQL - Views]]                  | Eine View ist eine gespeicherte `SELECT`-Abfrage; sie wird selbst wieder mit DQL abgefragt                                   |
+| [[SQL – Funktionen]]             | Vordefinierte Funktionen (`LEN`, `ROUND`, `GETDATE` etc.) können in `SELECT` und `WHERE` verwendet werden                    |
 | [[SQL Server - Datensicherheit]] | `GRANT SELECT` (DCL) steuert wer DQL-Abfragen ausführen darf; Row-Level Security wirkt wie eine automatische `WHERE`-Klausel |
-| SQL – DML | Gegenstück zu DQL: `INSERT`, `UPDATE`, `DELETE` schreiben Daten — DQL liest sie nur |
-| SQL – DDL | Voraussetzung für DQL: DDL erstellt die Tabellenstruktur auf der SELECT arbeitet |
+| SQL – DML                        | Gegenstück zu DQL: `INSERT`, `UPDATE`, `DELETE` schreiben Daten — DQL liest sie nur                                          |
+| SQL – DDL                        | Voraussetzung für DQL: DDL erstellt die Tabellenstruktur auf der SELECT arbeitet                                             |
 
 ---
 
