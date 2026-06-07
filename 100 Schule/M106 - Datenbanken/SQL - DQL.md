@@ -390,3 +390,5 @@ SELECT land, COUNT(*) FROM kunden GROUP BY land HAVING COUNT(*) > 1;
 - Kursunterlagen: https://m106.ict-bz.ch/tag-2/operationen-dql
 - SQL Standard: ISO/IEC 9075
 - Modul 106 – Datenbanken abfragen und bearbeiten (ICT-BZ)
+
+
