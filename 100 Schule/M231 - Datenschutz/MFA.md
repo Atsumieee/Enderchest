@@ -129,3 +129,4 @@ Nicht alle MFA-Methoden sind gleich sicher. Von schwächster zu stärkster:
 - [NCSC: Starke Passwörter und MFA](https://www.ncsc.admin.ch)
 - [iBarry: Zwei-Faktor-Authentifizierung](https://www.ibarry.ch)
 - [Zwei-Faktor-Authentifizierung erklärt (YouTube)](https://www.youtube.com)
+---
