@@ -84,7 +84,7 @@ Selbst wenn zwei Nutzer dasselbe Passwort `Pizza123` verwenden, sind ihre Hashes
 > **Merkhilfe:** Der Salt ist wie das Würzen von Essen — er macht jede Portion einzigartig, auch wenn der Grundgeschmack gleich ist. Selbst der Datenbankadministrator kann dein Passwort nicht lesen — er sieht nur Hash und Salt.
 
 ```widget
-Hash-Pipeline — Stepper von Klartext zu Salted Hash
+hashing_pipeline_stepper
 ```
 
 ---
