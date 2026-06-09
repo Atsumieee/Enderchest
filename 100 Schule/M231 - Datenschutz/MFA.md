@@ -69,7 +69,7 @@ Spricht man von genau zwei kombinierten Faktoren, nennt man das Zwei-Faktor-Auth
 > **Merkhilfe:** Der Bankomat macht es vor — Karte (Besitz) + PIN (Wissen) ist echtes 2FA. Wird die Karte gestohlen, nützt sie nichts ohne die PIN. Wird die PIN ausgespäht, nützt sie nichts ohne die Karte.
 
 ```widget
-Authentifizierungsfaktoren & MFA — Interaktiver Explorer
+Authentifizierungsfaktoren & MFA Interaktiver Explorer
 ```
 
 ---
