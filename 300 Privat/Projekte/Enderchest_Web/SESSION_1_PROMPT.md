@@ -249,11 +249,11 @@ layout: base.njk
 
 Nimm `100 Schule/M106 - Datenbanken/SQL - DQL.md` als erste Test-Notiz.
 Rendere sie unter `/schule/m106/sql-dql/` und verifiziere:
-- [ ] Frontmatter wird korrekt gelesen
-- [ ] Markdown → HTML korrekt
-- [ ] Layout + CSS sichtbar
-- [ ] Theme Toggle funktioniert
-- [ ] Wikilinks werden aufgelöst
+- [x] Frontmatter wird korrekt gelesen ✅ 2026-06-10
+- [x] Markdown → HTML korrekt ✅ 2026-06-10
+- [x] Layout + CSS sichtbar ✅ 2026-06-10
+- [x] Theme Toggle funktioniert ✅ 2026-06-10
+- [x] Wikilinks werden aufgelöst ✅ 2026-06-10
 
 ### 10. GitHub Actions Workflow
 
