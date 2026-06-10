@@ -46,17 +46,6 @@ Zugriffsschutz regelt **wer** auf digitale Systeme zugreifen darf, **was** diese
 
 ---
 
-## Thematische Übersicht
-
-```dataview
-TABLE status, created 
-FROM "100 Schule/M231 - Datenschutz"
-WHERE file.name != "M231 Übersicht"
-SORT file.name ASC
-```
-
----
-
 ## Lernpfad (empfohlene Reihenfolge)
 
 **Anfänger:** Starten Sie mit [[AAA-Modell]] um die Grundkonzepte zu verstehen.
