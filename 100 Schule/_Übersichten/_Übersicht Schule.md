@@ -21,6 +21,7 @@ Einstiegsseite für alle Schulinhalte. Wähle ein Modul oder Fach um direkt zu d
 | [[M122 Übersicht\|M122 — PowerShell]] | Scripting, Automatisierung, Pipeline | `draft` |
 | [[M164 Übersicht\|M164 — SQL Vertiefung]] | DQL, Stundenplan-Projekt | `draft` |
 | [[M431 Übersicht\|M431 — Projektarbeit]] | IPERKA, Lernplattform-Projekt | `active` |
+| [[M231 Übersicht\|M231 — Datenschutz]] | AAA, MFA, Hashing, Angriffsmethoden | `permanent` |
 
 ---
 

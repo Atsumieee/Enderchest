@@ -19,6 +19,11 @@ moc: true
 
 ## Notizen
 
+### Struktur definieren — DDL
+| Notiz | Inhalt |
+|-------|--------|
+| [[SQL - DDL]] | CREATE TABLE, ALTER TABLE, DROP — Datenbankstruktur definieren |
+
 ### Daten abfragen — DQL
 | Notiz | Inhalt |
 |-------|--------|

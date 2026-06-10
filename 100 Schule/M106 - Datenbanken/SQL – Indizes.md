@@ -89,8 +89,8 @@ ON Sales.Orders (CustomerID, OrderDate);
 ## Verbindungen zu anderen Themen
 | Thema | Verbindung |
 |-------|------------|
-| [[SQL – DQL]] | Der Ausführungsplan zeigt, ob ein Index genutzt wird. |
-| [[SQL – Ausführungsplan]] | Analyse von **Seek** vs. **Scan** – Kern des Index‑Diagnostik. |
+| [[SQL - DQL]] | Der Ausführungsplan zeigt, ob ein Index genutzt wird. |
+| [[SQL – Ausfuehrungsplan]] | Analyse von **Seek** vs. **Scan** – Kern des Index‑Diagnostik. |
 | [[SQL – Funktionen]] | Nicht‑deterministische Funktionen verhindern Index‑Nutzung. |
 
 ## Bilder

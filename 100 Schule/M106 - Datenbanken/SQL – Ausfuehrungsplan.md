@@ -65,7 +65,7 @@ WHERE InvoiceDate = '2014-03-15';
 ## Verbindungen zu anderen Themen
 | Thema | Verbindung |
 |-------|------------|
-| [[SQL – DQL]] | Grundlegende SELECT‑Abfragen, für die ein Plan erstellt wird. |
+| [[SQL - DQL]] | Grundlegende SELECT‑Abfragen, für die ein Plan erstellt wird. |
 | [[SQL – Indizes]] | Der Plan zeigt, ob ein Index verwendet wird – zentrale Optimierungshilfe. |
 | [[SQL – Funktionen]] | Nicht‑deterministische Funktionen verhindern Index‑Nutzung im Plan. |
 

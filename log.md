@@ -9,6 +9,7 @@ todo: false
 
 # Log
 
+## [2026-06-10] lint | Prio 2–4: Bindestrich-Links in SQL – Ausfuehrungsplan/Funktionen/Indizes gefixt (– → -). M231 in _Übersicht Schule + _index eingetragen. SQL - DDL Platzhalter erstellt.
 ## [2026-06-04] lint | Alle 22 Pages mit `publish: true` auf `publish: false` gesetzt. Website wird auf 0 Seiten zurückgesetzt; nur qualitätsgeprüfte Seiten werden später wieder publiziert.
 ## [2026-06-04] update | Datenbanken MOC von 400 Areas/Datenbanken.md → 400 Areas/Datenbanken/Datenbanken.md verschoben (korrekte Ordnerstruktur). _index.md aktualisiert.
 ## [2026-06-04] new-note | Datenbanken MOC in 400 Areas erstellt. Verbindet M106 und M164 SQL-Notizen, organisiert nach Themen (DQL, DML, Struktur, Sicherheit, Performance). _index.md aktualisiert.

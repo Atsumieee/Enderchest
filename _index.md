@@ -20,6 +20,7 @@ Nicht manuell bearbeiten — Änderungen werden beim nächsten Agenten-Lauf übe
 | Notiz | Beschreibung |
 |-------|-------------|
 | [[M106 Übersicht]] | Modulübersicht und Aufgabenliste |
+| [[SQL - DDL]] | CREATE TABLE, ALTER TABLE, DROP — Datenbankstruktur |
 | [[SQL - DQL]] | SELECT, WHERE, GROUP BY, HAVING, ORDER BY |
 | [[SQL - DQL Joins]] | INNER, LEFT, RIGHT, FULL JOIN |
 | [[SQL - DML]] | INSERT, UPDATE, DELETE |
@@ -44,6 +45,18 @@ Nicht manuell bearbeiten — Änderungen werden beim nächsten Agenten-Lauf übe
 |-------|-------------|
 | [[M164 Übersicht]] | Modulübersicht M164 |
 | [[M164 - Stundenplan Skript]] | SQL-Skript Stundenplan-Projekt |
+| [[M164 - ArtikelKauf Skript]] | SQL-Skript ArtikelKauf-Projekt |
+
+### M231 — Datenschutz
+| Notiz | Beschreibung |
+|-------|-------------|
+| [[M231 Übersicht]] | Modulübersicht Datenschutz |
+| [[AAA-Modell]] | Authentifizierung, Autorisierung, Accounting |
+| [[Angriffsmethoden]] | Phishing, Brute Force, Social Engineering und Gegenmassnahmen |
+| [[Berechtigungskonzept]] | Rollen, Rechte, Least Privilege |
+| [[Hashing]] | MD5, SHA, Salting, Passwort-Sicherheit |
+| [[MFA]] | Multi-Faktor-Authentifizierung |
+| [[TOTP]] | Time-Based One-Time Password |
 
 ### M431 — Projektarbeit
 | Notiz | Beschreibung |

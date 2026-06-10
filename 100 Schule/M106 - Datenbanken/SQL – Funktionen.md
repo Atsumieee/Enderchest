@@ -56,9 +56,9 @@ Falls Sie dieselben Konzepte in Oracle benötigen, finden Sie in der Original‑
 ## Verbindungen zu anderen Themen
 | Thema | Verbindung |
 |-------|------------|
-| [[SQL – DQL]] | Nutzung von Funktionen innerhalb von `SELECT`‑ und `WHERE`‑Klauseln. |
-| [[SQL – DML]] | Funktionen in `INSERT`‑ oder `UPDATE`‑Statements, z. B. `SET Preis = ROUND(Preis*1.07,2)`. |
-| [[SQL – Views]] | Funktionen in der Definition von Views, wobei deterministische Funktionen erlaubt sind. |
+| [[SQL - DQL]] | Nutzung von Funktionen innerhalb von `SELECT`‑ und `WHERE`‑Klauseln. |
+| [[SQL - DML]] | Funktionen in `INSERT`‑ oder `UPDATE`‑Statements, z. B. `SET Preis = ROUND(Preis*1.07,2)`. |
+| [[SQL - Views]] | Funktionen in der Definition von Views, wobei deterministische Funktionen erlaubt sind. |
 
 ## Bilder
 <!-- Platzhalter für Bild(e) – bitte hier einfügen -->
