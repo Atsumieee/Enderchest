@@ -312,10 +312,10 @@ jobs:
 
 ## Definition of Done — Session 1
 
-- [ ] `enderchest-web/` Repo lokal aufgesetzt
-- [ ] `npm run dev` startet ohne Fehler
-- [ ] `SQL - DQL.md` rendert korrekt unter `/schule/m106/sql-dql/`
-- [ ] CSS und Theme Toggle funktionieren
-- [ ] Wikilinks werden korrekt aufgelöst oder als Text dargestellt
-- [ ] `deploy.yml` existiert und ist korrekt konfiguriert
-- [ ] `research-base.css` aus Vault kopiert nach `src/_assets/`
+- [x] `enderchest-web/` Repo lokal aufgesetzt ✅ 2026-06-10
+- [x] `npm run dev` startet ohne Fehler ✅ 2026-06-10
+- [x] `SQL - DQL.md` rendert korrekt unter `/schule/m106/sql-dql/` ✅ 2026-06-10
+- [x] CSS und Theme Toggle funktionieren ✅ 2026-06-10
+- [x] Wikilinks werden korrekt aufgelöst oder als Text dargestellt ✅ 2026-06-10
+- [x] `deploy.yml` existiert und ist korrekt konfiguriert ✅ 2026-06-10
+- [x] `research-base.css` aus Vault kopiert nach `src/_assets/` ✅ 2026-06-10
