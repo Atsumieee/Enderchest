@@ -4,19 +4,20 @@
   "title": "Lint wiki for issues",
   "titleGenerationStatus": "success",
   "createdAt": 1781113010998,
-  "updatedAt": 1781113026389,
-  "lastResponseAt": 1781113026389,
+  "updatedAt": 1781113266528,
+  "lastResponseAt": 1781113266528,
   "sessionId": "5c68ca0a-955a-4279-891a-00e7426ed028",
   "providerState": {
     "providerSessionId": "5c68ca0a-955a-4279-891a-00e7426ed028"
   },
   "usage": {
-    "model": "haiku",
-    "inputTokens": 8,
-    "cacheCreationInputTokens": 1931,
-    "cacheReadInputTokens": 23237,
+    "model": "sonnet",
+    "inputTokens": 1,
+    "cacheCreationInputTokens": 1079,
+    "cacheReadInputTokens": 53392,
     "contextWindow": 200000,
-    "contextTokens": 25176,
-    "percentage": 13
+    "contextTokens": 54472,
+    "percentage": 27,
+    "contextWindowIsAuthoritative": true
   }
 }
