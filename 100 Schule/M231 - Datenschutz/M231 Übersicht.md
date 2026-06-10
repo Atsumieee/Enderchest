@@ -21,11 +21,11 @@ Zugriffsschutz regelt **wer** auf digitale Systeme zugreifen darf, **was** diese
 
 ## Grundlagen & Konzepte
 
-| Notiz | Zusammenfassung |
-|-------|---|
-| [[AAA-Modell]] | Authentifizierung, Autorisierung, Accounting — die drei Säulen des Zugriffsschutzes. |
-| [[MFA]] | Die drei Authentifizierungsfaktoren (Wissen, Besitz, Biometrie) und Multi-Faktor-Authentifizierung. |
-| [[Berechtigungskonzept]] | Least Privilege, Need-to-Know, RBAC, Separation of Duties und Zero Trust. |
+| Notiz                    | Zusammenfassung                                                                                     |
+| ------------------------ | --------------------------------------------------------------------------------------------------- |
+| [[AAA-Modell]]           | Authentifizierung, Autorisierung, Accounting — die drei Säulen des Zugriffsschutzes.                |
+| [[MFA]]                  | Die drei Authentifizierungsfaktoren (Wissen, Besitz, Biometrie) und Multi-Faktor-Authentifizierung. |
+| [[Berechtigungskonzept]] | Least Privilege, Need-to-Know, RBAC, Separation of Duties und Zero Trust.                           |
 
 ---
 
@@ -49,7 +49,8 @@ Zugriffsschutz regelt **wer** auf digitale Systeme zugreifen darf, **was** diese
 ## Thematische Übersicht
 
 ```dataview
-TABLE status, created FROM "100 Schule/M231"
+TABLE status, created 
+FROM "100 Schule/M231 - Datenschutz"
 WHERE file.name != "M231 Übersicht"
 SORT file.name ASC
 ```
