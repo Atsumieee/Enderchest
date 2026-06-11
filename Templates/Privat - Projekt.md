@@ -1,7 +1,7 @@
 ---
 title: "{{title}}"
 tags: [projekt, privat]
-created: {{date:YYYY-MM-DD}}
+created: <% tp.file.creation_date() %>
 status: active
 publish: false
 todo: false

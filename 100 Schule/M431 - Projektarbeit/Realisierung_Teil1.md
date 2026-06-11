@@ -1,3 +1,12 @@
+---
+title: "M431 Realisierung Teil 1"
+tags: [m431, projekt, schule]
+created: 2026-06-02
+status: draft
+publish: false
+todo: false
+---
+
 # Realisierung – IT Lernplattform
 **IPERKA Phase R | M431 INP25b | 19.05.2026 – 02.06.2026**
 

@@ -3,39 +3,38 @@ title: "Home"
 tags: [übersicht]
 created: 2026-05-23
 status: permanent
-publish: false
+publish: true
 todo: false
 ---
 
-# Willkommen im Enderchest
+# 🏠 Enderchest — Vault Index
 
-Hier findest du eine wachsende Sammlung von Zusammenfassungen, Notizen und
-Erklärungen rund um die Informatik-Ausbildung im Bereich Plattformentwicklung
-in der Schweiz.
+Zentraler Einstiegspunkt in den Vault. Wähle einen Bereich, um zu dessen Übersicht
+zu gelangen. Jeder Bereich hat seine eigene Übersichtsseite — von dort geht es weiter
+zu den einzelnen Notizen.
 
-Kein offizielles Lehrmittel — sondern persönliche Lernnotizen, die öffentlich
-zugänglich gemacht werden. Vielleicht nützen sie ja jemandem.
-
----
-
-## Themen
-
-Die Inhalte orientieren sich grösstenteils an den Modulen der
-Plattformentwicklungs-Ausbildung. Daneben findest du auch Themen
-die modulübergreifend relevant sind oder einfach interessant.
-
-> Wird laufend ergänzt.
-
-### Informatik & Technik
-- [[SQL - DQL|Datenbanken & SQL]]
-- [[M122_Inhalte|PowerShell & Automatisierung]]
-
-### Weitere Themen
-_Folgt._
+> ℹ️ Die Bereichs-Übersichten sind interne Navigationsseiten (`publish: false`).
+> Die öffentliche Website hat ihre eigene Navigation.
 
 ---
 
-## Hinweis
+## 🗂️ Bereiche
 
-Die Inhalte spiegeln einen persönlichen Lernstand wider, können Fehler
-enthalten und werden laufend überarbeitet.
+| Bereich           | Übersicht                                   | Inhalt                                       |
+| ----------------- | ------------------------------------------- | -------------------------------------------- |
+| 🎓 **Schule**     | [[_Übersicht Schule\|Schule öffnen]]        | Module & Berufsmatura-Fächer der Ausbildung  |
+| 💼 **Arbeit**     | [[Arbeits Übersicht\|Arbeit öffnen]]        | Patchdays, Projekte, Meetings, Dokumentation |
+| 🔒 **Privat**     | [[Privat Übersicht\|Privat öffnen]]         | Journal, Knowledge, private Projekte         |
+| 🧠 **Areas**      | [[Areas Übersicht\|Areas öffnen]]           | Dauerhaftes Wissen nach Themengebiet         |
+| 📦 **Ressources** | [[Ressources Übersicht\|Ressources öffnen]] | Tools, Widgets, Bilder, Tutorials            |
+
+---
+
+## 🎯 Daily Driver
+
+- [[Dashboard|🧭 Dashboard]] — Offene Tasks, aktive Projekte, zuletzt erstellte Notizen
+- 📥 **Inbox** — Unsortierte Eingänge im Ordner `000 Inbox/` zum Verarbeiten
+
+---
+
+> Master-Index für den Agenten: [[_index]]

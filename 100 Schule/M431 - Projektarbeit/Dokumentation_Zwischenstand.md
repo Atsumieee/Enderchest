@@ -1,3 +1,12 @@
+---
+title: "M431 Dokumentation Zwischenstand"
+tags: [m431, schule]
+created: 2026-06-04
+status: draft
+publish: false
+todo: false
+---
+
 [M431-TODO](https://www.notion.so/365c4475be7f8066a329e752cf289e1a?pvs=21)
 
 # Modulinhalte:

@@ -11,6 +11,8 @@ todo: false
 
 Einstiegsseite für alle Schulinhalte. Wähle ein Modul oder Fach um direkt zu den Notizen zu gelangen.
 
+> 📚 Vollständige Modul-Liste aller Lehrjahre: [[Modulkatalog]] · Wissensgebiete: [[Areas Übersicht]]
+
 ---
 
 ## Informatik-Module (Plattformentwicklung)
@@ -41,3 +43,7 @@ FROM "100 Schule"
 WHERE file.name != "_Übersicht Schule"
 SORT file.folder ASC, created ASC
 ```
+
+---
+
+> Zurück zum [[index|🏠 Vault Index]]

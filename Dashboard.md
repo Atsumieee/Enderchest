@@ -11,6 +11,11 @@ todo: false
 
 ---
 
+## 💼 Arbeitsbereich
+→ **[[200 Arbeit/Arbeits Übersicht|Zur Arbeits Übersicht]]** | **[[200 Arbeit/Regular Tasks/Patchday/Patchdays Übersicht|Zu den Patchdays]]**
+
+---
+
 ## 📋 Offene Tasks
 _Alle unerledigten Aufgaben aus allen Projekten, gruppiert nach Projekt._
 

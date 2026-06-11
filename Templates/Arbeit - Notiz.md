@@ -1,7 +1,7 @@
 ---
 title: "{{title}}"
 tags: [arbeit]
-created: {{date:YYYY-MM-DD}}
+created: <% tp.file.creation_date() %>
 status: draft
 publish: false
 todo: false

@@ -40,12 +40,12 @@ WHERE bedingung           -- Optional: Welche Zeilen sollen gefiltert werden?
 ORDER BY spalte ASC|DESC; -- Optional: In welcher Reihenfolge soll sortiert werden?
 ```
 
-| Klausel    | Frage die sie beantwortet                      | Pflicht? |
-|------------|------------------------------------------------|----------|
-| `SELECT`   | Welche Spalten sollen zurückgegeben werden?    | Ja       |
-| `FROM`     | Aus welcher Tabelle kommen die Daten?          | Ja       |
-| `WHERE`    | Welche Zeilen sollen berücksichtigt werden?    | Nein     |
-| `ORDER BY` | Wie soll das Ergebnis sortiert sein?           | Nein     |
+| Klausel    | Frage die sie beantwortet                   | Pflicht? |
+| ---------- | ------------------------------------------- | -------- |
+| `SELECT`   | Welche Spalten sollen zurückgegeben werden? | Ja       |
+| `FROM`     | Aus welcher Tabelle kommen die Daten?       | Ja       |
+| `WHERE`    | Welche Zeilen sollen berücksichtigt werden? | Nein     |
+| `ORDER BY` | Wie soll das Ergebnis sortiert sein?        | Nein     |
 
 Als Beispiel verwenden wir durchgehend diese fiktive `kunden`-Tabelle:
 
@@ -92,10 +92,10 @@ SELECT vorname, alter * 12 AS alter_in_monaten FROM kunden;
 
 -- Tabellen-Alias: Kürzel für Tabellennamen (besonders nützlich bei JOINs)
 SELECT k.vorname, k.nachname
-FROM kunden AS k;
+FROM kunden AS k
 ```
 
-> Merkhilfe: `AS` = „nenn das ab jetzt so". Der Alias gilt nur im Ergebnis — in `WHERE` kann man ihn noch nicht verwenden (mehr dazu bei der Ausführungsreihenfolge).
+> Merkhilfe: `AS` = „nenn das ab jetzt so". Der Alias gilt nur im Ergebnis, in `WHERE` kann man ihn noch nicht verwenden (mehr dazu bei der Ausführungsreihenfolge).
 
 ---
 

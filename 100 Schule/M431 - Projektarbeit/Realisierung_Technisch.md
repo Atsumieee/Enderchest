@@ -1,3 +1,12 @@
+---
+title: "M431 Realisierung Technisch"
+tags: [m431, projekt, schule]
+created: 2026-06-02
+status: draft
+publish: false
+todo: false
+---
+
 # Realisierung – Technische Dokumentation
 **IT Lernplattform | M431 INP25b | IPERKA Phase R**
 *Sehr ausführliche technische Referenz — Ergänzung zur Hauptdokumentation [[Dokumentation_Final]]*

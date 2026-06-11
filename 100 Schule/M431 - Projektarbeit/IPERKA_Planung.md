@@ -1,3 +1,12 @@
+---
+title: "M431 IPERKA Planung"
+tags: [m431, projekt, schule]
+created: 2026-06-04
+status: draft
+publish: false
+todo: false
+---
+
 # IPERKA Planung – M431 IT Lernplattform
 
 ---

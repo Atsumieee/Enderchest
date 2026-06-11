@@ -1,3 +1,12 @@
+---
+title: "M431 Projektdokumentation Final"
+tags: [m431, projekt, schule]
+created: 2026-06-02
+status: draft
+publish: false
+todo: false
+---
+
 # M431 – IT Lernplattform | Projektdokumentation
 **Klasse:** INP25b | **Schule:** BBZW | **Lehrperson:** Kuno Schürch
 **Abgabe:** 08.06.2026 um 23:59 → kuno.schuerch@sluz.ch

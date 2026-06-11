@@ -1,3 +1,12 @@
+---
+title: "M164 Inhalte"
+tags: [m431, schule]
+created: 2026-05-26
+status: draft
+publish: false
+todo: false
+---
+
 # M164 – SQL: Datenbanken abfragen und manipulieren
 > Lerninhalt für die IT-Lernplattform | Basiert auf M106-Zusammenfassungen
 > Struktur: 4 Inhaltsblöcke + Quizfragen (bereit zum Einfügen in HTML)

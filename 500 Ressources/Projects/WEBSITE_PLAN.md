@@ -1,3 +1,12 @@
+---
+title: "Enderchest Website Projektplanung"
+tags: [projekt]
+created: 2026-06-04
+status: draft
+publish: false
+todo: false
+---
+
 # Enderchest Website — Projektplanung
 
 ## Übersicht

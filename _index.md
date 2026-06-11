@@ -16,6 +16,12 @@ Nicht manuell bearbeiten — Änderungen werden beim nächsten Agenten-Lauf übe
 
 ## 100 Schule
 
+### Übersichten
+| Notiz | Beschreibung |
+|-------|-------------|
+| [[_Übersicht Schule]] | Einstiegsseite Schule: Module & Fächer |
+| [[Modulkatalog]] | Alle Module aller Lehrjahre mit Beschreibung und Area-Zuordnung |
+
 ### M106 — Datenbanken
 | Notiz | Beschreibung |
 |-------|-------------|
@@ -98,10 +104,20 @@ _Alle Einträge hier sind `publish: false`_
 
 ## 400 Areas
 
-### Datenbanken
-| Notiz | Beschreibung |
-|-------|-------------|
-| [[Datenbanken/Datenbanken]] | Knowledge Area für Datenbankwissen: DQL, DML, Struktur, Sicherheit, Performance |
+Wissensgebiete, die Inhalte mehrerer Module bündeln. Zuordnung Modul→Area: [[Modulkatalog]]. Einstieg: [[Areas Übersicht]].
+
+| Area-MOC | Beschreibung |
+|----------|-------------|
+| [[Datenbanken/Datenbanken]] | Datenbankwissen: DQL, DML, Modellierung, Performance (M106, 162, 164, 141, 110) |
+| [[Linux]] | Betriebssysteme, Shell, Arbeitsplatz-Administration (M187) |
+| [[Netzwerk]] | LAN, Protokolle, Dienste-Integration (M117, 129, 145, 300) |
+| [[Scripting]] | PowerShell & Automatisierung (M122) |
+| [[Webentwicklung]] | Software-/App-Entwicklung, OOP, Mobile/Web (M319, 223, 335) |
+| [[Server & Dienste]] | Serverdienste, AD, Backup, Monitoring (M123, 143, 158, 188, 159, 157) |
+| [[Cloud & Virtualisierung]] | Virtualisierung, Container, Public Cloud (M109, 169, 190, 210, 346) |
+| [[Security]] | Datenschutz, Verschlüsselung, Netz-/Systemsicherheit (M231, 114, 184, 185, 182) |
+| [[Projektmanagement]] | IPERKA, Projekte, Geschäftsprozesse (M431, 254, 306, 241, 245) |
+| [[Emerging Tech]] | IoT, Blockchain, Machine Learning (M216, 107, 248, 259, 217) |
 
 ---
 

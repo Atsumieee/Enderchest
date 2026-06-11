@@ -1,8 +1,8 @@
 # CLAUDE.md — Enderchest Wiki Schema
 
-Dieses Dokument ist die verbindliche Arbeitsanleitung für den Claude-Agenten.
-Es definiert wie Notizen geschrieben, strukturiert, verlinkt und verwaltet werden.
-Bei Unklarheiten gilt: dieses Dokument hat Vorrang vor allem anderen.
+Dieses Dokument ist die verbindliche Arbeitsanleitung für den Claude-Agenten. Es definiert wie Notizen geschrieben, strukturiert, verlinkt und verwaltet werden. Bei Unklarheiten gilt: dieses Dokument hat Vorrang vor allem anderen.
+
+Für den Lint-Workflow: Lies zuerst `LINT.md` vollständig bevor du beginnst.
 
 ---
 
@@ -11,8 +11,9 @@ Bei Unklarheiten gilt: dieses Dokument hat Vorrang vor allem anderen.
 ```
 Enderchest/
 ├── CLAUDE.md                  ← dieses Dokument
+├── LINT.md                    ← Detaillierte Lint-Regeln (nur bei Workflow D lesen)
 ├── Dashboard.md               ← Master-Übersicht: Tasks, Drafts, Todo-Notizen
-├── index.md                   ← Öffentliche Homepage (publish: false)
+├── index.md                   ← Öffentliche Homepage (publish: true)
 ├── _index.md                  ← Interner Master-Index (vom Agenten gepflegt, publish: false)
 ├── log.md                     ← Chronologisches Log aller Operationen
 │
@@ -44,6 +45,16 @@ Enderchest/
 └── Templates/                 ← Notiz-Vorlagen (nicht bearbeiten)
 ```
 
+### Hierarchie: Areas über Modulen
+
+Module (`100 Schule/M…`) repräsentieren jeweils gewisse **Areas** (`400 Areas/`).
+In der Hierarchie steht die **Area über dem Modul**:
+
+- Die Inhalte eines Moduls sind **in der zugehörigen Area enthalten** (das Modul speist die Area).
+- **Nicht umgekehrt:** Eine Area ist breiter als ein einzelnes Modul und enthält modulübergreifendes, dauerhaftes Wissen.
+- Inhaltliche **Überschneidungen** zwischen Modul und Area sind normal und gewollt — z.B. `M106 - Datenbanken` ↔ `Areas/Datenbanken`.
+- Faustregel: Modulnotizen dokumentieren den Lernstand eines Moduls; Area-Notizen destillieren daraus das langlebige Wissen.
+
 ---
 
 ## 2. Frontmatter-Regeln
@@ -53,10 +64,11 @@ Jede Notiz hat **genau diese Felder** — nicht mehr, nicht weniger:
 ```yaml
 ---
 title: "Titel der Notiz"
+description: "1–2 Sätze für Website-Card und SEO"
 tags: [tag1, tag2]
 created: YYYY-MM-DD
 status: draft | permanent | archived
-publish: false | false
+publish: true | false
 todo: true | false
 ---
 ```
@@ -65,104 +77,108 @@ todo: true | false
 
 **title** — Vollständiger, lesbarer Titel. Nicht der Dateiname.
 
-**tags** — 1 bis 4 Tags total. Nur Tags die Navigation oder Filterung tatsächlich nützen.
-Erlaubte Tags-Kategorien:
+**description** — 1–2 Sätze die den Inhalt zusammenfassen. Wird als Card-Text auf der Website und für SEO verwendet. Pflichtfeld bei `publish: true`. Bei `publish: false` kann es weggelassen werden.
 
-- **Fachbereich** (1–3 Tags): Das Themengebiet der Notiz. Mehrere Tags nur wenn der Inhalt wirklich mehrere Bereiche abdeckt — z.B. DDNS gehört zu `netzwerk` und `security`.
-  Beispiele: `sql`, `powershell`, `netzwerk`, `security`, `python`, `linux`, `mathematik`, `englisch`, `französisch`, `physik`
+**tags** — 1 bis 4 Tags total. Nur Tags die Navigation oder Filterung tatsächlich nützen. Tag-Kategorien (die Liste ist **erweiterbar**, siehe Hinweis unten):
 
-- **Kontext/Modul** (1 Tag): Woher kommt der Inhalt? Modulnotizen bekommen ihre Modulnummer, alles andere bekommt den Bereich.
-  Modulnotizen: `m106`, `m122`, `m164` etc.
-  Nicht-Modul-Schulfächer: `schule`
-  Sonstiges: `arbeit`, `privat`
+- **Fachbereich** (1–3 Tags): Das Themengebiet der Notiz. Mehrere Tags nur wenn der Inhalt wirklich mehrere Bereiche abdeckt — z.B. DDNS gehört zu `netzwerk` und `security`. Bekannt: `sql`, `powershell`, `netzwerk`, `security`, `python`, `linux`, `windows`, `server`, `cloud`, `virtualisierung`, `iot`, `ml`, `mathematik`, `englisch`, `französisch`, `physik`
+    
+- **Bereich/Kontext** (1 Tag): Woher kommt der Inhalt? Modulnotizen: `m106`, `m122`, `m164`, `m231`, `m431` etc. Nicht-Modul-Schulfächer: `schule`. Top-Level-Bereiche: `arbeit`, `privat`, `areas`, `ressources`
+    
+- **Typ** (optional, 1 Tag): Nur setzen wenn der Typ für die Navigation relevant ist. `übersicht`, `aufgabe`, `projekt`, `referenz`, `konzept`, `anleitung`, `patchday`
+    
 
-- **Typ** (optional, 1 Tag): Nur setzen wenn der Typ für die Navigation relevant ist.
-  `übersicht`, `aufgabe`, `projekt`, `referenz`
-
-Kein Tag-Spam. Wenn ein Tag nicht als Dataview-Filter sinnvoll ist, gehört er nicht rein.
+**Die Tag-Liste ist nicht abschliessend.** Wenn ein sinnvoller neuer Tag fehlt, **schlage ihn vor und frage nach**, bevor du ihn verwendest — nach Bestätigung wird er hier ergänzt. Trotzdem gilt: kein Tag-Spam, keine Tags die nicht als Navigations- oder Dataview-Filter taugen.
 
 **created** — Erstellungsdatum im Format YYYY-MM-DD. Wird nie nachträglich geändert.
 
 **status** — Aktueller Zustand der Notiz:
+
 - `draft` — in Bearbeitung, unvollständig
 - `permanent` — fertig, gepflegt, verlässlich
 - `archived` — nicht mehr aktuell, aber historisch wertvoll
 
 **publish** — Sichtbarkeit für die öffentliche Website:
+
 - `true` — wird auf der öffentlichen Website publiziert
 - `false` — bleibt privat, nur im eigenen Vault sichtbar
 
 **todo** — Zeigt an ob diese Notiz noch offene Fragen oder unvollständige Abschnitte hat:
+
 - `true` — es gibt noch etwas zu klären oder zu ergänzen
 - `false` — Notiz ist inhaltlich vollständig (für den aktuellen Stand)
-
-Statt einer "Offene Fragen"-Sektion in der Notiz selbst wird dieses Flag gesetzt. Der Dataview-Dashboard zeigt alle Notizen mit `todo: true` gebündelt an — offene Punkte gehen nicht vergessen.
 
 ---
 
 ## 3. Publish-Regeln (KRITISCH)
 
-Dies ist die wichtigste Einschränkung beim Schreiben von Notizen.
+Die Website rendert Links zu nicht-publizierten Seiten ausgegraut. Das Verhalten ist je nach Kontext akzeptabel oder ein Fehler:
 
-**Regel:** Eine Notiz mit `publish: false` darf **niemals** aktiv auf eine Notiz mit `publish: false` referenzieren.
+**Akzeptabel — Verbindungen-Tabelle / Weiterführendes:** Ausgegraute Links am Ende einer Notiz (Abschnitte "Verbindungen zu anderen Themen" und "Weiterführendes") sind okay. Sie signalisieren bewusst: "Hier gibt es noch mehr, das noch nicht veröffentlicht ist." Der Leser versteht das.
 
-Warum: Die publizierte Website ist ein eigenständiger, in sich geschlossener Graph. Kaputte Links zu nicht-publizierten Seiten werden ausgegraut und sind daher für direkte referenzen nutzlos.
+**Nicht akzeptabel — aktiver Erklärungstext:** Ein Link der im laufenden Fliesstext oder in Beispielen vorkommt und ausgegraut ist, unterbricht den Lesefluss und macht die Erklärung kaputt. Das ist ein Fehler.
 
-**Beim Schreiben einer publish: false Notiz:**
-1. Jeden `[[Link]]` prüfen — existiert die Zielnotiz?
-2. Hat die Zielnotiz `publish: false`?
-3. Wenn nein → entweder Link entfernen, oder Zielnotiz ebenfalls auf `publish: false` setzen (nur wenn inhaltlich sinnvoll)
-4. Im Zweifel: Link weglassen, statt eine kaputte Referenz zu erstellen
+**Regel beim Schreiben einer `publish: true` Notiz:**
 
-**Faustregel für publish: false:**
-- `100 Schule/` Lernnotizen → meistens `publish: true`
+1. Jeden `[[Link]]` im Fliesstext und in Beispielen prüfen — hat die Zielnotiz `publish: true`?
+2. Wenn nicht → Link aus dem Fliesstext entfernen, oder Zielnotiz ebenfalls auf `publish: true` setzen
+3. Links in der Verbindungen-Tabelle und im Weiterführendes-Abschnitt dürfen auf `publish: false` Notizen zeigen — das ist explizit erlaubt
+
+**Faustregel für publish:**
+
+- `100 Schule/` Lernnotizen (Konzepte, Erklärungen, Übersichten) → `publish: true`
 - `200 Arbeit/` → immer `publish: false`
 - `300 Privat/` → immer `publish: false`
 - Aufgabenblätter, Lösungen, Projektdokumente → `publish: false`
-- Konzeptseiten, Erklärungen, Übersichten → `publish: true`
+- Modulübersichten, MOC-Seiten, Bereichs-Übersichten → `publish: false` (interne Navigationsseiten — die öffentliche Website hat ihre eigene Navigation)
+- `index.md` (öffentliche Homepage) → `publish: true` — einzige Ausnahme unter den Übersichtsseiten
 
 ---
 
 ## 4. Schreibstil
 
 ### Zielgruppe
-Klassenkameraden, die das Thema lernen wollen — keine Experten.
-Schreib so, als würdest du jemandem in der Pause erklären, was ihr heute gelernt habt.
+
+Klassenkameraden, die das Thema lernen wollen — keine Experten. Schreib so, als würdest du jemandem in der Pause erklären, was ihr heute gelernt habt.
 
 ### Kernregeln
 
-**Erkläre zuerst, dann zeige das Detail.**
-Jedes Konzept bekommt zuerst einen Satz in einfachem Deutsch, bevor technische Details folgen.
+**Erkläre zuerst, dann zeige das Detail.** Jedes Konzept bekommt zuerst einen Satz in einfachem Deutsch, bevor technische Details folgen.
 
 Schlecht:
+
 > `SELECT` gibt Spalten aus einer Tabelle zurück.
 
 Gut:
+
 > Mit `SELECT` sagst du der Datenbank: "Zeig mir diese Spalten." Es ist der Grundbefehl für jede Abfrage.
 
-**Merkhilfen einbauen.**
-Wenn es eine einfache Eselsbrücke gibt, schreib sie rein. Markiert mit:
+**Merkhilfen einbauen.** Wenn es eine einfache Eselsbrücke gibt, schreib sie rein. Format:
+
 > **Merkhilfe:** ...
 
-**Konkrete Beispiele vor abstrakten Regeln.**
-Zeig zuerst ein Beispiel, erkläre dann warum es so funktioniert.
+**Konkrete Beispiele vor abstrakten Regeln.** Zeig zuerst ein Beispiel, erkläre dann warum es so funktioniert.
 
-**Warum erklären, nicht nur Was.**
-Nicht nur was ein Befehl tut, sondern warum man ihn braucht und wann man ihn einsetzt.
+**Warum erklären, nicht nur Was.** Nicht nur was ein Befehl tut, sondern warum man ihn braucht und wann man ihn einsetzt.
 
 **Sprache:** Deutsch. Fachbegriffe auf Englisch wenn sie im Original englisch sind (z.B. `SELECT`, `Pipeline`, `Commit`). Keine Mischsprache in Erklärungen.
 
-**Länge:** So lang wie nötig, so kurz wie möglich. Lieber einen Abschnitt mehr als einen unverständlichen Satz weniger. Kein künstliches Kürzen.
+**Länge:** So lang wie nötig, so kurz wie möglich. Kein künstliches Kürzen.
+
+### Dataview-Warnung
+
+Dataview-Queries (`TABLE`, `LIST`, `TASK`) funktionieren nur in Obsidian — nicht auf der statischen Website. Dataview nur in MOC-Seiten und Dashboard verwenden, nie in regulären Notizen die `publish: true` haben.
 
 ---
 
 ## 5. Notizstruktur — Standard-Template
 
-Jede Lernnotiz folgt dieser Struktur. Abschnitte die nicht relevant sind, können weggelassen werden — aber die Reihenfolge bleibt.
+Jede Lernnotiz folgt dieser Struktur. Abschnitte die nicht relevant sind können weggelassen werden — aber die Reihenfolge bleibt.
 
 ```markdown
 ---
 title: "..."
+description: "..."
 tags: [...]
 created: YYYY-MM-DD
 status: draft
@@ -210,8 +226,7 @@ _Kein Vorwissen voraussetzen._
 
 ## 5b. Projektstruktur
 
-Projekte sind eigenständige Einheiten mit Tasks, Dokumentation und verlinkten Wissensnotizen.
-Ein Projekt besteht immer aus mindestens zwei Dateien: `Übersicht.md` und `Kanban.md`.
+Projekte sind eigenständige Einheiten mit Tasks, Dokumentation und verlinkten Wissensnotizen. Ein Projekt besteht immer aus mindestens zwei Dateien: `Übersicht.md` und `Kanban.md`.
 
 ### Projekt-Übersicht Frontmatter
 
@@ -226,8 +241,7 @@ due: YYYY-MM-DD
 ---
 ```
 
-**due** — Abgabe- oder Zieldatum. Optional, aber empfohlen für Schulprojekte.
-**status** für Projekte: `active` (läuft), `completed` (fertig), `on-hold` (pausiert), `archived` (abgeschlossen und archiviert)
+**due** — Abgabe- oder Zieldatum. Optional, aber empfohlen für Schulprojekte. **status** für Projekte: `active`, `completed`, `on-hold`, `archived`
 
 ### Projekt-Übersicht Struktur
 
@@ -241,11 +255,10 @@ _Was soll am Ende erreicht sein? Ein Satz._
 _Warum existiert dieses Projekt? Modul, Auftrag, persönliche Motivation._
 
 ## Wissensnotizen
-_Notizen die durch dieses Projekt entstanden sind oder relevant sind._
 - [[Notizname]] — warum relevant
 
 ## Entscheide & Notizen
-_Wichtige Entscheide, Erkenntnisse, Probleme und wie sie gelöst wurden._
+_Wichtige Entscheide, Erkenntnisse, Probleme und Lösungen._
 
 ## Quellen & Links
 - [Beschreibung](URL)
@@ -253,156 +266,69 @@ _Wichtige Entscheide, Erkenntnisse, Probleme und wie sie gelöst wurden._
 
 ### Kanban-Board Struktur
 
-Das Kanban-Board (`Kanban.md`) wird mit dem **Obsidian Kanban Plugin** verwaltet.
-Spalten-Schema für alle Projekte:
-
 ```
 Backlog | In Progress | Review / Warten | Erledigt
 ```
 
-- **Backlog** — alles was noch nicht angefangen wurde
-- **In Progress** — aktiv in Bearbeitung (max. 3 Karten gleichzeitig — Focus)
-- **Review / Warten** — fertig aber wartet auf Feedback, Abgabe, oder externe Aktion
-- **Erledigt** — abgeschlossen
-
-Jede Karte kann einen internen Link enthalten: `[[Notizname]]` wenn die Task eine Notiz produziert hat.
+- **In Progress** max. 3 Karten gleichzeitig — Focus
+- Jede Karte kann `[[Notizname]]` enthalten wenn sie eine Notiz produziert hat
 
 ### Schulaufgaben (kein eigenes Projekt)
 
-Kleine Aufgaben die kein vollständiges Projekt rechtfertigen (einzelne Übungsblätter, kurze Hausaufgaben) bekommen **keinen eigenen Projektordner**. Stattdessen: eine Checkliste in der Modul-Übersicht.
-
-```markdown
-## Aufgaben
-- [ ] Aufgabe 1 — DQL Grundlagen
-- [x] Aufgabe 2 — WHERE-Klausel Übungen
-```
-
-Faustregel: Mehr als 3 zusammenhängende Tasks oder Abgabe mit Dokumentation → eigener Projektordner. Weniger → Checkliste in der Übersicht.
-
+Faustregel: Mehr als 3 zusammenhängende Tasks oder Abgabe mit Dokumentation → eigener Projektordner. Weniger → Checkliste in der Modul-Übersicht.
 
 ---
 
 ## 6. Namenskonventionen
 
 ### Dateinamen
+
 - Lesbar, keine Sonderzeichen ausser `-` und `–`
-- Modulnotizen: `SQL - DQL.md`, `SQL - DML.md`, `PowerShell - Variablen.md`
+- Modulnotizen: `SQL - DQL.md`, `PowerShell - Variablen.md`
 - Übersichten: `M106 Übersicht.md`
-- MOC-Seiten: `_Übersicht Datenbanken.md` (Unterstrich = navigationsseite)
+- MOC-Seiten: `_Übersicht Datenbanken.md` (Unterstrich = Navigationsseite)
 - Keine Nummern-Präfixe in Notizen (nur in Ordnernamen)
 
 ### Ordner
-Bestehende Struktur beibehalten. Neue Ordner in `100 Schule/` folgen diesen Schemata:
 
-Modulbasierte Fächer: `M[xxx] - [Modulname]/`
-Beispiel: `M106 - Datenbanken/`, `M122 - PowerShell/`
-
-Nicht-Modul-Schulfächer (Sprachen, Naturwissenschaften, Berufsmatura-Fächer):
-`[Fachname]/`
-Beispiel: `Englisch/`, `Mathematik/`, `Französisch/`, `Physik/`, `Berufsmatura/`
-
-Innerhalb dieser Ordner gelten dieselben Dateinamen-Regeln wie bei Modulnotizen.
+Modulbasierte Fächer: `M[xxx] - [Modulname]/` Nicht-Modul-Schulfächer: `[Fachname]/` (z.B. `Mathematik/`, `Englisch/`)
 
 ---
 
 ## 7. Verlinkung
 
-**Interne Links:** `[[Dateiname]]` ohne Pfad — Obsidian findet sie automatisch.
-Wenn der Anzeigetext angepasst werden soll: `[[Dateiname|Anzeigetext]]`
+**Interne Links:** `[[Dateiname]]` ohne Pfad. Mit Anzeigetext: `[[Dateiname|Anzeigetext]]`
 
-**Verbindungen aktiv pflegen:** Jede neue Notiz bekommt mindestens einen eingehenden Link von einer bestehenden Notiz oder MOC-Seite. Keine Waisen-Notizen.
+**Keine Waisen-Notizen:** Jede neue Notiz bekommt mindestens einen eingehenden Link von einer bestehenden Notiz oder MOC-Seite.
 
-**Backlinks nutzen:** Die "Verbindungen"-Tabelle am Ende jeder Notiz soll erklären *warum* zwei Themen verbunden sind — nicht nur dass sie es sind.
+**Verbindungen erklären:** Die Verbindungen-Tabelle soll erklären _warum_ zwei Themen verbunden sind — nicht nur dass sie es sind.
+
+**Link-Kontexte beachten:** Siehe Abschnitt 3 — Links im Fliesstext und Links in der Verbindungen-Tabelle haben unterschiedliche Regeln.
 
 ---
 
 ## 8. Navigation — MOC-Seiten und Dataview
 
 ### MOC-Seiten (Maps of Content)
-Jeder Modulordner hat eine `[Modul] Übersicht.md` — die Einstiegsseite für dieses Modul.
-Jeder Fachbereich hat eine `_Übersicht [Thema].md` in `100 Schule/_Übersichten/`.
 
-MOC-Seiten listen alle Notizen im Bereich auf, gruppiert nach Thema.
-Sie werden vom Agenten bei jeder neuen Notiz aktualisiert.
+Jeder Modulordner hat eine `[Modul] Übersicht.md`. Jeder Fachbereich hat eine `_Übersicht [Thema].md` in `100 Schule/_Übersichten/`.
+
+MOC-Seiten listen alle Notizen im Bereich auf, gruppiert nach Thema. Sie werden vom Agenten bei jeder neuen Notiz aktualisiert.
 
 ### Dataview-Queries
-MOC-Seiten können dynamische Tabellen enthalten. Beispiele:
+
+Nur in MOC-Seiten und Dashboard — nie in regulären Notizen mit `publish: true`.
 
 ```dataview
 TABLE status, created FROM "100 Schule/M106 - Datenbanken"
 SORT created ASC
 ```
 
-```dataview
-TABLE status FROM "100 Schule"
-WHERE contains(tags, "sql")
-SORT file.name ASC
-```
-
-Dataview-Queries werden in MOC-Seiten eingebaut — nicht in regulären Notizen.
 ---
 
 ## 8b. Dashboard.md
 
-`Dashboard.md` liegt im Vault-Root und ist die tägliche Startseite.
-Sie wird vom Agenten nicht automatisch verändert — sie enthält nur statische Dataview-Queries die sich selbst aktualisieren.
-
-### Inhalt des Dashboards
-
-```markdown
-# Dashboard
-
-## Offene Tasks
-_Alle unerledigten Aufgaben aus allen Projekten, gruppiert nach Projekt._
-
-```dataview
-TASK FROM "100 Schule" OR "200 Arbeit" OR "300 Privat"
-WHERE !completed
-GROUP BY file.link
-```
-
----
-
-## Notizen mit offenen Fragen (todo: true)
-```dataview
-TABLE file.folder AS Bereich, status, created
-FROM ""
-WHERE todo = true
-SORT created DESC
-```
-
----
-
-## Drafts älter als 14 Tage
-```dataview
-TABLE file.folder AS Bereich, created
-FROM ""
-WHERE status = "draft" AND date(today) - date(created) > dur(14 days)
-SORT created ASC
-```
-
----
-
-## Aktive Projekte
-```dataview
-TABLE due, status, file.folder AS Bereich
-FROM ""
-WHERE status = "active" AND contains(tags, "projekt")
-SORT due ASC
-```
-
----
-
-## Zuletzt erstellt
-```dataview
-TABLE file.folder AS Bereich, status
-FROM ""
-WHERE file.name != "Dashboard" AND file.name != "index" AND file.name != "log"
-SORT created DESC
-LIMIT 10
-```
-
-
+Liegt im Vault-Root. Wird vom Agenten nicht automatisch verändert — enthält nur statische Dataview-Queries. `publish: false`.
 
 ---
 
@@ -410,16 +336,17 @@ LIMIT 10
 
 ### Workflow A — Neue Notiz erstellen
 
-Auslöser: "Erstelle eine Notiz über [Thema]" oder "Erkläre mir [Thema] und speichere es"
+Auslöser: "Erstelle eine Notiz über [Thema]"
 
-1. Prüfe ob eine Notiz zu diesem Thema bereits existiert → falls ja, aktualisieren statt neu erstellen
-2. Bestimme den richtigen Ordner anhand des Themas
+1. Prüfe ob eine Notiz zum Thema bereits existiert → aktualisieren statt neu erstellen
+2. Bestimme den richtigen Ordner
 3. Schreibe die Notiz nach Template (Abschnitt 5) und Schreibstil (Abschnitt 4)
 4. Setze `publish` korrekt gemäss Abschnitt 3
-5. Aktualisiere die zugehörige MOC-Seite / Übersicht
-6. Füge einen eingehenden Link von einer verwandten Notiz hinzu
-7. Aktualisiere `_index.md`
-8. Schreibe einen Eintrag in `log.md`
+5. Prüfe alle Links im Fliesstext gemäss Link-Regel (Abschnitt 3)
+6. Aktualisiere die zugehörige MOC-Seite
+7. Füge einen eingehenden Link von einer verwandten Notiz hinzu
+8. Aktualisiere `_index.md`
+9. Schreibe einen Eintrag in `log.md`
 
 ### Workflow B — Frage beantworten
 
@@ -427,9 +354,9 @@ Auslöser: Inhaltliche Frage zu einem Thema
 
 1. Lese `_index.md` um relevante Notizen zu finden
 2. Lese die relevanten Notizen
-3. Beantworte die Frage — **mit Bezug auf die eigenen Notizen** wenn vorhanden
-4. Falls das Thema nicht im Wiki ist: Web-Recherche → Antwort geben → neue Notiz erstellen (Workflow A)
-5. Falls die vorhandene Notiz unvollständig ist: Lücke benennen und anbieten, sie zu füllen
+3. Beantworte die Frage mit Bezug auf eigene Notizen wenn vorhanden
+4. Falls Thema nicht im Wiki: Web-Recherche → Antwort → Notiz erstellen (Workflow A)
+5. Falls Notiz unvollständig: Lücke benennen und anbieten sie zu füllen
 
 ### Workflow C — Quelle verarbeiten (Ingest)
 
@@ -438,58 +365,48 @@ Auslöser: "Verarbeite diese URL / diesen Text / dieses Dokument"
 1. Lese die Quelle vollständig
 2. Bespreche kurz die wichtigsten Erkenntnisse
 3. Erstelle eine Notiz nach Workflow A
-4. Verlinke mit bestehenden Notizen zum Thema
-5. Aktualisiere `_index.md`
-6. Notiere in `log.md`
-
-### Workflow E — Neues Projekt erstellen
-
-Auslöser: "Erstelle ein Projekt für [Name]" oder wenn eine Aufgabe klar mehr als 3 Tasks und eine Dokumentation erfordert
-
-1. Bestimme Projekttyp: Schulprojekt (in Modul-Ordner unter `Projekte/`), Arbeit (`200 Arbeit/`), Privat (`300 Privat/`)
-2. Erstelle den Projektordner
-3. Erstelle `Übersicht.md` nach Projekt-Template (Abschnitt 5b)
-4. Erstelle `Kanban.md` mit den vier Standardspalten (Backlog / In Progress / Review / Erledigt)
-5. Frage nach bekannten Tasks um das Backlog initial zu befüllen
-6. Verlinke das Projekt in der zugehörigen Modul-Übersicht oder MOC-Seite
-7. Aktualisiere `_index.md` und `log.md`
-
+4. Aktualisiere `_index.md` und `log.md`
 
 ### Workflow D — Wiki-Pflege (Lint)
 
-Auslöser: "Pflege das Wiki" oder "Lint"
+Auslöser: "Lint" oder "Pflege das Wiki"
 
-Prüfe auf:
-- Notizen ohne eingehende Links (Waisen)
-- `publish: false` Notizen die auf `publish: false` Notizen zeigen
-- MOC-Seiten die neue Notizen noch nicht listen
-- Notizen mit `status: draft` die älter als 30 Tage sind
-- Fehlende Schlüsselbegriffe-Abschnitte
+**Lies zuerst `LINT.md` vollständig** — dort steht die detaillierte Prüfliste, die genauen Regeln und das Report-Format. Dieser Workflow-Eintrag ist nur der Auslöser, nicht die Anleitung.
 
-Bericht erstellen, Fixes vorschlagen, auf Bestätigung warten.
+### Workflow E — Neues Projekt erstellen
+
+Auslöser: "Erstelle ein Projekt für [Name]"
+
+1. Bestimme Projekttyp und Ordner
+2. Erstelle `Übersicht.md` nach Projekt-Template (Abschnitt 5b)
+3. Erstelle `Kanban.md` mit Standardspalten
+4. Frage nach bekannten Tasks für das Backlog
+5. Verlinke in der zugehörigen Modul-Übersicht oder MOC-Seite
+6. Aktualisiere `_index.md` und `log.md`
 
 ---
 
-## 10. index.md und log.md
+## 10. index.md, _index.md und log.md
 
 ### _index.md
-- Interner Master-Index, nur für den Agenten und dich
-- Organisiert nach Ordner/Fachbereich
-- Format pro Eintrag: `| [[Dateiname]] | Kurzbeschreibung |`
-- Wird bei jedem Workflow A/C aktualisiert
-- `publish: false` — wird nie publiziert
 
-### index.md
-- Öffentliche Homepage der Website
-- Wird vom Agenten **nicht** automatisch bearbeitet
-- Nur manuell oder auf explizite Anfrage anpassen
+- Interner Master-Index, nur für Agent und Vault-Besitzer
+- Format pro Eintrag: `| [[Dateiname]] | Kurzbeschreibung |`
+- Wird bei Workflow A/C aktualisiert
 - `publish: false`
 
+### index.md
+
+- Öffentliche Homepage der Website
+- Wird vom Agenten **nicht** automatisch bearbeitet — **ausser auf ausdrückliche Anweisung** des Besitzers
+- `publish: true`
+- Keine Dataview-Queries (rendern auf der statischen Website nicht) — dynamische Listen gehören ins `Dashboard.md`
+
 ### log.md
-- Append-only — niemals bestehende Einträge bearbeiten
+
+- Append-only — bestehende Einträge nie bearbeiten
 - Format: `## [YYYY-MM-DD] [typ] | [Beschreibung]`
 - Typen: `ingest`, `new-note`, `update`, `lint`, `query`
-- Beispiel: `## [2026-05-29] new-note | SQL – Indizes erstellt, M106 Übersicht aktualisiert`
 
 ---
 
@@ -497,8 +414,9 @@ Bericht erstellen, Fixes vorschlagen, auf Bestätigung warten.
 
 - Keine Notizen löschen ohne explizite Bestätigung
 - Keine bestehenden Notizen überschreiben ohne zu fragen
-- Keine `publish: false` Notizen öffentlich machen
-- Keine Tags hinzufügen die nicht in Abschnitt 2 definiert sind
+- Keine `publish: false` Notizen auf `publish: true` setzen
+- Keine neuen Tags ohne Rückfrage hinzufügen — die Tag-Liste in Abschnitt 2 ist erweiterbar, aber jede Erweiterung wird vorgeschlagen und bestätigt
 - Keine Frontmatter-Felder hinzufügen die nicht im Schema stehen
 - Nie in `Templates/` schreiben
 - Nie `log.md` rückwirkend bearbeiten
+- Nie Dataview-Queries in Notizen mit `publish: true` einfügen

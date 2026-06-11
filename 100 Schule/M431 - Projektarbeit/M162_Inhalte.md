@@ -1,3 +1,12 @@
+---
+title: "M162 Inhalte"
+tags: [m431, schule]
+created: 2026-06-01
+status: draft
+publish: false
+todo: false
+---
+
 # M162 – Daten analysieren und modellieren
 > Lerninhalt für die IT-Lernplattform | Basiert auf M162 Unterrichtsmaterial BBZW Sursee
 > Roter Faden: Wir bauen gemeinsam eine Schulverwaltung für das BBZW — von der Datenanalyse bis zur normalisierten Datenbank.

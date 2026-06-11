@@ -1,3 +1,12 @@
+---
+title: "M431 Note Import"
+tags: [m431, schule]
+created: 2026-06-02
+status: draft
+publish: false
+todo: false
+---
+
 # Zeitplanung
 
 - [x] Ist Stand in Dokumentation schreiben
