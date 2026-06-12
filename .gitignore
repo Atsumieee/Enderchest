@@ -1,2 +1,9 @@
-.obsidian/
-.claude/
+# Alles im Root ignorieren
+/*
+
+# Nur diese zwei Ordner syncen
+!100 Schule/
+!400 Areas/
+
+# .gitignore selbst tracken
+!.gitignore

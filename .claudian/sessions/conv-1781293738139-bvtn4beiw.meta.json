@@ -1,9 +1,24 @@
 {
   "id": "conv-1781293738139-bvtn4beiw",
   "providerId": "claude",
-  "title": "Ist zwar ausserhalb deines Aufgaben bereichs aber ...",
-  "titleGenerationStatus": "pending",
+  "title": "Configure Git sync for Schule and Areas",
+  "titleGenerationStatus": "success",
   "createdAt": 1781293738140,
-  "updatedAt": 1781293738186,
-  "sessionId": null
+  "updatedAt": 1781293776320,
+  "lastResponseAt": 1781293776320,
+  "sessionId": "eb71f9f6-4539-46fc-ba0c-c2093c7c8a34",
+  "providerState": {
+    "providerSessionId": "eb71f9f6-4539-46fc-ba0c-c2093c7c8a34"
+  },
+  "currentNote": "100 Schule/Mathematik/Warum KI.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 1,
+    "cacheCreationInputTokens": 1601,
+    "cacheReadInputTokens": 23768,
+    "contextWindow": 200000,
+    "contextTokens": 25370,
+    "percentage": 13,
+    "contextWindowIsAuthoritative": true
+  }
 }
