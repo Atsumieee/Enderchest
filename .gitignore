@@ -5,6 +5,10 @@
 !.github/
 !100 Schule/
 !400 Areas/
+!500 Ressources/
+500 Ressources/*
+!500 Ressources/Widgets/
+!500 Ressources/Pictures/
 
 # Explizit ignorierte Unterordner
 100 Schule/M431 - Projektarbeit/lernplattform/

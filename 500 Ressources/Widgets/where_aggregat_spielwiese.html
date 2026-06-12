@@ -1,0 +1,240 @@
+
+<h2 class="sr-only">WHERE und Aggregat-Spielwiese: Filterbedingungen einstellen, die entstehende SQL-Query beobachten und live Ergebnistabelle sowie Aggregatwerte sehen.</h2>
+<style>
+.wa { padding: 1rem 0; font-family: var(--font-sans, sans-serif); }
+.wa-grid { display: grid; grid-template-columns: 200px 1fr; gap: 14px; }
+@media (max-width: 560px) { .wa-grid { grid-template-columns: 1fr; } }
+.wa-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+.wa-section { margin-bottom: 14px; }
+.wa-section:last-child { margin-bottom: 0; }
+.wa-slabel { font-size: 10px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 8px; }
+.wa-slider-row { display: flex; align-items: center; gap: 6px; }
+.wa-slider-val { font-family: var(--font-mono, monospace); font-size: 12px; color: var(--color-text-info); min-width: 26px; text-align: right; }
+.wa-cb-row { display: flex; align-items: center; gap: 7px; padding: 3px 0; cursor: pointer; user-select: none; font-size: 13px; color: var(--color-text-secondary); }
+.wa-cb-row input { accent-color: var(--color-text-info); width: 14px; height: 14px; cursor: pointer; margin: 0; }
+.wa-tog-row { display: flex; align-items: center; justify-content: space-between; }
+.wa-tog { width: 32px; height: 18px; border-radius: 9px; background: var(--color-border-secondary); border: none; padding: 0; position: relative; cursor: pointer; transition: background 0.2s; flex-shrink: 0; }
+.wa-tog.on { background: var(--color-text-info); }
+.wa-knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: white; transition: transform 0.2s; pointer-events: none; }
+.wa-tog.on .wa-knob { transform: translateX(14px); }
+.wa-tog-label { font-size: 13px; color: var(--color-text-secondary); }
+.wa-right { display: flex; flex-direction: column; gap: 14px; }
+.wa-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+@media (max-width: 480px) { .wa-metrics { grid-template-columns: repeat(2, 1fr); } }
+.wa-metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+.wa-metric-label { font-size: 11px; font-family: var(--font-mono, monospace); color: var(--color-text-tertiary); margin-bottom: 4px; }
+.wa-metric-val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); line-height: 1.1; }
+.wa-metric-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+.wa-metric.hi .wa-metric-val { color: var(--color-text-info); }
+.wa-query { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 11px 14px; font-family: var(--font-mono, monospace); font-size: 12px; line-height: 1.85; }
+.wa-ql { display: flex; gap: 8px; }
+.wa-ql-kw { color: var(--color-text-info); font-weight: 500; min-width: 62px; }
+.wa-ql-kw.grn { color: #1D9E75; }
+.wa-ql-val { color: var(--color-text-primary); }
+.wa-ql-cond { color: var(--color-text-primary); }
+.wa-ql-op { color: var(--color-text-secondary); }
+.wa-table-wrap { overflow-x: auto; }
+table.wa-t { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.wa-t th { font-family: var(--font-mono, monospace); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-tertiary); padding: 5px 8px; text-align: left; border-bottom: 0.5px solid var(--color-border-secondary); font-weight: 400; }
+table.wa-t td { padding: 6px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); transition: opacity 0.15s; }
+table.wa-t tr:last-child td { border-bottom: none; }
+table.wa-t tr.out td { opacity: 0.18; text-decoration: line-through; }
+table.wa-t tr.out td.ns { text-decoration: none; }
+table.wa-t td.wa-id { color: var(--color-text-tertiary); font-family: var(--font-mono, monospace); font-size: 11px; }
+table.wa-t td.wa-name { color: var(--color-text-primary); font-weight: 500; }
+.wa-null { color: var(--color-text-tertiary); font-style: italic; font-size: 11px; }
+.wa-hint { font-size: 11px; color: var(--color-text-tertiary); margin-top: 8px; font-family: var(--font-mono, monospace); }
+.wa-hint.warn { color: var(--color-text-warning, #b45309); }
+</style>
+
+<div class="wa">
+  <div class="wa-grid">
+    <div class="wa-card">
+      <div class="wa-section">
+        <div class="wa-slabel">Mindestalter (WHERE)</div>
+        <div class="wa-slider-row">
+          <input type="range" min="0" max="60" value="0" step="1" id="sl-alter" style="flex:1" oninput="waRender()">
+          <span class="wa-slider-val" id="sv-alter">&ge; 0</span>
+        </div>
+      </div>
+      <div class="wa-section">
+        <div class="wa-slabel">Land (WHERE IN)</div>
+        <label class="wa-cb-row"><input type="checkbox" checked id="cb-ch" onchange="waRender()"> CH</label>
+        <label class="wa-cb-row"><input type="checkbox" checked id="cb-de" onchange="waRender()"> DE</label>
+        <label class="wa-cb-row"><input type="checkbox" checked id="cb-at" onchange="waRender()"> AT</label>
+        <label class="wa-cb-row"><input type="checkbox" checked id="cb-fr" onchange="waRender()"> FR</label>
+      </div>
+      <div class="wa-section">
+        <div class="wa-slabel">E-Mail (IS NOT NULL)</div>
+        <div class="wa-tog-row">
+          <span class="wa-tog-label">Nur mit E-Mail</span>
+          <button class="wa-tog" id="tog-email" onclick="waTogEmail()" aria-label="Nur mit E-Mail umschalten"><span class="wa-knob"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wa-right">
+      <div class="wa-metrics">
+        <div class="wa-metric hi">
+          <div class="wa-metric-label">COUNT(*)</div>
+          <div class="wa-metric-val" id="m-countstar">15</div>
+          <div class="wa-metric-sub">alle Zeilen</div>
+        </div>
+        <div class="wa-metric">
+          <div class="wa-metric-label">COUNT(email)</div>
+          <div class="wa-metric-val" id="m-countemail">11</div>
+          <div class="wa-metric-sub">nicht NULL</div>
+        </div>
+        <div class="wa-metric">
+          <div class="wa-metric-label">AVG(alter)</div>
+          <div class="wa-metric-val" id="m-avg">33</div>
+          <div class="wa-metric-sub">Durchschnitt</div>
+        </div>
+        <div class="wa-metric">
+          <div class="wa-metric-label">MIN / MAX</div>
+          <div class="wa-metric-val" id="m-minmax">16 / 60</div>
+          <div class="wa-metric-sub">Alter</div>
+        </div>
+      </div>
+
+      <div class="wa-card">
+        <div class="wa-query" id="wa-query"></div>
+      </div>
+
+      <div class="wa-card">
+        <div class="wa-table-wrap">
+          <table class="wa-t">
+            <thead><tr><th>id</th><th>vorname</th><th>land</th><th>alter</th><th>email</th></tr></thead>
+            <tbody id="wa-tbody"></tbody>
+          </table>
+        </div>
+        <div class="wa-hint" id="wa-hint"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ROWS = [
+  { id:1,  vorname:'Anna',   land:'CH', alter:32, email:'anna@example.com'   },
+  { id:2,  vorname:'Ben',    land:'DE', alter:17, email:'ben@example.com'    },
+  { id:3,  vorname:'Clara',  land:'AT', alter:25, email:null                 },
+  { id:4,  vorname:'David',  land:'CH', alter:41, email:'david@example.com'  },
+  { id:5,  vorname:'Eva',    land:'DE', alter:17, email:'eva@example.com'    },
+  { id:6,  vorname:'Felix',  land:'CH', alter:29, email:null                 },
+  { id:7,  vorname:'Greta',  land:'AT', alter:54, email:'greta@example.com'  },
+  { id:8,  vorname:'Hans',   land:'DE', alter:38, email:'hans@example.com'   },
+  { id:9,  vorname:'Irene',  land:'FR', alter:22, email:null                 },
+  { id:10, vorname:'Jonas',  land:'CH', alter:16, email:'jonas@example.com'  },
+  { id:11, vorname:'Katrin', land:'FR', alter:45, email:'katrin@example.com' },
+  { id:12, vorname:'Leon',   land:'AT', alter:31, email:null                 },
+  { id:13, vorname:'Maria',  land:'DE', alter:60, email:'maria@example.com'  },
+  { id:14, vorname:'Nico',   land:'CH', alter:19, email:'nico@example.com'   },
+  { id:15, vorname:'Olivia', land:'FR', alter:28, email:'olivia@example.com' },
+];
+
+let emailOnly = false;
+
+function waTogEmail() {
+  emailOnly = !emailOnly;
+  document.getElementById('tog-email').classList.toggle('on', emailOnly);
+  waRender();
+}
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function buildQuery(minAlter, lands, emailOnly) {
+  const allLands = ['CH','DE','AT','FR'];
+  const missing  = allLands.filter(l => !lands.has(l));
+  const conditions = [];
+
+  if (minAlter > 0) conditions.push(
+    `<span class="wa-ql-val">alter</span> <span class="wa-ql-op">&gt;=</span> <span class="wa-ql-val">${minAlter}</span>`
+  );
+  if (missing.length > 0 && missing.length < 4) {
+    const inList = [...lands].map(l => `<span class="wa-ql-val">'${l}'</span>`).join(', ');
+    conditions.push(
+      `<span class="wa-ql-val">land</span> <span class="wa-ql-op">IN</span> (${inList})`
+    );
+  }
+  if (emailOnly) conditions.push(
+    `<span class="wa-ql-val">email</span> <span class="wa-ql-op">IS NOT NULL</span>`
+  );
+
+  let html = '';
+  html += `<div class="wa-ql"><span class="wa-ql-kw">SELECT</span><span class="wa-ql-val">vorname, land, alter, email</span></div>`;
+  html += `<div class="wa-ql"><span class="wa-ql-kw grn">FROM</span><span class="wa-ql-val">kunden</span></div>`;
+
+  if (conditions.length === 0) {
+    html += `<div class="wa-ql" style="opacity:0.35"><span class="wa-ql-kw">WHERE</span><span class="wa-ql-val" style="font-style:italic;color:var(--color-text-tertiary)">-- kein Filter aktiv</span></div>`;
+  } else {
+    conditions.forEach((cond, i) => {
+      const prefix = i === 0 ? 'WHERE' : 'AND';
+      const klass  = i === 0 ? 'wa-ql-kw' : 'wa-ql-op';
+      html += `<div class="wa-ql"><span class="${klass}" style="min-width:62px">${prefix}</span><span>${cond}</span></div>`;
+    });
+  }
+  html += `<div class="wa-ql"><span class="wa-ql-kw">ORDER BY</span><span class="wa-ql-val">id ASC;</span></div>`;
+  return html;
+}
+
+function waRender() {
+  const minAlter = parseInt(document.getElementById('sl-alter').value);
+  document.getElementById('sv-alter').textContent = '\u2265 ' + minAlter;
+
+  const lands = new Set();
+  if (document.getElementById('cb-ch').checked) lands.add('CH');
+  if (document.getElementById('cb-de').checked) lands.add('DE');
+  if (document.getElementById('cb-at').checked) lands.add('AT');
+  if (document.getElementById('cb-fr').checked) lands.add('FR');
+
+  document.getElementById('wa-query').innerHTML = buildQuery(minAlter, lands, emailOnly);
+
+  const included = [];
+  let bodyHTML = '';
+
+  ROWS.forEach(r => {
+    const passes = r.alter >= minAlter && lands.has(r.land) && (!emailOnly || r.email !== null);
+    if (passes) included.push(r);
+    const emailCell = r.email
+      ? `<td>${esc(r.email)}</td>`
+      : `<td class="wa-null">NULL</td>`;
+    bodyHTML += `<tr class="${passes ? '' : 'out'}">
+      <td class="wa-id ns">${r.id}</td>
+      <td class="wa-name">${r.vorname}</td>
+      <td>${r.land}</td>
+      <td>${r.alter}</td>
+      ${emailCell}
+    </tr>`;
+  });
+
+  document.getElementById('wa-tbody').innerHTML = bodyHTML;
+
+  const countStar  = included.length;
+  const countEmail = included.filter(r => r.email !== null).length;
+  const ages       = included.map(r => r.alter);
+  const avg        = ages.length ? Math.round(ages.reduce((a,b) => a+b,0) / ages.length) : null;
+  const minA       = ages.length ? Math.min(...ages) : null;
+  const maxA       = ages.length ? Math.max(...ages) : null;
+
+  document.getElementById('m-countstar').textContent  = countStar;
+  document.getElementById('m-countemail').textContent = countEmail;
+  document.getElementById('m-avg').textContent        = avg !== null ? avg : '—';
+  document.getElementById('m-minmax').textContent     = minA !== null ? minA + ' / ' + maxA : '—';
+
+  const diff = countStar - countEmail;
+  const hint = document.getElementById('wa-hint');
+  if (countStar === 0) {
+    hint.className = 'wa-hint warn';
+    hint.textContent = 'Kein Ergebnis — alle Zeilen wurden herausgefiltert.';
+  } else if (diff > 0) {
+    hint.className = 'wa-hint warn';
+    hint.textContent = diff + (diff === 1 ? ' Zeile hat' : ' Zeilen haben') + ' kein Email (NULL) \u2192 COUNT(*) \u2260 COUNT(email)';
+  } else {
+    hint.className = 'wa-hint';
+    hint.textContent = 'Alle gefilterten Zeilen haben ein Email \u2192 COUNT(*) = COUNT(email)';
+  }
+}
+
+waRender();
+</script>

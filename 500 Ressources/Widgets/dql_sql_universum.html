@@ -1,0 +1,188 @@
+
+<h2 class="sr-only">Das SQL-Universum: Einordnung von DQL gegenüber DDL, DML und DCL</h2>
+
+<style>
+.sq-wrap { padding: 1.25rem 0; font-family: var(--font-sans, sans-serif); }
+.sq-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.sq-card {
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 14px 14px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--color-background-primary);
+  position: relative;
+  overflow: hidden;
+}
+.sq-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  opacity: 0.7;
+}
+.sq-card.ddl::before { background: #5DCAA5; }
+.sq-card.dml::before { background: #BA7517; }
+.sq-card.dql::before { background: #534AB7; }
+.sq-card.dcl::before { background: #888780; }
+
+.sq-card:hover { border-color: var(--color-border-secondary); }
+.sq-card.active { border-color: var(--color-border-primary); background: var(--color-background-secondary); }
+
+.sq-abbr {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: var(--color-text-primary);
+}
+.sq-abbr span { font-size: 11px; font-weight: 400; color: var(--color-text-secondary); display: block; margin-top: 1px; letter-spacing: 0.03em; }
+.sq-badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 500;
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+.sq-card.ddl .sq-badge { background: rgba(93,202,165,0.15); color: #0F6E56; }
+.sq-card.dml .sq-badge { background: rgba(186,117,23,0.13); color: #854F0B; }
+.sq-card.dql .sq-badge { background: rgba(83,74,183,0.12); color: #534AB7; }
+.sq-card.dcl .sq-badge { background: rgba(136,135,128,0.13); color: #5F5E5A; }
+
+@media (prefers-color-scheme: dark) {
+  .sq-card.ddl .sq-badge { background: rgba(93,202,165,0.15); color: #9FE1CB; }
+  .sq-card.dml .sq-badge { background: rgba(186,117,23,0.18); color: #FAC775; }
+  .sq-card.dql .sq-badge { background: rgba(175,169,236,0.15); color: #AFA9EC; }
+  .sq-card.dcl .sq-badge { background: rgba(180,178,169,0.12); color: #B4B2A9; }
+}
+
+.sq-detail {
+  margin-top: 14px;
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 16px 18px;
+  background: var(--color-background-secondary);
+  min-height: 110px;
+  transition: opacity 0.15s;
+}
+.sq-detail-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+.sq-detail-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+.sq-detail-cmds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.sq-cmd {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 0.5px solid var(--color-border-tertiary);
+  color: var(--color-text-secondary);
+  background: var(--color-background-primary);
+}
+.sq-arrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  padding: 10px 14px;
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-primary);
+}
+.sq-arrow-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@media (max-width: 520px) {
+  .sq-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
+<div class="sq-wrap">
+  <div class="sq-grid" id="sq-grid">
+    <div class="sq-card ddl" onclick="sqSelect('ddl')">
+      <div class="sq-abbr">DDL<span>Data Definition Language</span></div>
+      <div class="sq-badge">Struktur</div>
+    </div>
+    <div class="sq-card dml" onclick="sqSelect('dml')">
+      <div class="sq-abbr">DML<span>Data Manipulation Language</span></div>
+      <div class="sq-badge">Schreiben</div>
+    </div>
+    <div class="sq-card dql active" onclick="sqSelect('dql')">
+      <div class="sq-abbr">DQL<span>Data Query Language</span></div>
+      <div class="sq-badge">Lesen ← wir sind hier</div>
+    </div>
+    <div class="sq-card dcl" onclick="sqSelect('dcl')">
+      <div class="sq-abbr">DCL<span>Data Control Language</span></div>
+      <div class="sq-badge">Rechte</div>
+    </div>
+  </div>
+
+  <div class="sq-detail" id="sq-detail">
+    <div class="sq-detail-title" id="sq-det-title">DQL — Data Query Language</div>
+    <div class="sq-detail-body" id="sq-det-body">Stellt Daten aus bestehenden Tabellen <em>nur lesend</em> zur Verfügung. DQL verändert keine Daten und keine Strukturen — es ist reines Abfragen. Das gesamte Thema dieser Notiz dreht sich um DQL.</div>
+    <div class="sq-detail-cmds" id="sq-det-cmds">
+      <span class="sq-cmd">SELECT</span>
+    </div>
+  </div>
+
+  <div class="sq-arrow">
+    <div class="sq-arrow-dot" style="background:#5DCAA5"></div>
+    <span>DDL baut die Tabellen &nbsp;→&nbsp;</span>
+    <div class="sq-arrow-dot" style="background:#BA7517; opacity:0.8"></div>
+    <span>DML füllt sie mit Daten &nbsp;→&nbsp;</span>
+    <div class="sq-arrow-dot" style="background:#534AB7"></div>
+    <span><strong>DQL fragt sie ab</strong></span>
+  </div>
+</div>
+
+<script>
+const sqData = {
+  ddl: {
+    title: 'DDL — Data Definition Language',
+    body: 'Definiert die <em>Struktur</em> der Datenbank: Tabellen erstellen, ändern, löschen. DDL ist die Voraussetzung für alles andere — ohne Tabellen gibt es keine Daten. Stammt aus eurer ERM- und Datenbankdesign-Arbeit.',
+    cmds: ['CREATE TABLE', 'ALTER TABLE', 'DROP TABLE', 'CREATE INDEX']
+  },
+  dml: {
+    title: 'DML — Data Manipulation Language',
+    body: 'Schreibt, ändert oder löscht <em>Daten</em> in bestehenden Tabellen. DML setzt voraus, dass die Tabellen per DDL bereits existieren. Diese Operationen verändern den Inhalt — nicht die Struktur.',
+    cmds: ['INSERT', 'UPDATE', 'DELETE', 'MERGE']
+  },
+  dql: {
+    title: 'DQL — Data Query Language',
+    body: 'Stellt Daten aus bestehenden Tabellen <em>nur lesend</em> zur Verfügung. DQL verändert keine Daten und keine Strukturen — es ist reines Abfragen. Das gesamte Thema dieser Notiz dreht sich um DQL.',
+    cmds: ['SELECT']
+  },
+  dcl: {
+    title: 'DCL — Data Control Language',
+    body: 'Steuert <em>Berechtigungen</em>: wer darf lesen, schreiben oder Strukturen ändern? DCL ist vor allem für Datenbankadministratoren relevant und hängt eng mit dem Thema Views & Datensicherheit zusammen.',
+    cmds: ['GRANT', 'REVOKE', 'DENY']
+  }
+};
+
+function sqSelect(key) {
+  document.querySelectorAll('.sq-card').forEach(c => c.classList.remove('active'));
+  document.querySelector('.sq-card.' + key).classList.add('active');
+  const d = sqData[key];
+  document.getElementById('sq-det-title').textContent = d.title;
+  document.getElementById('sq-det-body').innerHTML = d.body;
+  const cmdsEl = document.getElementById('sq-det-cmds');
+  cmdsEl.innerHTML = d.cmds.map(c => `<span class="sq-cmd">${c}</span>`).join('');
+}
+</script>

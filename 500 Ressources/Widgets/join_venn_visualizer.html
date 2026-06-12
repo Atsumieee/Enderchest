@@ -1,0 +1,225 @@
+
+<h2 class="sr-only">JOIN Venn-Visualizer: JOIN-Typ auswählen und beobachten welche Zeilen aus Tabelle A und B im Ergebnis erscheinen.</h2>
+
+<style>
+.jv { padding: 1rem 0; }
+.jv-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.jv-tab {
+  font-size: 12px;
+  font-family: var(--font-mono, monospace);
+  padding: 5px 13px;
+  border-radius: 20px;
+  border: 0.5px solid var(--color-border-secondary);
+  background: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.jv-tab:hover { border-color: var(--color-border-primary); color: var(--color-text-primary); }
+.jv-tab.active { background: var(--color-background-info); color: var(--color-text-info); border-color: transparent; font-weight: 500; }
+.jv-body { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .jv-body { grid-template-columns: 1fr; } }
+.jv-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+}
+.jv-desc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  min-height: 52px;
+}
+.jv-desc strong { color: var(--color-text-primary); font-weight: 500; }
+.jv-query {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 10px 12px;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+}
+.jv-kw { color: var(--color-text-info); font-weight: 500; }
+.jv-kw-on { color: #1D9E75; font-weight: 500; }
+
+table.jv-t { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.jv-t th { font-family: var(--font-mono, monospace); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-tertiary); padding: 4px 8px; text-align: left; border-bottom: 0.5px solid var(--color-border-secondary); font-weight: 400; }
+table.jv-t td { padding: 6px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 12px; transition: all 0.2s; }
+table.jv-t tr:last-child td { border-bottom: none; }
+table.jv-t td.jv-id { color: var(--color-text-tertiary); font-family: var(--font-mono, monospace); font-size: 11px; }
+table.jv-t td.jv-name { color: var(--color-text-primary); font-weight: 500; }
+table.jv-t td.jv-null { color: var(--color-text-tertiary); font-style: italic; font-size: 11px; }
+table.jv-t tr.jv-match td { color: var(--color-text-primary); }
+table.jv-t tr.jv-out td { opacity: 0.2; }
+.jv-count { font-size: 11px; color: var(--color-text-tertiary); font-family: var(--font-mono, monospace); margin-top: 8px; text-align: right; }
+</style>
+
+<div class="jv">
+  <div class="jv-tabs">
+    <button class="jv-tab active" data-jvtype="inner" onclick="jvSet('inner')">INNER JOIN</button>
+    <button class="jv-tab" data-jvtype="left" onclick="jvSet('left')">LEFT JOIN</button>
+    <button class="jv-tab" data-jvtype="right" onclick="jvSet('right')">RIGHT JOIN</button>
+    <button class="jv-tab" data-jvtype="full" onclick="jvSet('full')">FULL JOIN</button>
+    <button class="jv-tab" data-jvtype="cross" onclick="jvSet('cross')">CROSS JOIN</button>
+  </div>
+
+  <div class="jv-body">
+    <div class="jv-card">
+      <svg width="100%" viewBox="0 0 260 130" id="jv-svg" role="img">
+        <title>Venn-Diagramm für den gewählten JOIN-Typ</title>
+      </svg>
+      <div class="jv-desc" id="jv-desc"></div>
+      <div class="jv-query" id="jv-query"></div>
+    </div>
+    <div class="jv-card">
+      <table class="jv-t">
+        <thead><tr><th>bestellid</th><th>vorname</th><th>nachname</th><th>preis</th></tr></thead>
+        <tbody id="jv-tbody"></tbody>
+      </table>
+      <div class="jv-count" id="jv-count"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const KUNDEN = [
+  { kid: 1, vorname: 'Hans',  nachname: 'Meier'  },
+  { kid: 2, vorname: 'Ueli',  nachname: 'Muster' },
+  { kid: 3, vorname: 'Sepp',  nachname: 'Hofer'  },
+];
+const BESTELLUNGEN = [
+  { bid: 1, kid: 4, preis: 10 },
+  { bid: 2, kid: 2, preis: 13 },
+  { bid: 3, kid: 1, preis: 20 },
+];
+
+const TYPES = {
+  inner: {
+    label: 'INNER JOIN',
+    desc: 'Gibt nur die <strong>Schnittmenge</strong> zurück — Zeilen die in beiden Tabellen einen Match haben. Bestellung 1 (kein Kunde) und Sepp Hofer (keine Bestellung) fallen weg.',
+    kw: 'INNER JOIN',
+    fillA: false, fillInter: true, fillB: false,
+    rows: () => BESTELLUNGEN.flatMap(b => {
+      const k = KUNDEN.find(k => k.kid === b.kid);
+      return k ? [{ bid: b.bid, vorname: k.vorname, nachname: k.nachname, preis: b.preis, match: true }] : [];
+    })
+  },
+  left: {
+    label: 'LEFT JOIN',
+    desc: 'Alle Zeilen der <strong>linken Tabelle</strong> (bestellung) erscheinen. Wo kein Kunde gefunden wird, stehen <em>NULL</em>-Werte. Sepp Hofer fehlt, weil er in der linken Tabelle keinen Eintrag hat.',
+    kw: 'LEFT JOIN',
+    fillA: true, fillInter: true, fillB: false,
+    rows: () => BESTELLUNGEN.map(b => {
+      const k = KUNDEN.find(k => k.kid === b.kid);
+      return { bid: b.bid, vorname: k?.vorname ?? null, nachname: k?.nachname ?? null, preis: b.preis, match: !!k };
+    })
+  },
+  right: {
+    label: 'RIGHT JOIN',
+    desc: 'Alle Zeilen der <strong>rechten Tabelle</strong> (kunde) erscheinen. Sepp Hofer taucht auf — mit <em>NULL</em> bei BestellId und Preis. Bestellung 1 fehlt, weil sie keinen Kunden hat.',
+    kw: 'RIGHT JOIN',
+    fillA: false, fillInter: true, fillB: true,
+    rows: () => {
+      const result = [];
+      BESTELLUNGEN.forEach(b => {
+        const k = KUNDEN.find(k => k.kid === b.kid);
+        if (k) result.push({ bid: b.bid, vorname: k.vorname, nachname: k.nachname, preis: b.preis, match: true });
+      });
+      KUNDEN.forEach(k => {
+        const b = BESTELLUNGEN.find(b => b.kid === k.kid);
+        if (!b) result.push({ bid: null, vorname: k.vorname, nachname: k.nachname, preis: null, match: false });
+      });
+      return result;
+    }
+  },
+  full: {
+    label: 'FULL OUTER JOIN',
+    desc: 'Alle Zeilen <strong>beider Tabellen</strong> erscheinen. Zeilen ohne Match bekommen auf der fehlenden Seite <em>NULL</em>. Weder Bestellung 1 noch Sepp Hofer fallen weg.',
+    kw: 'FULL JOIN',
+    fillA: true, fillInter: true, fillB: true,
+    rows: () => {
+      const result = [];
+      BESTELLUNGEN.forEach(b => {
+        const k = KUNDEN.find(k => k.kid === b.kid);
+        result.push({ bid: b.bid, vorname: k?.vorname ?? null, nachname: k?.nachname ?? null, preis: b.preis, match: !!k });
+      });
+      KUNDEN.forEach(k => {
+        const b = BESTELLUNGEN.find(b => b.kid === k.kid);
+        if (!b) result.push({ bid: null, vorname: k.vorname, nachname: k.nachname, preis: null, match: false });
+      });
+      return result;
+    }
+  },
+  cross: {
+    label: 'CROSS JOIN',
+    desc: 'Das <strong>kartesische Produkt</strong>: jede Bestellung × jeden Kunden. Kein ON — alle Kombinationen. 3 Kunden × 3 Bestellungen = 9 Zeilen. Kein Match nötig.',
+    kw: 'CROSS JOIN',
+    fillA: true, fillInter: true, fillB: true,
+    rows: () => BESTELLUNGEN.flatMap(b => KUNDEN.map(k => ({ bid: b.bid, vorname: k.vorname, nachname: k.nachname, preis: b.preis, match: true })))
+  }
+};
+
+function drawVenn(type) {
+  const t = TYPES[type];
+  const cA = '#534AB7', cB = '#1D9E75', cI = '#EF9F27';
+  const oA = t.fillA ? 0.22 : 0.06;
+  const oI = t.fillInter ? 0.55 : 0.06;
+  const oB = t.fillB ? 0.22 : 0.06;
+  const strokeA = t.fillA ? cA : 'var(--color-border-secondary)';
+  const strokeB = t.fillB ? cB : 'var(--color-border-secondary)';
+
+  return `
+    <circle cx="95" cy="65" r="55" fill="${cA}" fill-opacity="${oA}" stroke="${strokeA}" stroke-width="${t.fillA ? 1.5 : 0.5}"/>
+    <circle cx="165" cy="65" r="55" fill="${cB}" fill-opacity="${oB}" stroke="${strokeB}" stroke-width="${t.fillB ? 1.5 : 0.5}"/>
+    <clipPath id="interClip"><circle cx="95" cy="65" r="55"/></clipPath>
+    <circle cx="165" cy="65" r="55" fill="${cI}" fill-opacity="${oI}" clip-path="url(#interClip)" stroke="none"/>
+    <text font-family="var(--font-mono,monospace)" font-size="11" fill="${t.fillA ? cA : 'var(--color-text-tertiary)'}" text-anchor="middle" x="72" y="62" font-weight="${t.fillA ? '500':'400'}">bstlg.</text>
+    <text font-family="var(--font-mono,monospace)" font-size="10" fill="${t.fillA ? cA : 'var(--color-text-tertiary)'}" text-anchor="middle" x="72" y="76">(links)</text>
+    <text font-family="var(--font-mono,monospace)" font-size="11" fill="${t.fillB ? cB : 'var(--color-text-tertiary)'}" text-anchor="middle" x="188" y="62" font-weight="${t.fillB ? '500':'400'}">kunde</text>
+    <text font-family="var(--font-mono,monospace)" font-size="10" fill="${t.fillB ? cB : 'var(--color-text-tertiary)'}" text-anchor="middle" x="188" y="76">(rechts)</text>
+    <text font-family="var(--font-mono,monospace)" font-size="10" fill="${t.fillInter ? '#854F0B' : 'var(--color-text-tertiary)'}" text-anchor="middle" x="130" y="70" font-weight="${t.fillInter ? '500':'400'}">match</text>
+    <text font-family="var(--font-mono,monospace)" font-size="9" fill="var(--color-text-tertiary)" text-anchor="middle" x="72" y="110">nur A</text>
+    <text font-family="var(--font-mono,monospace)" font-size="9" fill="var(--color-text-tertiary)" text-anchor="middle" x="130" y="110">A ∩ B</text>
+    <text font-family="var(--font-mono,monospace)" font-size="9" fill="var(--color-text-tertiary)" text-anchor="middle" x="188" y="110">nur B</text>
+  `;
+}
+
+function drawQuery(type) {
+  const t = TYPES[type];
+  if (type === 'cross') {
+    return `<span class="jv-kw">SELECT</span> bestellid, vorname, preis\n<span class="jv-kw-on">FROM</span> bestellung\n<span class="jv-kw">${t.kw}</span> kunde;`;
+  }
+  return `<span class="jv-kw">SELECT</span> bestellid, vorname, preis\n<span class="jv-kw-on">FROM</span> bestellung\n<span class="jv-kw">${t.kw}</span> kunde\n  <span class="jv-kw">ON</span> bestellung.kundenid = kunde.kundenid;`;
+}
+
+function drawRows(type) {
+  const rows = TYPES[type].rows();
+  const body = rows.map(r => {
+    const cls = r.match ? 'jv-match' : '';
+    const bid  = r.bid   !== null ? r.bid   : '<span class="jv-null">NULL</span>';
+    const vn   = r.vorname !== null ? r.vorname : '<span class="jv-null">NULL</span>';
+    const nn   = r.nachname !== null ? r.nachname : '<span class="jv-null">NULL</span>';
+    const pr   = r.preis  !== null ? r.preis  : '<span class="jv-null">NULL</span>';
+    return `<tr class="${cls}"><td class="jv-id">${bid}</td><td class="jv-name">${vn}</td><td>${nn}</td><td>${pr}</td></tr>`;
+  }).join('');
+  return { body, count: rows.length };
+}
+
+function jvSet(type) {
+  document.querySelectorAll('.jv-tab').forEach(b => b.classList.remove('active'));
+  __qsa(`.jv-tab[data-jvtype="${type}"]`)[0].classList.add('active');
+
+  document.getElementById('jv-svg').innerHTML = drawVenn(type);
+  document.getElementById('jv-desc').innerHTML = TYPES[type].desc;
+  document.getElementById('jv-query').innerHTML = drawQuery(type);
+
+  const { body, count } = drawRows(type);
+  document.getElementById('jv-tbody').innerHTML = body;
+  document.getElementById('jv-count').textContent = count + (count === 1 ? ' Zeile' : ' Zeilen') + ' im Ergebnis';
+}
+
+jvSet('inner');
+</script>

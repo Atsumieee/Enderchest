@@ -1,0 +1,423 @@
+<link rel="stylesheet" href="research-base.css">
+<h2 class="sr-only">Interaktive Erklärung: Von der Trennlinie zum LLM — 6 Schritte mit Animationen und Beispielen</h2>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 16px; background: var(--color-background-info); color: var(--color-text-info); }
+.step-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.step-btn { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); color: var(--color-text-secondary); cursor: pointer; transition: all .15s; }
+.step-btn.active { background: var(--color-background-info); color: var(--color-text-info); border-color: transparent; font-weight: 500; }
+.panel { display: none; }
+.panel.active { display: block; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem; margin-bottom: 14px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+.label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.val-sm { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.muted { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+.merkhilfe { border-left: 2px solid var(--color-border-info); padding: 0.6rem 0.9rem; background: var(--color-background-info); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; margin: 14px 0; }
+.merkhilfe-label { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-info); margin-bottom: 3px; }
+.merkhilfe p { font-size: 13px; color: var(--color-text-primary); }
+p.body { font-size: 15px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+th { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-secondary); padding: 5px 8px; border-bottom: 0.5px solid var(--color-border-secondary); text-align: left; }
+td { padding: 7px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); vertical-align: top; }
+td:first-child { color: var(--color-text-primary); font-weight: 500; }
+tr:last-child td { border-bottom: none; }
+.token { display: inline-block; padding: 3px 9px; border-radius: var(--border-radius-md); font-size: 13px; font-family: var(--font-mono); margin: 2px; border: 0.5px solid var(--color-border-secondary); cursor: pointer; transition: all .15s; }
+.token.active { background: var(--color-background-info); color: var(--color-text-info); border-color: transparent; }
+.token:hover { border-color: var(--color-border-primary); }
+.bar-wrap { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.bar { height: 14px; border-radius: 3px; transition: width .4s ease; background: var(--color-background-info); }
+.bar.highlight { background: var(--color-text-info); }
+.bar-label { font-size: 12px; color: var(--color-text-secondary); min-width: 80px; }
+.bar-val { font-size: 12px; color: var(--color-text-secondary); min-width: 36px; text-align: right; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+.pulse { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes flow { from{stroke-dashoffset:20} to{stroke-dashoffset:0} }
+.flow-line { stroke-dasharray: 4 3; animation: flow .8s linear infinite; }
+</style>
+
+<div style="padding: 1.25rem 0 0.5rem">
+  <span class="tag">Mathematik · LLM · aufbauend auf Notizen 1–4</span>
+
+  <div class="step-nav">
+    <button class="step-btn active" onclick="show(0)">1 · Deep Learning</button>
+    <button class="step-btn" onclick="show(1)">2 · Tokens & Embeddings</button>
+    <button class="step-btn" onclick="show(2)">3 · Attention</button>
+    <button class="step-btn" onclick="show(3)">4 · Transformer</button>
+    <button class="step-btn" onclick="show(4)">5 · Training</button>
+    <button class="step-btn" onclick="show(5)">6 · Textgenerierung</button>
+  </div>
+
+  <!-- PANEL 0: Deep Learning -->
+  <div class="panel active" id="p0">
+    <div class="card">
+      <p class="body">In Notiz 4 hast du gesehen: zwei Schichten lösen XOR, was eine einzelne Linie nicht kann. Deep Learning macht genau dasselbe — nur mit sehr vielen Schichten.</p>
+      <div class="merkhilfe">
+        <div class="merkhilfe-label">Merkhilfe</div>
+        <p>„Deep" bedeutet nicht „schlau" — es bedeutet schlicht <strong>viele Schichten</strong>. Jede Schicht erkennt etwas ein bisschen Abstrakteres als die davor.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label">Anzahl Schichten — ziehe den Slider</div>
+      <input type="range" min="1" max="12" value="4" id="layers-slider" oninput="updateLayers(this.value)" style="width:100%;margin:10px 0">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--color-text-secondary);margin-bottom:14px">
+        <span>1 Schicht</span><span>12 Schichten</span>
+      </div>
+      <svg id="layers-svg" width="100%" viewBox="0 0 620 200" style="overflow:visible">
+        <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      </svg>
+      <p class="muted" id="layers-desc">4 Schichten: das Netz erkennt mittlere Muster wie Wortteile und kurze Phrasen.</p>
+    </div>
+    <div class="card">
+      <div class="label">Was jede Schicht (grob) lernt</div>
+      <table>
+        <thead><tr><th>Schicht</th><th>Erkennt (Beispiel: Sprache)</th></tr></thead>
+        <tbody>
+          <tr><td>1–2</td><td>Buchstaben, Zeichen, Zeichenpaare</td></tr>
+          <tr><td>3–4</td><td>Wortteile, häufige Muster (-lich, un-)</td></tr>
+          <tr><td>5–8</td><td>Wörter, Bedeutungen, Synonyme</td></tr>
+          <tr><td>9–12</td><td>Satzstruktur, Verneinung, Kontext</td></tr>
+          <tr><td>Letzte</td><td>Endentscheidung / nächstes Wort</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PANEL 1: Tokens & Embeddings -->
+  <div class="panel" id="p1">
+    <div class="card">
+      <p class="body">Deine Trennlinie bekam Zahlen als Eingabe (Breite, Länge). Ein LLM bekommt <em>Wörter</em> — aber Neuronen können nur mit Zahlen rechnen. Wie wird das gelöst?</p>
+    </div>
+    <div class="card">
+      <div class="label">Schritt 1 — Text in Tokens zerschneiden</div>
+      <p class="body" style="margin-top:8px">Gib einen Satz ein und sieh wie er zerschnitten wird:</p>
+      <input type="text" id="token-input" value="Das ist gut!" placeholder="Satz eingeben…" oninput="tokenize()" style="width:100%;margin-bottom:10px">
+      <div id="token-display" style="margin-bottom:6px;min-height:32px"></div>
+      <div id="token-count" class="muted"></div>
+    </div>
+    <div class="card">
+      <div class="label">Schritt 2 — Jeder Token wird zu einem Vektor</div>
+      <div class="merkhilfe">
+        <div class="merkhilfe-label">Merkhilfe</div>
+        <p>In Notiz 1 war ein Insekt durch 2 Zahlen beschrieben (Breite, Länge). Ein Wort im LLM ist durch ~768 Zahlen beschrieben. Das Prinzip ist identisch — mehr Dimensionen, mehr Unterscheidungen möglich.</p>
+      </div>
+      <div style="margin-top:10px">
+        <div class="label" style="margin-bottom:6px">Vereinfachtes Embedding (nur 5 von 768 Dimensionen gezeigt):</div>
+        <div id="embed-display"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label">Was Embeddings besonders macht</div>
+      <svg width="100%" viewBox="0 0 620 160">
+        <text font-size="11" fill="var(--color-text-secondary)" x="20" y="20">Ähnliche Bedeutung → ähnliche Position im Zahlenraum</text>
+        <circle cx="140" cy="90" r="28" fill="var(--color-background-info)" stroke="var(--color-border-info)" stroke-width="0.5"/>
+        <text font-size="12" font-weight="500" fill="var(--color-text-info)" text-anchor="middle" dominant-baseline="central" x="140" y="90">König</text>
+        <circle cx="230" cy="75" r="28" fill="var(--color-background-info)" stroke="var(--color-border-info)" stroke-width="0.5"/>
+        <text font-size="12" font-weight="500" fill="var(--color-text-info)" text-anchor="middle" dominant-baseline="central" x="230" y="75">Königin</text>
+        <line x1="168" y1="87" x2="202" y2="79" stroke="var(--color-text-info)" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>
+        <text font-size="10" fill="var(--color-text-secondary)" x="175" y="71" text-anchor="middle">nah</text>
+        <circle cx="490" cy="90" r="28" fill="var(--color-background-secondary)" stroke="var(--color-border-secondary)" stroke-width="0.5"/>
+        <text font-size="12" font-weight="500" fill="var(--color-text-secondary)" text-anchor="middle" dominant-baseline="central" x="490" y="90">Baum</text>
+        <line x1="258" y1="82" x2="462" y2="87" stroke="var(--color-border-tertiary)" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
+        <text font-size="10" fill="var(--color-text-secondary)" x="360" y="75" text-anchor="middle">weit</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- PANEL 2: Attention -->
+  <div class="panel" id="p2">
+    <div class="card">
+      <p class="body">Attention löst das Problem: <em>welche anderen Wörter sind für die Bedeutung dieses Worts relevant?</em> Klicke auf ein Wort und sieh, worauf das Netz achtet.</p>
+    </div>
+    <div class="card">
+      <div class="label" style="margin-bottom:8px">Klicke ein Wort an — die Balken zeigen die Attention-Gewichte</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px" id="att-tokens">
+        <span class="token" onclick="setAttention(0)">Die</span>
+        <span class="token active" onclick="setAttention(1)">Bank</span>
+        <span class="token" onclick="setAttention(2)">am</span>
+        <span class="token" onclick="setAttention(3)">Fluss</span>
+        <span class="token" onclick="setAttention(4)">ist</span>
+        <span class="token" onclick="setAttention(5)">aus</span>
+        <span class="token" onclick="setAttention(6)">Holz</span>
+      </div>
+      <div id="att-bars"></div>
+      <p id="att-explain" class="muted" style="margin-top:10px"></p>
+    </div>
+    <div class="card">
+      <div class="merkhilfe">
+        <div class="merkhilfe-label">Merkhilfe</div>
+        <p>Attention ist wie ein gelerntes Gewichtssystem: statt jedes Wort gleich stark zu berücksichtigen, lernt das Netz <strong>welchen Wörtern es für welches Zielwort am meisten Aufmerksamkeit schenken soll</strong> — genau wie die Steigung A in Notiz 1, nur dynamisch je nach Kontext.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3: Transformer -->
+  <div class="panel" id="p3">
+    <div class="card">
+      <p class="body">Ein Transformer kombiniert alles: Embeddings, Attention und tiefe Schichten. Seit 2017 ist er die Basis von fast allen grossen Sprachmodellen.</p>
+    </div>
+    <div class="card">
+      <div class="label" style="margin-bottom:10px">Aufbau — klicke eine Schicht an</div>
+      <svg width="100%" viewBox="0 0 620 320" id="tf-svg">
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <!-- Input -->
+        <rect id="tf0" x="200" y="260" width="220" height="36" rx="8" fill="var(--color-background-secondary)" stroke="var(--color-border-secondary)" stroke-width="0.5" style="cursor:pointer" onclick="tfClick(0)"/>
+        <text font-size="13" font-weight="500" fill="var(--color-text-primary)" text-anchor="middle" dominant-baseline="central" x="310" y="278" style="pointer-events:none">Tokens (Eingabe)</text>
+        <!-- Embedding -->
+        <line x1="310" y1="260" x2="310" y2="236" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arr2)"/>
+        <rect id="tf1" x="200" y="200" width="220" height="36" rx="8" fill="var(--color-background-secondary)" stroke="var(--color-border-secondary)" stroke-width="0.5" style="cursor:pointer" onclick="tfClick(1)"/>
+        <text font-size="13" font-weight="500" fill="var(--color-text-primary)" text-anchor="middle" dominant-baseline="central" x="310" y="218" style="pointer-events:none">Embedding-Schicht</text>
+        <!-- Transformer Blocks -->
+        <line x1="310" y1="200" x2="310" y2="176" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arr2)"/>
+        <rect id="tf2" x="160" y="100" width="300" height="76" rx="10" fill="var(--color-background-secondary)" stroke="var(--color-border-secondary)" stroke-width="0.5" style="cursor:pointer" onclick="tfClick(2)"/>
+        <text font-size="13" font-weight="500" fill="var(--color-text-primary)" text-anchor="middle" dominant-baseline="central" x="310" y="128" style="pointer-events:none">Transformer Block ×N</text>
+        <text font-size="11" fill="var(--color-text-secondary)" text-anchor="middle" dominant-baseline="central" x="310" y="148" style="pointer-events:none">Attention + Feed-Forward (N = 12 bis 96)</text>
+        <!-- Output -->
+        <line x1="310" y1="100" x2="310" y2="76" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arr2)"/>
+        <rect id="tf3" x="200" y="40" width="220" height="36" rx="8" fill="var(--color-background-secondary)" stroke="var(--color-border-secondary)" stroke-width="0.5" style="cursor:pointer" onclick="tfClick(3)"/>
+        <text font-size="13" font-weight="500" fill="var(--color-text-primary)" text-anchor="middle" dominant-baseline="central" x="310" y="58" style="pointer-events:none">Output (Wahrscheinlichkeiten)</text>
+      </svg>
+      <p id="tf-desc" class="muted">Klicke eine Komponente an um mehr zu erfahren.</p>
+    </div>
+    <div class="card">
+      <div class="label" style="margin-bottom:6px">Bezug zu deinen Notizen</div>
+      <table>
+        <thead><tr><th>Komponente</th><th>Bezug</th></tr></thead>
+        <tbody>
+          <tr><td>Embedding</td><td>Eingabe (Breite, Länge bei den Insekten)</td></tr>
+          <tr><td>Attention</td><td>Neu — macht Kontext verarbeitbar</td></tr>
+          <tr><td>Feed-Forward</td><td>Versteckte Schicht aus Notiz 4</td></tr>
+          <tr><td>Viele Blocks</td><td>Deep Learning aus Schritt 1</td></tr>
+          <tr><td>Output</td><td>Ausgabeschicht aus Notiz 4</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PANEL 4: Training -->
+  <div class="panel" id="p4">
+    <div class="card">
+      <p class="body">Das Training folgt demselben Vierschritt aus Notiz 1 — nur auf Billionen von Textfragmenten angewendet.</p>
+      <div class="merkhilfe">
+        <div class="merkhilfe-label">Merkhilfe</div>
+        <p>Die Aufgabe beim Training: <strong>nächstes Wort vorhersagen</strong>. Das LLM bekommt einen halben Satz und muss raten wie es weitergeht.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label" style="margin-bottom:10px">Training live — klicke auf „Nächster Schritt"</div>
+      <div id="train-display" style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px;margin-bottom:12px;font-size:14px;line-height:1.8;color:var(--color-text-primary)">
+        Eingabe: <span style="color:var(--color-text-primary);font-weight:500">"Die Sonne scheint ___"</span>
+      </div>
+      <div id="train-bars" style="margin-bottom:12px"></div>
+      <div id="train-feedback" class="muted" style="min-height:40px"></div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button onclick="trainStep()" style="flex:1">Nächster Schritt ↗</button>
+        <button onclick="trainReset()">Zurücksetzen</button>
+      </div>
+      <div style="margin-top:14px">
+        <div class="label" style="margin-bottom:4px">Lernfortschritt (Fehler sinkt mit jeder Runde)</div>
+        <svg id="loss-svg" width="100%" viewBox="0 0 560 80"></svg>
+      </div>
+    </div>
+    <div class="card">
+      <div class="grid2">
+        <div><div class="label">Trainingsbeispiele</div><div class="val">Billionen</div><div class="muted">Wörter aus dem Internet</div></div>
+        <div><div class="label">Gewichte (Parameter)</div><div class="val">Mrd.+</div><div class="muted">GPT-4: ~1,8 Billionen</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 5: Textgenerierung -->
+  <div class="panel" id="p5">
+    <div class="card">
+      <p class="body">Nach dem Training wird das Netz nicht mehr verändert. Es kann jetzt Texte <em>generieren</em> — Token für Token.</p>
+    </div>
+    <div class="card">
+      <div class="label" style="margin-bottom:8px">Gib einen Anfang ein — das Modell vervollständigt</div>
+      <input type="text" id="gen-input" value="Die Sonne" placeholder="Satzanfang…" style="width:100%;margin-bottom:10px">
+      <div id="gen-display" style="min-height:48px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px;font-size:14px;color:var(--color-text-primary);line-height:1.8;margin-bottom:10px"></div>
+      <div id="gen-candidates" style="margin-bottom:10px"></div>
+      <div style="display:flex;gap:8px">
+        <button onclick="genNext()" id="gen-btn" style="flex:1">Nächstes Token generieren ↗</button>
+        <button onclick="genReset()">Zurücksetzen</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="merkhilfe">
+        <div class="merkhilfe-label">Wichtig</div>
+        <p>Ein LLM „weiss" nichts und „versteht" nichts im menschlichen Sinne. Es hat Milliarden Gewichte so trainiert, dass es Text produziert der statistisch sinnvoll auf den Input folgt.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(i) {
+  document.querySelectorAll('.panel').forEach((p,j) => p.classList.toggle('active', i===j));
+  document.querySelectorAll('.step-btn').forEach((b,j) => b.classList.toggle('active', i===j));
+}
+
+// Panel 0: Layers
+const layerDescs = ['','','1–2 Schichten: zu flach für Sprache — nur einfachste Muster erkennbar.','3 Schichten: erste brauchbare Sprachmuster, aber begrenzt.','4 Schichten: das Netz erkennt mittlere Muster wie Wortteile und kurze Phrasen.','5 Schichten: Wortbedeutungen beginnen zu entstehen.','6 Schichten: solides Verständnis von Satzstruktur.','7 Schichten: komplexere Zusammenhänge werden erfasst.','8 Schichten: typisch für kleinere Sprachmodelle (BERT-Base).','','','','12 Schichten: BERT-Base; gut für viele NLP-Aufgaben.'];
+function updateLayers(v) {
+  v = +v;
+  const svg = document.getElementById('layers-svg');
+  const W = 620, baseH = 200;
+  const cols = Math.min(v, 6);
+  const rows = Math.ceil(v / cols);
+  const bw = Math.floor((W - 40 - (cols-1)*8) / cols);
+  const bh = 28;
+  const gap = 8;
+  const totalH = rows * (bh + gap) + 20;
+  svg.setAttribute('viewBox', `0 0 ${W} ${Math.max(totalH+20,80)}`);
+  let html = `<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>`;
+  const colors = ['var(--color-background-info)','var(--color-background-secondary)'];
+  const strokes = ['var(--color-border-info)','var(--color-border-secondary)'];
+  const texts = ['var(--color-text-info)','var(--color-text-secondary)'];
+  for (let i = 0; i < v; i++) {
+    const col = i % cols, row = Math.floor(i / cols);
+    const x = 20 + col * (bw + gap);
+    const y = 10 + row * (bh + gap);
+    const ci = i < 2 ? 1 : i === v-1 ? 0 : 1;
+    html += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${colors[ci]}" stroke="${strokes[ci]}" stroke-width="0.5"/>`;
+    const label = i === 0 ? 'Eingabe' : i === v-1 ? 'Ausgabe' : `Schicht ${i}`;
+    html += `<text font-size="11" fill="${texts[ci]}" text-anchor="middle" dominant-baseline="central" x="${x+bw/2}" y="${y+bh/2}">${label}</text>`;
+  }
+  svg.innerHTML = html;
+  document.getElementById('layers-desc').textContent = layerDescs[v] || `${v} Schichten.`;
+}
+updateLayers(4);
+
+// Panel 1: Tokenize
+function tokenize() {
+  const text = document.getElementById('token-input').value || '';
+  const tokens = text.match(/[\w'äöüÄÖÜß]+|[^\s\w]/g) || [];
+  const disp = document.getElementById('token-display');
+  const colors = ['var(--color-background-info)','var(--color-background-secondary)'];
+  const strokes = ['var(--color-border-info)','var(--color-border-secondary)'];
+  const tc = ['var(--color-text-info)','var(--color-text-secondary)'];
+  disp.innerHTML = tokens.map((t,i)=>`<span class="token" style="background:${colors[i%2]};border-color:${strokes[i%2]};color:${tc[i%2]}" onclick="showEmbed('${t}')">${t}</span>`).join('');
+  document.getElementById('token-count').textContent = `→ ${tokens.length} Tokens`;
+  if(tokens[0]) showEmbed(tokens[0]);
+}
+function showEmbed(tok) {
+  const seed = tok.split('').reduce((a,c)=>a+c.charCodeAt(0),0);
+  const rand = (s,i) => (Math.sin(s*31+i*17)*10000%1+1)/2;
+  const vals = Array.from({length:5},(_,i)=>+((rand(seed,i)*2-1).toFixed(3)));
+  const disp = document.getElementById('embed-display');
+  disp.innerHTML = `<div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Token: <code style="background:var(--color-background-secondary);padding:1px 5px;border-radius:4px;font-size:12px">${tok}</code> → Vektor: [${vals.join(', ')}, …768 Werte insgesamt]</div>`;
+}
+tokenize();
+
+// Panel 2: Attention
+const attData = {
+  0: { weights:[0.55,0.1,0.05,0.12,0.06,0.05,0.07], explain:'„Die" ist ein Artikel — das Netz achtet stark auf sich selbst und leicht auf „Bank" für Kontext.' },
+  1: { weights:[0.04,0.35,0.03,0.42,0.02,0.03,0.11], explain:'„Bank" achtet stark auf „Fluss" (0.42) und sich selbst (0.35) — „Fluss" löst die Bedeutungsfrage.' },
+  2: { weights:[0.1,0.1,0.4,0.2,0.05,0.05,0.1], explain:'„am" als Präposition orientiert sich an seinen Nachbarn.' },
+  3: { weights:[0.05,0.38,0.04,0.32,0.03,0.03,0.15], explain:'„Fluss" achtet stark auf „Bank" — die beiden Wörter definieren den Kontext gegenseitig.' },
+  4: { weights:[0.15,0.1,0.05,0.08,0.42,0.08,0.12], explain:'„ist" als Kopulaverb achtet vor allem auf das Subjekt.' },
+  5: { weights:[0.05,0.05,0.05,0.08,0.08,0.45,0.24], explain:'„aus" als Präposition orientiert sich an „Holz".' },
+  6: { weights:[0.05,0.15,0.04,0.18,0.04,0.24,0.3], explain:'„Holz" achtet auf „ist" und „aus" — das Material braucht den Kontext des Satzes.' },
+};
+const attWords = ['Die','Bank','am','Fluss','ist','aus','Holz'];
+let curAtt = 1;
+function setAttention(i) {
+  curAtt = i;
+  document.querySelectorAll('#att-tokens .token').forEach((t,j)=>t.classList.toggle('active',j===i));
+  const d = attData[i];
+  const bars = document.getElementById('att-bars');
+  const maxW = Math.max(...d.weights);
+  bars.innerHTML = d.weights.map((w,j)=>`<div class="bar-wrap"><span class="bar-label">${attWords[j]}</span><div class="bar ${j===curAtt?'highlight':''}" style="width:${Math.round(w/maxW*200)}px"></div><span class="bar-val">${w.toFixed(2)}</span></div>`).join('');
+  document.getElementById('att-explain').textContent = d.explain;
+}
+setAttention(1);
+
+// Panel 3: Transformer clicks
+const tfDescs = {
+  0: '→ Tokens: Die rohen Wörter als Token-IDs. Dies ist die Eingabe — genau wie Breite/Länge bei den Insekten.',
+  1: '→ Embedding-Schicht: Wandelt jeden Token in einen ~768-dimensionalen Zahlenvektor um. Ähnliche Wörter landen nah beieinander.',
+  2: '→ Transformer Blocks: Das Herzstück. Jeder Block enthält Attention (Kontext verstehen) + Feed-Forward (Verarbeiten). Dieser Block wird N-mal wiederholt.',
+  3: '→ Output-Schicht: Gibt für jedes mögliche nächste Wort eine Wahrscheinlichkeit aus. Das wahrscheinlichste wird als nächstes Token gewählt.',
+};
+function tfClick(i) {
+  const ids = ['tf0','tf1','tf2','tf3'];
+  ids.forEach((id,j)=>{
+    const el = document.getElementById(id);
+    if(j===i){ el.setAttribute('stroke','var(--color-border-info)'); el.setAttribute('fill','var(--color-background-info)'); }
+    else { el.setAttribute('stroke','var(--color-border-secondary)'); el.setAttribute('fill','var(--color-background-secondary)'); }
+  });
+  document.getElementById('tf-desc').textContent = tfDescs[i];
+}
+
+// Panel 4: Training
+const trainSteps = [
+  { input:'„Die Sonne scheint ___"', candidates:[{w:'hell',p:32},{w:'warm',p:18},{w:'heute',p:14},{w:'stark',p:11},{w:'immer',p:8}], correct:'heute', feedback:'Schritt 1 — Raten: Das Netz gibt jedem möglichen nächsten Wort eine Wahrscheinlichkeit.' },
+  { input:'Fehler berechnen', candidates:[{w:'hell',p:32},{w:'warm',p:18},{w:'heute',p:14}], correct:'heute', feedback:'Schritt 2 — Fehler messen: „heute" hatte nur 14% — das ist der Fehler. Alle Gewichte werden jetzt ein kleines Stück angepasst (Backpropagation).' },
+  { input:'Nach Anpassung:', candidates:[{w:'hell',p:28},{w:'heute',p:22},{w:'warm',p:17}], correct:'heute', feedback:'Schritt 3 — Anpassen: „heute" ist von 14% auf 22% gestiegen. Die Gewichte wurden verbessert.' },
+  { input:'Nach weiteren Runden:', candidates:[{w:'heute',p:41},{w:'hell',p:22},{w:'warm',p:14}], correct:'heute', feedback:'Schritt 4 — Wiederholen: Nach vielen Runden liegt „heute" vorne. Das Netz hat gelernt — genau wie die Steigung A in Notiz 1.' },
+];
+let trainIdx = 0, lossHistory = [0.92,0.85,0.78,0.72,0.67,0.61,0.55,0.5];
+function drawLoss() {
+  const svg = document.getElementById('loss-svg');
+  const W=560, H=80, pad=20, n=lossHistory.length;
+  if(n<2){svg.innerHTML='';return;}
+  const minL=0, maxL=1;
+  const xs=lossHistory.map((_,i)=>pad+(W-2*pad)*i/(Math.max(n-1,1)));
+  const ys=lossHistory.map(v=>H-pad-(H-2*pad)*(1-v));
+  let d=`M${xs[0]} ${ys[0]}`;
+  for(let i=1;i<n;i++) d+=` L${xs[i]} ${ys[i]}`;
+  svg.innerHTML=`<path d="${d}" fill="none" stroke="var(--color-text-info)" stroke-width="1.5"/>`
+    +lossHistory.map((v,i)=>`<circle cx="${xs[i]}" cy="${ys[i]}" r="3" fill="var(--color-text-info)"/>`).join('');
+}
+function trainStep() {
+  if(trainIdx >= trainSteps.length){ trainIdx = 0; }
+  const s = trainSteps[trainIdx];
+  const disp = document.getElementById('train-display');
+  disp.innerHTML = s.input;
+  const bars = document.getElementById('train-bars');
+  const maxP = Math.max(...s.candidates.map(c=>c.p));
+  bars.innerHTML = s.candidates.map(c=>`<div class="bar-wrap"><span class="bar-label">${c.w}</span><div class="bar ${c.w===s.correct?'highlight':''}" style="width:${Math.round(c.p/maxP*220)}px"></div><span class="bar-val">${c.p}%</span></div>`).join('');
+  document.getElementById('train-feedback').textContent = s.feedback;
+  if(trainIdx > 0) lossHistory.push(+(Math.max(0.08, lossHistory[lossHistory.length-1]-0.06-Math.random()*0.04)).toFixed(2));
+  drawLoss();
+  trainIdx++;
+}
+function trainReset() { trainIdx=0; lossHistory=[0.92,0.85,0.78,0.72,0.67,0.61,0.55,0.5]; document.getElementById('train-display').innerHTML='Eingabe: <span style="color:var(--color-text-primary);font-weight:500">"Die Sonne scheint ___"</span>'; document.getElementById('train-bars').innerHTML=''; document.getElementById('train-feedback').textContent='Klicke „Nächster Schritt" um das Training zu starten.'; drawLoss(); }
+trainReset();
+
+// Panel 5: Generation
+const genBank = {
+  'default': [['scheint', 0.31],['geht', 0.18],['strahlt', 0.15],['ist', 0.1],['setzt', 0.08]],
+  'die': [['Sonne', 0.38],['Katze', 0.12],['Stadt', 0.11],['Nacht', 0.09],['Welt', 0.08]],
+  'sonne': [['scheint', 0.42],['geht', 0.21],['strahlt', 0.16],['ist', 0.1],['leuchtet', 0.07]],
+  'scheint': [['hell', 0.28],['heute', 0.22],['warm', 0.18],['stark', 0.12],['sanft', 0.09]],
+  'hell': [['und', 0.3],['am', 0.22],['über', 0.18],['.', 0.15],['wie', 0.1]],
+  'und': [['warm', 0.35],['klar', 0.2],['schön', 0.18],['ruhig', 0.12],['friedlich', 0.09]],
+};
+let genTokens = [];
+function genReset() {
+  genTokens = [];
+  const input = document.getElementById('gen-input').value || 'Die Sonne';
+  document.getElementById('gen-display').innerHTML = `<span style="font-weight:500">${input}</span>`;
+  document.getElementById('gen-candidates').innerHTML = '';
+  document.getElementById('gen-btn').disabled = false;
+}
+function genNext() {
+  const input = document.getElementById('gen-input').value || 'Die Sonne';
+  const allTokens = (input + ' ' + genTokens.join(' ')).trim().toLowerCase().split(/\s+/);
+  const lastTok = allTokens[allTokens.length-1].replace(/[^a-zäöüß]/g,'');
+  const candidates = genBank[lastTok] || genBank['default'];
+  const disp = document.getElementById('gen-display');
+  const cands = document.getElementById('gen-candidates');
+  const chosen = candidates[0][0];
+  genTokens.push(chosen);
+  disp.innerHTML = `<span style="font-weight:500">${input}</span> ${genTokens.map((t,i)=>`<span style="color:var(--color-text-info)">${t}</span>`).join(' ')}`;
+  const maxP = candidates[0][1];
+  cands.innerHTML = '<div class="label" style="margin-bottom:6px">Kandidaten für nächstes Token:</div>' + candidates.map(([w,p])=>`<div class="bar-wrap"><span class="bar-label">${w}</span><div class="bar ${w===chosen?'highlight':''}" style="width:${Math.round(p/maxP*220)}px"></div><span class="bar-val">${Math.round(p*100)}%</span></div>`).join('');
+  if(genTokens.length >= 6) { document.getElementById('gen-btn').disabled = true; cands.innerHTML += '<p class="muted" style="margin-top:8px">Maximale Länge erreicht — zurücksetzen um neu zu starten.</p>'; }
+}
+genReset();
+</script>
