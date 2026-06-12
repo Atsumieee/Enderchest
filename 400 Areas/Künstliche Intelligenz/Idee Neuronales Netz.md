@@ -45,7 +45,7 @@ Der Neurologe Warren McCulloch und der Mathematiker Walter Pitts stellten sich 1
 > McCulloch & Pitts (1943) Die beiden beschrieben das erste mathematische Modell eines Neurons. Eine Recheneinheit bekommt mehrere Eingaben, summiert sie, und gibt eine Ausgabe,  aber nur wenn die Summe eine Schwelle überschreitet. Kein Blut, keine Chemie, nur Zahlen.
 
 Ihr Modell konnte nichts lernen. Es zeigte aber, dass sich Denkprozesse grundsätzlich in Mathematik übersetzen lassen und das war der entscheidende Schritt.
-[[mcculloch_pitt_neuron.webp]]
+![[mcculloch_pitt_neuron.webp|696]]
 
 
 ## 1958: Das erste lernende Modell
