@@ -6,6 +6,9 @@
 !100 Schule/
 !400 Areas/
 
+# Explizit ignorierte Unterordner
+100 Schule/M431 - Projektarbeit/lernplattform/
+
 # Konfig-Dateien tracken
 !.gitignore
 !.gitattributes
