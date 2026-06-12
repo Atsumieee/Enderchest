@@ -1,0 +1,2 @@
+# Hook-Scripts immer mit LF-Zeilenenden speichern
+.github/hooks/* text eol=lf

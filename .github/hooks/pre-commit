@@ -1,0 +1,32 @@
+#!/bin/bash
+# Pre-commit Hook: Nur Markdown-Dateien mit publish: true committen
+# Aktivieren mit: git config core.hooksPath .github/hooks
+
+staged_md=$(git diff --cached --name-only --diff-filter=ACM | grep '\.md$')
+
+if [ -z "$staged_md" ]; then
+    exit 0
+fi
+
+removed=0
+
+while IFS= read -r file; do
+    # Überspringe nicht existierende Dateien (z.B. gelöschte)
+    if [ ! -f "$file" ]; then
+        continue
+    fi
+
+    # Prüfe ob publish: true im Frontmatter steht
+    if ! grep -qm1 "^publish: true" "$file"; then
+        git restore --staged "$file"
+        echo "  ⛔ Übersprungen (kein publish: true): $file"
+        removed=$((removed + 1))
+    fi
+done <<< "$staged_md"
+
+if [ "$removed" -gt 0 ]; then
+    echo ""
+    echo "  → $removed Datei(en) nicht committet (publish: false oder fehlendes Feld)"
+fi
+
+exit 0

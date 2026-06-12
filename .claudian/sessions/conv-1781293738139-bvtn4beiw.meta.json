@@ -4,8 +4,8 @@
   "title": "Configure Git sync for Schule and Areas",
   "titleGenerationStatus": "success",
   "createdAt": 1781293738140,
-  "updatedAt": 1781294029596,
-  "lastResponseAt": 1781294029596,
+  "updatedAt": 1781297638973,
+  "lastResponseAt": 1781297638973,
   "sessionId": "eb71f9f6-4539-46fc-ba0c-c2093c7c8a34",
   "providerState": {
     "providerSessionId": "eb71f9f6-4539-46fc-ba0c-c2093c7c8a34"
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet",
     "inputTokens": 1,
-    "cacheCreationInputTokens": 516,
-    "cacheReadInputTokens": 26132,
+    "cacheCreationInputTokens": 217,
+    "cacheReadInputTokens": 33367,
     "contextWindow": 200000,
-    "contextTokens": 26649,
-    "percentage": 13,
+    "contextTokens": 33585,
+    "percentage": 17,
     "contextWindowIsAuthoritative": true
   }
 }

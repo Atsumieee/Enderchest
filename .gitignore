@@ -6,5 +6,6 @@
 !100 Schule/
 !400 Areas/
 
-# .gitignore selbst tracken
+# Konfig-Dateien tracken
 !.gitignore
+!.gitattributes
