@@ -1,15 +1,14 @@
 ---
 Description: Warum klassische Programme bei bestimmten Aufgaben versagen und was maschinelles Lernen anders macht.
 Title: Warum KI?
-Tags: 
-- ki 
-- konzept 
-- schule
+Tags:
+  - ki
+  - konzept
+  - schule
 Created: 2026-06-12
 Status: permanent
 publish: true
 Todo: false
-Moc: false
 ---
 
 # Warum KI?
