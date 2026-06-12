@@ -68,7 +68,7 @@ Diesen Ansatz findest du überall:
 
 ---
 
-> [!summary]
+> [!summary] 
 > Das Wichtigste Klassische Programme folgen Regeln die ein Mensch aufschreibt. Viele Alltagsprobleme lassen sich aber nicht in klare Regeln fassen. Maschinelles Lernen löst das: Du gibst dem Computer Beispiele statt Regeln, und er findet selbst Muster in den Daten.
 
 ## Verbindungen zu anderen Themen
