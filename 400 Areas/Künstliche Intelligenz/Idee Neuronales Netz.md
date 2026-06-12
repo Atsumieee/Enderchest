@@ -77,16 +77,17 @@ Ab diesem Punkt investierten Forschung und Industrie massiv in neuronale Netze. 
 
 ---
 
-> [!summary] Das Wichtigste McCulloch und Pitts übersetzten das echte Neuron 1943 in Mathematik. Rosenblatt baute 1958 das erste lernende Modell daraus. Jahrzehntelange Rückschläge folgten, weil ein einzelnes Neuron zu wenig kann und die Trainingsmethoden für tiefe Netze fehlten. Erst 2012 wurden neuronale Netze zum Standard — getrieben von Daten, Rechenleistung und Backpropagation.
+> [!summary] 
+> Das Wichtigste McCulloch und Pitts übersetzten das echte Neuron 1943 in Mathematik. Rosenblatt baute 1958 das erste lernende Modell daraus. Jahrzehntelange Rückschläge folgten, weil ein einzelnes Neuron zu wenig kann und die Trainingsmethoden für tiefe Netze fehlten. Erst 2012 wurden neuronale Netze zum Standard — getrieben von Daten, Rechenleistung und Backpropagation.
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[Warum KI?]]|Motivation: Warum klassische Programme versagen|
-|[[B2 - Die Trennlinie als Gleichung]]|Das Perceptron ist die mathematische Grundlage der Trennlinie|
-|[[C2 - Lineare Trennbarkeit]]|Der Schwachpunkt des einzelnen Perceptrons|
-|[[Backpropagation]]|Die Methode die tiefe Netze trainierbar machte|
+| Thema                                 | Verbindung                                                    |
+| ------------------------------------- | ------------------------------------------------------------- |
+| [[Warum KI?]]                         | Motivation: Warum klassische Programme versagen               |
+| [[B2 - Die Trennlinie als Gleichung]] | Das Perceptron ist die mathematische Grundlage der Trennlinie |
+| [[C2 - Lineare Trennbarkeit]]         | Der Schwachpunkt des einzelnen Perceptrons                    |
+| [[Backpropagation]]                   | Die Methode die tiefe Netze trainierbar machte                |
 
 ## Quellen & Links
 
