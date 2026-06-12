@@ -32,7 +32,7 @@ Nach diesem Artikel kannst du...
 
 Dein Gehirn besteht aus etwa 86 Milliarden Nervenzellen, sogenannten Neuronen. Jedes Neuron ist mit tausenden anderen verbunden. Es empfängt Signale von seinen Nachbarn, summiert sie, und schickt ein Signal weiter, aber nur wenn die Summe gross genug ist.
 
-Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
+![[Biologisches_Neuron.png|680]]
 
 Diese Eigenschaft ist der Kern: Ein Neuron feuert erst ab einer bestimmten Schwelle. Darunter passiert nichts, darüber wird das Signal weitergegeben. Aus diesem Prinzip entsteht, zusammengeschaltet mit Milliarden anderer Neuronen, die Fähigkeit zu denken und zu erinnern.
 
@@ -44,6 +44,7 @@ Der Neurologe Warren McCulloch und der Mathematiker Walter Pitts stellten sich 1
 > McCulloch & Pitts (1943) Die beiden beschrieben das erste mathematische Modell eines Neurons. Eine Recheneinheit bekommt mehrere Eingaben, summiert sie, und gibt eine Ausgabe,  aber nur wenn die Summe eine Schwelle überschreitet. Kein Blut, keine Chemie, nur Zahlen.
 
 Ihr Modell konnte nichts lernen. Es zeigte aber, dass sich Denkprozesse grundsätzlich in Mathematik übersetzen lassen und das war der entscheidende Schritt.
+
 ![[mcculloch_pitt_neuron.webp|696]]
 
 
@@ -92,4 +93,3 @@ Ab diesem Punkt investierten Forschung und Industrie massiv in neuronale Netze. 
 
 - [McCulloch, Pitts (1943) — A Logical Calculus of Ideas Immanent in Nervous Activity](https://www.cs.cmu.edu/~./epxing/Class/10715/reading/McCulloch.and.Pitts.pdf)
 - [ImageNet Large Scale Visual Recognition Challenge](https://image-net.org/challenges/LSVRC/)
-- 
