@@ -1,7 +1,8 @@
 # Alles im Root ignorieren
 /*
 
-# Nur diese zwei Ordner syncen
+# Nur diese Ordner syncen
+!.github/
 !100 Schule/
 !400 Areas/
 
