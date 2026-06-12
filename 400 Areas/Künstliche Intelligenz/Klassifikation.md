@@ -10,7 +10,6 @@ Status: permanent
 publish: true
 Todo: false
 ---
-# Klassifikation - Was bedeutet trennen?
 
 ## Lernziele
 

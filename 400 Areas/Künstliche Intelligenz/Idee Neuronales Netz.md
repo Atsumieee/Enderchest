@@ -11,9 +11,6 @@ publish: true
 Todo: false
 ---
 
-
-# Die Idee hinter neuronalen Netzen
-
 ## Lernziele
 
 Nach diesem Artikel kannst du...

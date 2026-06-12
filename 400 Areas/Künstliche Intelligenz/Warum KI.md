@@ -11,8 +11,6 @@ publish: true
 Todo: false
 ---
 
-# Warum KI?
-
 ## Lernziele
 
 Nach diesem Artikel kannst du...
