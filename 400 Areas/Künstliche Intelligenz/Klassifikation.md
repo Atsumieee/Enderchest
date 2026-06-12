@@ -2,14 +2,13 @@
 Description: Wie man zwei Gruppen in einem Koordinatensystem darstellt und warum eine Trennlinie reicht um Entscheidungen zu treffen.
 Title: Klassifikation — Was bedeutet trennen?
 Tags:
-- ki
-- konzept
-- schule
+  - ki
+  - konzept
+  - schule
 Created: 2026-06-12
 Status: permanent
 publish: true
 Todo: false
-Moc: false
 ---
 # Klassifikation - Was bedeutet trennen?
 
@@ -23,7 +22,7 @@ Nach diesem Artikel kannst du...
 
 ## Voraussetzungen
 
-- [[Warum KI?]] — Warum klassische Programme bei bestimmten Aufgaben versagen
+- [[Warum KI|Warum KI?]] - Warum klassische Programme bei bestimmten Aufgaben versagen
 
 ---
 

@@ -24,7 +24,7 @@ Nach diesem Artikel kannst du...
 
 ## Voraussetzungen
 
-- [[Warum KI?]] — Warum klassische Programme bei bestimmten Aufgaben versagen
+- [[Warum KI|Warum KI?]] — Warum klassische Programme bei bestimmten Aufgaben versagen
 
 ---
 
