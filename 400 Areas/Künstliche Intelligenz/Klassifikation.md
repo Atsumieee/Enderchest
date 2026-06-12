@@ -55,7 +55,8 @@ Darum geht es in [[B2 - Die Trennlinie als Gleichung]]: Die Linie bekommt eine F
 
 ## Klassifikation
 
-> [!info] Klassifikation Klassifikation (Einordnung) bedeutet: Ein Objekt einer von mehreren Gruppen zuordnen. Im Beispiel oben gibt es zwei Gruppen — Marienkäfer und Raupe. Das unbekannte Insekt wird klassifiziert indem man prüft auf welcher Seite der Trennlinie es liegt. Klassifikation ist eine der häufigsten Aufgaben in der KI, von Spam-Erkennung bis zur medizinischen Diagnose.
+> [!info] 
+> Klassifikation Klassifikation (Einordnung) bedeutet: Ein Objekt einer von mehreren Gruppen zuordnen. Im Beispiel oben gibt es zwei Gruppen — Marienkäfer und Raupe. Das unbekannte Insekt wird klassifiziert indem man prüft auf welcher Seite der Trennlinie es liegt. Klassifikation ist eine der häufigsten Aufgaben in der KI, von Spam-Erkennung bis zur medizinischen Diagnose.
 
 Im Alltag klassifiziert KI ständig:
 
@@ -67,7 +68,8 @@ In jedem Fall steckt dieselbe Grundidee dahinter: Merkmale messen, als Punkt dar
 
 ---
 
-> [!summary] Das Wichtigste Klassifikation ordnet ein Objekt einer Gruppe zu. Zwei Merkmale lassen sich als Punkt in einem Koordinatensystem darstellen. Eine Trennlinie teilt das Koordinatensystem in zwei Bereiche. Ein unbekanntes Objekt wird klassifiziert indem man prüft auf welcher Seite es liegt.
+> [!summary] 
+> Das Wichtigste Klassifikation ordnet ein Objekt einer Gruppe zu. Zwei Merkmale lassen sich als Punkt in einem Koordinatensystem darstellen. Eine Trennlinie teilt das Koordinatensystem in zwei Bereiche. Ein unbekanntes Objekt wird klassifiziert indem man prüft auf welcher Seite es liegt.
 
 ## Verbindungen zu anderen Themen
 
