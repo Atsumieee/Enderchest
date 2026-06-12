@@ -31,7 +31,7 @@ Nach diesem Artikel kannst du...
 
 ## Das Vorbild: Ein echtes Neuron
 
-Dein Gehirn besteht aus etwa 86 Milliarden Nervenzellen, sogenannten Neuronen. Jedes Neuron ist mit tausenden anderen verbunden. Es empfängt Signale von seinen Nachbarn, summiert sie, und schickt ein Signal weiter — aber nur wenn die Summe gross genug ist.
+Dein Gehirn besteht aus etwa 86 Milliarden Nervenzellen, sogenannten Neuronen. Jedes Neuron ist mit tausenden anderen verbunden. Es empfängt Signale von seinen Nachbarn, summiert sie, und schickt ein Signal weiter, aber nur wenn die Summe gross genug ist.
 
 Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
 
