@@ -10,7 +10,7 @@ publish: false
 created: <% tp.file.creation_date() %>
 
 ---
-
+###### [[Patchdays Übersicht]]
 # Patchday <% tp.file.creation_date() %>
 
 > **Ziel dieser Note:** Laufende Dokumentation des Patchday-Workflows

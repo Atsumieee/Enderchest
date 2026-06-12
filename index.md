@@ -1,9 +1,10 @@
 ---
-title: "Home"
-tags: [übersicht]
+title: Home
+tags:
+  - übersicht
 created: 2026-05-23
 status: permanent
-publish: true
+publish: false
 todo: false
 ---
 

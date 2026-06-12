@@ -33,17 +33,17 @@ Diese Area verbindet praktisches SQL-Wissen (M106, M164) mit konzeptuellem Verst
 ### Grundlagen (M106 — Datenbanken)
 [[M106 Übersicht|M106 Datenbanken]] ist dein Einstiegspunkt. Es deckt alle SQL-Grundlagen ab:
 
-| Thema | Notiz |
-|-------|-------|
-| **DQL Grundlagen** | [[SQL - DQL]] — SELECT, WHERE, Filterung |
-| **Joins** | [[SQL - DQL Joins]] — INNER, LEFT, RIGHT, FULL JOIN |
-| **DML Operationen** | [[SQL - DML]] — INSERT, UPDATE, DELETE |
-| **Erweiterte Features** | [[SQL - Views]] — Views als virtuelle Tabellen |
-| **Funktionen** | [[SQL – Funktionen]] — Aggregat und Skalarfunktionen |
-| **Optimierung** | [[SQL – Indizes]] — Indizes für schnellere Abfragen |
-| **Debugging** | [[SQL – Ausfuehrungsplan]] — Abfragepläne verstehen |
-| **Datenschutz** | [[SQL – Backup & Restore]] — Daten sichern |
-| **Sicherheit** | [[SQL Server - Datensicherheit]] — Rollen und Berechtigungen |
+| Thema                   | Notiz                                                        |
+| ----------------------- | ------------------------------------------------------------ |
+| **DQL Grundlagen**      | [[SQL - DQL]] — SELECT, WHERE, Filterung                     |
+| **Joins**               | [[SQL - DQL Joins]] — INNER, LEFT, RIGHT, FULL JOIN          |
+| **DML Operationen**     | [[SQL - DML]] — INSERT, UPDATE, DELETE                       |
+| **Erweiterte Features** | [[SQL - Views]] — Views als virtuelle Tabellen               |
+| **Funktionen**          | [[SQL – Funktionen]] — Aggregat und Skalarfunktionen         |
+| **Optimierung**         | [[SQL – Indizes]] — Indizes für schnellere Abfragen          |
+| **Debugging**           | [[SQL – Ausfuehrungsplan]] — Abfragepläne verstehen          |
+| **Datenschutz**         | [[SQL – Backup & Restore]] — Daten sichern                   |
+| **Sicherheit**          | [[SQL Server - Datensicherheit]] — Rollen und Berechtigungen |
 
 ### Praktische Anwendung (M164 — SQL Vertiefung)
 [[M164 Übersicht|M164 SQL Vertiefung]] zeigt, wie SQL in realen Projekten eingesetzt wird:

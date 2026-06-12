@@ -29,14 +29,6 @@ SORT created ASC
 
 ## Themenserie: Neuronale Netze
 
-Eine zusammenhängende Einführung ins maschinelle Lernen anhand der Insekten-Trennlinie (aufeinander aufbauend lesen):
-
-**Einstieg:** [[Neuronale Netze - Grundlagen]] — das grosse Bild und der rote Faden durch die Serie
-
-1. [[Neuronale Netze 1 - Eine Trennlinie lernen]] — Grundidee: eine Linie lernt mit einer einfachen Regel
-2. [[Neuronale Netze 2 - Mehr Trainingspunkte]] — automatische Lernschleife mit vielen Punkten und Runden
-3. [[Neuronale Netze 3 - Gute und schlechte Lernraten]] — wie die Lernrate Tempo und Stabilität bestimmt
-4. [[Neuronale Netze 4 - XOR und mehrere Schichten]] — wenn eine Linie nicht reicht: XOR und versteckte Schichten
 
 ---
 

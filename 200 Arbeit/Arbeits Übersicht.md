@@ -62,7 +62,7 @@ SORT created DESC
 ## 🔗 Schnellzugriff
 
 - [[Regular Tasks/Patchday/Patchdays Übersicht|📦 Patchdays Übersicht]]
-- [[WSUS Upgrade|🎯 Projekt: WSUS Upgrade]]
+
 
 > Projekte, Meetings und Dokumentation findest du in den jeweiligen Listen oben (Ordner `Projekte/`, `Meetings/`, `Dokumentation/`).
 

@@ -1,10 +1,11 @@
 ---
-title: Upgrade WSUS Server 2012 R2 => 2025
+title: Upgrade WSUS Server 2012 R2 => 2025 In-Place
 tags:
   - projekt
   - arbeit
+  - server
 created: 2026-05-11
-status: active
+status: aborted
 publish: false
 todo: true
 due: 2026-06-30
@@ -12,17 +13,22 @@ due: 2026-06-30
 
 ---
 
+> [!Warning] Abgebrochen
+> Es wurde sich gegen ein In-Place Upgrade entschieden da es besser ist auf einem frischen Server zu wechseln. [[WSUS Migration]] Ist nun die Lösung.
+
 # WSUS01 Migration auf Windows Server 2025
 
 > **Zusammenfassung:** 
 > Der WSUS01 läuft aktuell auf Windows Server 2012 R2, welches nicht mehr unterstützt wird. Diese Analyse prüft ob ein In-Place Upgrade auf Windows Server 2025 technisch machbar ist. 
 > Ergebnis: Ein Upgrade ist möglich, wird aber ein Installationsmedium erfordern und sollte mit einem Backup abgesichert werden.
 
+
+
 ---
 
 ## 1. Ausgangslage
 
-Der Server `WSUS01` betreibt aktuell Windows Server 2012 R2 — eine Version die seit Oktober 2023 keinen Support mehr erhält. Das Ziel ist ein In-Place Upgrade auf Windows Server 2025 ohne Neuinstallation, um die bestehende Konfiguration und Serverrollen zu erhalten.
+Der Server `WSUS01` betreibt aktuell Windows Server 2012 R2, eine Version die seit Oktober 2023 keinen Support mehr erhält. Das Ziel ist ein In-Place Upgrade auf Windows Server 2025 ohne Neuinstallation, um die bestehende Konfiguration und Serverrollen zu erhalten.
 
 ---
 
@@ -32,20 +38,20 @@ Der Server `WSUS01` betreibt aktuell Windows Server 2012 R2 — eine Version die
 
 Referenz: [Upgrade Windows Server an Ort und Stelle (Microsoft Learn)](https://learn.microsoft.com/de-de/windows-server/get-started/perform-in-place-upgrade)
 
-Die Hardware des WSUS01 erfüllt alle Anforderungen für Windows Server 2025. Kritisch sind dabei die CPU-Instruktionssätze, da diese — im Gegensatz zu RAM oder Storage — nicht nachgerüstet werden können.
+Die Hardware des WSUS01 erfüllt alle Anforderungen für Windows Server 2025. Kritisch sind dabei die CPU-Instruktionssätze, da diese, im Gegensatz zu RAM oder Storage, nicht nachgerüstet werden können.
 
 Alle relevanten Anforderungen wurden manuell geprüft (das Tool `Coreinfo.exe` steht auf Server 2012 R2 nicht zur Verfügung):
 
-|Anforderung|Status|Nachweis|
-|---|---|---|
-|NX-Bit / DEP|✅ Erfüllt|Registry-Prüfung|
-|SLAT / NPT|✅ Erfüllt|Server ist eine VM — standardmässig unterstützt|
-|AMD-V / SVM|✅ Erfüllt|Registry-Prüfung|
-|SSE4.2 & POPCNT|✅ Erfüllt|POPCNT bereits Anforderung für 2012 R2; SSE4.2 durch AMD Zen unterstützt|
+| Anforderung     | Status    | Nachweis                                                                 |
+| --------------- | --------- | ------------------------------------------------------------------------ |
+| NX-Bit / DEP    | ✅ Erfüllt | Registry-Prüfung                                                         |
+| SLAT / NPT      | ✅ Erfüllt | Server ist eine VM — standardmässig unterstützt                          |
+| AMD-V / SVM     | ✅ Erfüllt | Registry-Prüfung                                                         |
+| SSE4.2 & POPCNT | ✅ Erfüllt | POPCNT bereits Anforderung für 2012 R2; SSE4.2 durch AMD Zen unterstützt |
 
 ### 2.2 Betriebssystem-Kompatibilität
 
-Ein direktes Upgrade von Server 2012 R2 auf 2025 ist laut Microsoft möglich, erfordert aber zwingend ein **Installationsmedium (ISO)** — ein einfaches Windows Update reicht nicht aus.
+Ein direktes Upgrade von Server 2012 R2 auf 2025 ist laut Microsoft möglich, erfordert aber zwingend ein **Installationsmedium (ISO)**, ein einfaches Windows Update reicht nicht aus.
 
 Wichtig: Die Sprache des Installationsmediums muss mit der bestehenden Installation übereinstimmen. Da der WSUS01 auf Englisch installiert wurde, muss die ISO ebenfalls Englisch sein.
 
@@ -53,8 +59,8 @@ Wichtig: Die Sprache des Installationsmediums muss mit der bestehenden Installat
 
 Beide aktiven Serverrollen unterstützen das Upgrade:
 
-- **Windows Server Update Services (WSUS)** — kompatibel
-- **Webserver (IIS)** — kompatibel
+- **Windows Server Update Services (WSUS)** => kompatibel
+- **Webserver (IIS)** => kompatibel
 
 ---
 
@@ -63,7 +69,7 @@ Beide aktiven Serverrollen unterstützen das Upgrade:
 Ein Upgrade ist technisch machbar, aber folgende Punkte müssen berücksichtigt werden:
 
 - **Sonderfälle:** Spezifische Serverkonfigurationen oder Gruppenrichtlinien können unerwartete Probleme verursachen, die erst während der Installation sichtbar werden.
-- **Kein Rollback ohne Backup:** Ein In-Place Upgrade ist nicht automatisch rückgängig zu machen — ein verifiziertes Backup ist zwingend notwendig.
+- **Kein Rollback ohne Backup:** Ein In-Place Upgrade ist nicht automatisch rückgängig zu machen, ein verifiziertes Backup ist zwingend notwendig.
 - **Downtime:** Während des Upgrades ist der WSUS-Dienst nicht verfügbar. Dies sollte ausserhalb der Patchzeiten eingeplant werden.
 
 ---
@@ -82,7 +88,7 @@ Das Upgrade kann durchgeführt werden. Empfohlene Reihenfolge:
 
 ## 5. Umsetzung
 
-> **Status:** Ausstehend — wird nach Freigabe durchgeführt
+> **Status:** Ausstehend, wird nach Freigabe durchgeführt
 
 ### 5.1 Diagnosedaten sammeln
 
@@ -93,7 +99,7 @@ systeminfo.exe | Out-File -FilePath systeminfo.txt
 ipconfig /all | Out-File -FilePath ipconfig.txt
 ```
 
-Da `Get-ComputerInfo` auf PowerShell 2.0 (Server 2012 R2) nicht verfügbar ist, werden folgende Registry-Werte manuell notiert:
+Da `Get-ComputerInfo` auf PowerShell 4.0 (Pwsh Version des WSUS) nicht verfügbar ist, werden folgende Registry-Werte manuell notiert:
 
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion

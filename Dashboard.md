@@ -11,11 +11,6 @@ todo: false
 
 ---
 
-## 💼 Arbeitsbereich
-→ **[[200 Arbeit/Arbeits Übersicht|Zur Arbeits Übersicht]]** | **[[200 Arbeit/Regular Tasks/Patchday/Patchdays Übersicht|Zu den Patchdays]]**
-
----
-
 ## 📋 Offene Tasks
 _Alle unerledigten Aufgaben aus allen Projekten, gruppiert nach Projekt._
 
@@ -32,7 +27,7 @@ _Notizen die noch geklärt oder ergänzt werden müssen._
 
 ```dataview
 TABLE file.folder AS Bereich, status, created
-FROM ""
+FROM "" AND -"Templates"
 WHERE todo = true AND file.name != "Dashboard"
 SORT created DESC
 ```
@@ -44,7 +39,7 @@ _Alle laufenden Projekte, sortiert nach Abgabedatum._
 
 ```dataview
 TABLE due AS Abgabe, status, file.folder AS Bereich
-FROM ""
+FROM "" AND -"Templates"
 WHERE status = "active" AND contains(tags, "projekt")
 SORT due ASC
 ```
@@ -56,7 +51,7 @@ _Notizen die schon länger offen sind und abgeschlossen werden sollten._
 
 ```dataview
 TABLE file.folder AS Bereich, created AS Erstellt
-FROM ""
+FROM "" AND -"Templates"
 WHERE status = "draft" AND date(today) - date(created) > dur(14 days)
 AND file.name != "Dashboard"
 SORT created ASC
@@ -69,7 +64,7 @@ _Die 10 zuletzt erstellten Notizen._
 
 ```dataview
 TABLE file.folder AS Bereich, status
-FROM ""
+FROM "" AND -"Templates"
 WHERE file.name != "Dashboard" AND file.name != "_index" AND file.name != "log"
 SORT created DESC
 LIMIT 10
