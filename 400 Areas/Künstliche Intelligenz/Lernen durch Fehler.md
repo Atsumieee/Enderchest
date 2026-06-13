@@ -38,7 +38,7 @@ Der Computer braucht eine Methode um `A` zu verbessern. Der Ausgangspunkt dafür
 Aus *[[Trennlinie|Die Trennlinie als Gleichung]]* kennen wir die Entscheidungsregel:
 
 ```
-Fehler = A × x - y
+Fehler = A * x - y
 ```
 
 Für einen Punkt der korrekt klassifiziert wird, ist der Fehler nahe bei 0. Für einen falsch klassifizierten Punkt ist er gross, positiv oder negativ, je nach welcher Seite der Linie der Punkt liegt.
@@ -50,7 +50,7 @@ Der Fehler hat also zwei Eigenschaften: sein Vorzeichen zeigt die Richtung des F
 Wenn der Fehler bekannt ist, lässt sich `A` anpassen:
 
 ```
-A_neu = A_alt + Fehler × x
+A_neu = A_alt + Fehler * x
 ```
 
 Das ist die Update-Regel. Sie sagt: Passe das Gewicht um den Fehler multipliziert mit der Eingabe an.
@@ -60,9 +60,9 @@ Warum multipliziert mit `x`? Weil `x` bestimmt wie stark eine Änderung von `A` 
 > [!example] 
 > >Ein konkreter Durchlauf Ein Marienkäfer hat Breite `x = 3` und Länge `y = 1`. Das aktuelle Gewicht ist `A = 0.5`.
 > 
-> Fehler: `0.5 × 3 - 1 = 0.5`
+> Fehler: `0.5 * 3 - 1 = 0.5`
 > 
-> Update: `A_neu = 0.5 + 0.5 × 3 = 0.5 + 1.5 = 2.0`
+> Update: `A_neu = 0.5 + 0.5 * 3 = 0.5 + 1.5 = 2.0`
 > 
 > Das neue Gewicht `A = 2.0` ergibt eine steilere Linie. Der Marienkäfer-Punkt landet jetzt auf der richtigen Seite.
 
