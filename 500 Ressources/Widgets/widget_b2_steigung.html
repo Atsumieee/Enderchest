@@ -6,24 +6,56 @@
 <title>Steigung A — Interaktiv</title>
 <style>
   :root {
-    --v1: #7400b8;
     --v2: #6930c3;
     --v3: #5e60ce;
+    --v1: #7400b8;
     --c1: #56cfe1;
-    --c2: #80ffdb;
     --bg: #fafaf9;
     --bg-surface: #f3f0fa;
     --bg-card: #ffffff;
     --text: #1a1025;
     --text-muted: #4a3d6b;
     --text-dim: #9b94b8;
-    --border: rgba(116, 0, 184, 0.10);
-    --border-strong: rgba(116, 0, 184, 0.20);
-    --font-body: 'DM Sans', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-    --radius: 6px;
-    --radius-lg: 12px;
+    --border: rgba(116,0,184,0.10);
+    --border-strong: rgba(116,0,184,0.20);
+    --grid: rgba(116,0,184,0.07);
+    --axis: rgba(116,0,184,0.25);
+    --canvas-bg: #f3f0fa;
     --shadow-md: 0 1px 2px rgba(26,16,37,0.04), 0 10px 26px -16px rgba(116,0,184,0.30);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --v2: #a78bfa;
+      --v3: #5e60ce;
+      --bg: #0d0b14;
+      --bg-surface: #13101e;
+      --bg-card: #1a1628;
+      --text: #ede9ff;
+      --text-muted: #9b94b8;
+      --text-dim: #4a4460;
+      --border: rgba(116,0,184,0.20);
+      --border-strong: rgba(94,96,206,0.35);
+      --grid: rgba(94,96,206,0.10);
+      --axis: rgba(94,96,206,0.35);
+      --canvas-bg: #100d1a;
+    }
+  }
+
+  [data-theme="dark"] {
+    --v2: #a78bfa;
+    --v3: #5e60ce;
+    --bg: #0d0b14;
+    --bg-surface: #13101e;
+    --bg-card: #1a1628;
+    --text: #ede9ff;
+    --text-muted: #9b94b8;
+    --text-dim: #4a4460;
+    --border: rgba(116,0,184,0.20);
+    --border-strong: rgba(94,96,206,0.35);
+    --grid: rgba(94,96,206,0.10);
+    --axis: rgba(94,96,206,0.35);
+    --canvas-bg: #100d1a;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,16 +63,17 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--font-body);
+    font-family: 'DM Sans', system-ui, sans-serif;
     font-size: 15px;
     line-height: 1.75;
     padding: 1.5rem;
+    transition: background 0.15s, color 0.15s;
   }
 
   .widget {
     background: var(--bg-card);
     border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
+    border-radius: 12px;
     padding: 1.5rem;
     box-shadow: var(--shadow-md);
     max-width: 560px;
@@ -48,7 +81,7 @@
   }
 
   .widget-label {
-    font-family: var(--font-mono);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -59,8 +92,7 @@
   canvas {
     display: block;
     width: 100%;
-    border-radius: var(--radius);
-    background: var(--bg-surface);
+    border-radius: 6px;
     border: 1px solid var(--border);
   }
 
@@ -72,7 +104,7 @@
   }
 
   .control-label {
-    font-family: var(--font-mono);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 13px;
     color: var(--text-muted);
     white-space: nowrap;
@@ -86,7 +118,7 @@
   }
 
   .value-display {
-    font-family: var(--font-mono);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 15px;
     font-weight: 600;
     color: var(--v2);
@@ -98,17 +130,14 @@
     margin-top: 1rem;
     padding: 0.75rem 1rem;
     background: var(--bg-surface);
-    border-radius: var(--radius);
+    border-radius: 6px;
     border-left: 3px solid var(--v3);
     font-size: 13px;
     color: var(--text-muted);
-    font-family: var(--font-mono);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
   }
 
-  .info-row span {
-    color: var(--v2);
-    font-weight: 600;
-  }
+  .info-row span { color: var(--v2); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -118,12 +147,12 @@
 
   <div class="controls">
     <span class="control-label">A =</span>
-    <input type="range" id="slider" min="-3" max="3" step="0.1" value="1">
+    <input type="range" id="slider" min="0" max="3" step="0.1" value="1">
     <span class="value-display" id="aVal">1.0</span>
   </div>
 
   <div class="info-row">
-    Formel: y = <span id="aFormula">1.0</span> × x &nbsp;|&nbsp;
+    Formel: y = <span id="aFormula">1.0</span> &times; x &nbsp;|&nbsp;
     Bei x = 3: y = <span id="yAt3">3.0</span>
   </div>
 </div>
@@ -138,95 +167,119 @@
 
   const W = canvas.width;
   const H = canvas.height;
-  const PAD = 40;
+  const PAD = 44;
+  const X_MIN = 0, X_MAX = 6, Y_MIN = 0, Y_MAX = 6;
 
-  // Koordinatensystem: x von -5 bis 5, y von -5 bis 5
-  const RANGE = 5;
+  function getCSSVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
 
   function toCanvas(x, y) {
-    const cx = PAD + (x + RANGE) / (2 * RANGE) * (W - 2 * PAD);
-    const cy = H - PAD - (y + RANGE) / (2 * RANGE) * (H - 2 * PAD);
+    const cx = PAD + (x - X_MIN) / (X_MAX - X_MIN) * (W - 2 * PAD);
+    const cy = H - PAD - (y - Y_MIN) / (Y_MAX - Y_MIN) * (H - 2 * PAD);
     return [cx, cy];
   }
 
   function draw(A) {
     ctx.clearRect(0, 0, W, H);
 
-    // Hintergrund
-    ctx.fillStyle = '#f3f0fa';
+    const canvasBg = getCSSVar('--canvas-bg') || '#f3f0fa';
+    const gridColor = getCSSVar('--grid') || 'rgba(116,0,184,0.07)';
+    const axisColor = getCSSVar('--axis') || 'rgba(116,0,184,0.25)';
+    const dimColor = getCSSVar('--text-dim') || '#9b94b8';
+    const mutedColor = getCSSVar('--text-muted') || '#4a3d6b';
+    const accentColor = getCSSVar('--v2') || '#6930c3';
+
+    ctx.fillStyle = canvasBg;
     ctx.fillRect(0, 0, W, H);
 
     // Grid
-    ctx.strokeStyle = 'rgba(116,0,184,0.07)';
+    ctx.strokeStyle = gridColor;
     ctx.lineWidth = 1;
-    for (let i = -RANGE; i <= RANGE; i++) {
-      const [x1, y1] = toCanvas(i, -RANGE);
-      const [x2, y2] = toCanvas(i, RANGE);
+    for (let i = X_MIN; i <= X_MAX; i++) {
+      const [x1, y1] = toCanvas(i, Y_MIN);
+      const [x2, y2] = toCanvas(i, Y_MAX);
       ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-      const [x3, y3] = toCanvas(-RANGE, i);
-      const [x4, y4] = toCanvas(RANGE, i);
+    }
+    for (let i = Y_MIN; i <= Y_MAX; i++) {
+      const [x3, y3] = toCanvas(X_MIN, i);
+      const [x4, y4] = toCanvas(X_MAX, i);
       ctx.beginPath(); ctx.moveTo(x3, y3); ctx.lineTo(x4, y4); ctx.stroke();
     }
 
     // Achsen
-    ctx.strokeStyle = 'rgba(116,0,184,0.25)';
+    ctx.strokeStyle = axisColor;
     ctx.lineWidth = 1.5;
-    const [ax1, ay1] = toCanvas(-RANGE, 0);
-    const [ax2, ay2] = toCanvas(RANGE, 0);
+    const [ax1, ay1] = toCanvas(X_MIN, Y_MIN);
+    const [ax2, ay2] = toCanvas(X_MAX, Y_MIN);
     ctx.beginPath(); ctx.moveTo(ax1, ay1); ctx.lineTo(ax2, ay2); ctx.stroke();
-    const [bx1, by1] = toCanvas(0, -RANGE);
-    const [bx2, by2] = toCanvas(0, RANGE);
+    const [bx1, by1] = toCanvas(X_MIN, Y_MIN);
+    const [bx2, by2] = toCanvas(X_MIN, Y_MAX);
     ctx.beginPath(); ctx.moveTo(bx1, by1); ctx.lineTo(bx2, by2); ctx.stroke();
 
     // Achsenbeschriftungen
-    ctx.fillStyle = '#9b94b8';
+    ctx.fillStyle = dimColor;
     ctx.font = '12px JetBrains Mono, monospace';
     ctx.textAlign = 'center';
-    for (let i = -RANGE; i <= RANGE; i++) {
-      if (i === 0) continue;
-      const [cx] = toCanvas(i, 0);
-      ctx.fillText(i, cx, H - PAD + 16);
-      const [, cy] = toCanvas(0, i);
+    for (let i = X_MIN; i <= X_MAX; i++) {
+      const [cx] = toCanvas(i, Y_MIN);
+      ctx.fillText(i, cx, H - PAD + 18);
+    }
+    for (let i = Y_MIN + 1; i <= Y_MAX; i++) {
+      const [, cy] = toCanvas(X_MIN, i);
       ctx.textAlign = 'right';
       ctx.fillText(i, PAD - 8, cy + 4);
-      ctx.textAlign = 'center';
     }
 
     // Achsenlabels
-    ctx.fillStyle = '#4a3d6b';
+    ctx.fillStyle = mutedColor;
     ctx.font = '13px DM Sans, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('x (Breite)', W / 2, H - 6);
+    ctx.fillText('x (Breite)', W / 2, H - 4);
     ctx.save();
-    ctx.translate(14, H / 2);
+    ctx.translate(13, H / 2);
     ctx.rotate(-Math.PI / 2);
     ctx.fillText('y (Länge)', 0, 0);
     ctx.restore();
 
-    // Trennlinie y = A * x
-    const x1 = -RANGE, y1 = A * x1;
-    const x2 = RANGE, y2 = A * x2;
-    const [cx1, cy1] = toCanvas(x1, y1);
-    const [cx2, cy2] = toCanvas(x2, y2);
+    // Trennlinie y = A * x (von x=0 bis x=6, geclipt auf Y_MAX)
+    const lineX1 = X_MIN;
+    const lineY1 = A * lineX1;
+    let lineX2 = X_MAX;
+    let lineY2 = A * lineX2;
+    if (lineY2 > Y_MAX) {
+      lineY2 = Y_MAX;
+      lineX2 = Y_MAX / A;
+    }
+    const [lcx1, lcy1] = toCanvas(lineX1, lineY1);
+    const [lcx2, lcy2] = toCanvas(lineX2, lineY2);
 
-    // Gradient auf der Linie
-    const grad = ctx.createLinearGradient(cx1, cy1, cx2, cy2);
+    const grad = ctx.createLinearGradient(lcx1, lcy1, lcx2, lcy2);
     grad.addColorStop(0, '#7400b8');
     grad.addColorStop(0.5, '#5e60ce');
     grad.addColorStop(1, '#56cfe1');
-
     ctx.strokeStyle = grad;
     ctx.lineWidth = 3;
-    ctx.lineJoin = 'round';
     ctx.beginPath();
-    ctx.moveTo(cx1, cy1);
-    ctx.lineTo(cx2, cy2);
+    ctx.moveTo(lcx1, lcy1);
+    ctx.lineTo(lcx2, lcy2);
     ctx.stroke();
 
-    // Beispielpunkte: Marienkäfer (3, 1) und Raupe (1, 3)
+    // Formel-Label
+    const labelX = Math.min(2.5, X_MAX - 1);
+    const labelY = A * labelX;
+    if (labelY <= Y_MAX - 0.5) {
+      const [lx, ly] = toCanvas(labelX, labelY);
+      ctx.fillStyle = accentColor;
+      ctx.font = '600 13px JetBrains Mono, monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('y = ' + A.toFixed(1) + 'x', lx + 8, ly - 10);
+    }
+
+    // Punkte
     const points = [
-      { x: 3, y: 1, label: 'Marienkäfer', color: '#6930c3', side: 'oben' },
-      { x: 1, y: 3, label: 'Raupe', color: '#56cfe1', side: 'unten' },
+      { x: 3, y: 1, label: 'Marienkäfer', color: '#6930c3' },
+      { x: 1, y: 3, label: 'Raupe',       color: '#56cfe1' },
     ];
 
     points.forEach(p => {
@@ -235,7 +288,7 @@
       ctx.arc(px, py, 7, 0, Math.PI * 2);
       ctx.fillStyle = p.color;
       ctx.fill();
-      ctx.strokeStyle = '#fff';
+      ctx.strokeStyle = canvasBg;
       ctx.lineWidth = 2;
       ctx.stroke();
 
@@ -244,14 +297,6 @@
       ctx.textAlign = 'left';
       ctx.fillText(p.label, px + 12, py + 4);
     });
-
-    // Formel-Label auf der Linie
-    ctx.fillStyle = '#6930c3';
-    ctx.font = '600 13px JetBrains Mono, monospace';
-    ctx.textAlign = 'left';
-    const midX = W / 2 + 10;
-    const [, midY] = toCanvas(0, 0);
-    ctx.fillText(`y = ${A.toFixed(1)}x`, midX, midY - 12);
   }
 
   slider.addEventListener('input', () => {
@@ -261,6 +306,13 @@
     yAt3El.textContent = (A * 3).toFixed(1);
     draw(A);
   });
+
+  // Theme-Observer: neu zeichnen wenn sich das Theme ändert
+  const observer = new MutationObserver(() => draw(parseFloat(slider.value)));
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+
+  const darkMQ = window.matchMedia('(prefers-color-scheme: dark)');
+  darkMQ.addEventListener('change', () => draw(parseFloat(slider.value)));
 
   draw(1.0);
 </script>
