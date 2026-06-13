@@ -43,7 +43,7 @@ Diese Formel beschreibt jeden Punkt der exakt auf der Linie liegt. Punkte die ni
 
 `A` bestimmt wie steil die Linie ist. Ein grosses `A` ergibt eine steile Linie, ein kleines `A` eine flache.
 
-Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
+![[Lernrate.png]]
 
 > [!example] 
 > Steigung konkret Wenn `A = 1` ist, steigt die Linie gleichmässig: Bei Breite 2 liegt die Linie bei Länge 2. Bei Breite 4 bei Länge 4. Wenn `A = 2` ist, steigt sie doppelt so schnell: Bei Breite 2 liegt die Linie bereits bei Länge 4. Die Steigung legt also fest wie die Linie das Koordinatensystem schneidet.
@@ -55,8 +55,8 @@ Ein Punkt liegt auf der Linie wenn `y = A × x` gilt. Liegt er darüber, ist sei
 Das lässt sich als Entscheidungsregel schreiben:
 
 ```
-A × x - y > 0   → Marienkäfer
-A × x - y < 0   → Raupe
+A * x - y > 0   → Marienkäfer
+A * x - y < 0   → Raupe
 ```
 
 Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
