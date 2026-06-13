@@ -74,6 +74,6 @@ In jedem Fall steckt dieselbe Grundidee dahinter: Merkmale messen, als Punkt dar
 
 |Thema|Verbindung|
 |---|---|
-|[[Warum KI?]]|Motivation: Warum klassische Regeln bei solchen Problemen versagen|
+|[[Warum KI\|Warum KI?]]|Motivation: Warum klassische Regeln bei solchen Problemen versagen|
 |[[B2 - Die Trennlinie als Gleichung]]|Die Trennlinie bekommt eine Formel|
 |[[B3 - Lernen durch Fehler]]|Wie der Computer selbst lernt wo er die Linie hinzieht|
