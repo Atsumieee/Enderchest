@@ -48,6 +48,10 @@ Diese Formel beschreibt jeden Punkt der exakt auf der Linie liegt. Punkte die ni
 > [!example] 
 > Steigung konkret Wenn `A = 1` ist, steigt die Linie gleichmässig: Bei Breite 2 liegt die Linie bei Länge 2. Bei Breite 4 bei Länge 4. Wenn `A = 2` ist, steigt sie doppelt so schnell: Bei Breite 2 liegt die Linie bereits bei Länge 4. Die Steigung legt also fest wie die Linie das Koordinatensystem schneidet.
 
+Versuche es selbst: Ziehe den Schieberegler und beobachte wie sich die Linie verändert.
+```widget
+widget_b2_steigung
+```
 ## Die Linie als Entscheidungsregel
 
 Ein Punkt liegt auf der Linie wenn `y = A * x` gilt. Liegt er darüber, ist seine Länge grösser als `A * x`. Liegt er darunter, ist sie kleiner.
