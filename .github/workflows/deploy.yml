@@ -33,6 +33,9 @@ jobs:
         with:
           repository: Atsumieee/Enderchest-Web
           path: web
+          # Nötig, sobald Enderchest-Web privat ist: Default-GITHUB_TOKEN hat
+          # nur Zugriff aufs Vault-Repo. PAT mit Read-Zugriff aufs Web-Repo.
+          token: ${{ secrets.WEB_REPO_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
