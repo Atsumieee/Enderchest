@@ -32,7 +32,7 @@ In [[Klassifikation]] haben wir eine Linie zwischen Marienkäfer und Raupe gezog
 Die einfachste Gerade durch den Ursprung lautet:
 
 ```
-y = A × x
+y = A * x
 ```
 
 `x` ist die Breite des Insekts, `y` ist die Länge, und `A` ist die Steigung der Linie. Mehr über `A` gibt es im nächsten Abschnitt.
@@ -50,7 +50,7 @@ Diese Formel beschreibt jeden Punkt der exakt auf der Linie liegt. Punkte die ni
 
 ## Die Linie als Entscheidungsregel
 
-Ein Punkt liegt auf der Linie wenn `y = A × x` gilt. Liegt er darüber, ist seine Länge grösser als `A × x`. Liegt er darunter, ist sie kleiner.
+Ein Punkt liegt auf der Linie wenn `y = A * x` gilt. Liegt er darüber, ist seine Länge grösser als `A * x`. Liegt er darunter, ist sie kleiner.
 
 Das lässt sich als Entscheidungsregel schreiben:
 
