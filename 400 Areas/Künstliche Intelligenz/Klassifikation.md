@@ -35,7 +35,7 @@ Jetzt kommt ein neues, unbekanntes Insekt. Du misst es. Kannst du allein aus Bre
 
 Breite und Länge lassen sich als Punkt in einem Koordinatensystem darstellen. Die x-Achse zeigt die Breite, die y-Achse die Länge. Jedes gemessene Insekt wird zu einem Punkt.
 
-Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
+![[Pasted image 20260613165824.png]]
 
 > [!example] 
 > Marienkäfer und Raupe im Koordinatensystem Der Marienkäfer hat Breite 3 und Länge 1 — er landet unten rechts im Koordinatensystem. Die Raupe hat Breite 1 und Länge 3, sie landet oben links. Die beiden Punkte liegen weit auseinander. Genau das macht dieses Problem lösbar.
