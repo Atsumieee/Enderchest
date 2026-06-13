@@ -23,7 +23,7 @@ Nach diesem Artikel kannst du...
 
 ## Voraussetzungen
 
-- [[Die Trennlinie als Gleichung]] Die Trennlinie als Formel und das Gewicht A
+- [[Trennlinie|Die Trennlinie als Gleichung]] Die Trennlinie als Formel und das Gewicht A
 
 ---
 
@@ -35,7 +35,7 @@ Der Computer braucht eine Methode um `A` zu verbessern. Der Ausgangspunkt dafür
 
 ## Den Fehler messen
 
-Aus [[B2 - Die Trennlinie als Gleichung]] kennen wir die Entscheidungsregel:
+Aus *[[Trennlinie|Die Trennlinie als Gleichung]]* kennen wir die Entscheidungsregel:
 
 ```
 Fehler = A × x - y
@@ -57,7 +57,8 @@ Das ist die Update-Regel. Sie sagt: Passe das Gewicht um den Fehler multiplizier
 
 Warum multipliziert mit `x`? Weil `x` bestimmt wie stark eine Änderung von `A` überhaupt etwas bewirkt. Bei einem grossen `x` dreht eine kleine Änderung von `A` die Linie stark. Bei einem kleinen `x` kaum.
 
-> [!example] Ein konkreter Durchlauf Ein Marienkäfer hat Breite `x = 3` und Länge `y = 1`. Das aktuelle Gewicht ist `A = 0.5`.
+> [!example] 
+> >Ein konkreter Durchlauf Ein Marienkäfer hat Breite `x = 3` und Länge `y = 1`. Das aktuelle Gewicht ist `A = 0.5`.
 > 
 > Fehler: `0.5 × 3 - 1 = 0.5`
 > 
@@ -81,19 +82,21 @@ Ein einziger Update-Schritt verbessert die Linie für einen Punkt. Aber das Koor
 
 Der Computer geht deshalb alle Punkte mehrmals durch und passt `A` bei jedem Punkt an.
 
-> [!info] Epoche (Epoch) Eine Epoche ist ein vollständiger Durchlauf durch alle Trainingspunkte. Nach jeder Epoche hat der Computer jeden Punkt einmal gesehen und `A` entsprechend angepasst. Mehrere Epochen hintereinander verbessern die Linie schrittweise. Wie viele Epochen nötig sind, hängt vom Problem ab.
+> [!info]
+> Epoche (Epoch) Eine Epoche ist ein vollständiger Durchlauf durch alle Trainingspunkte. Nach jeder Epoche hat der Computer jeden Punkt einmal gesehen und `A` entsprechend angepasst. Mehrere Epochen hintereinander verbessern die Linie schrittweise. Wie viele Epochen nötig sind, hängt vom Problem ab.
 
 Nach genug Epochen liegt die Linie so, dass sie die meisten Punkte korrekt trennt. Wie viele Punkte man dafür braucht und warum zwei Punkte nicht reichen, kommt in [[B4 - Mehr Daten, mehr Sicherheit]].
 
 ---
 
-> [!summary] Das Wichtigste Der Fehler misst wie weit eine Vorhersage von der richtigen Antwort entfernt ist. Die Update-Regel passt das Gewicht `A` proportional zum Fehler an. Grosser Fehler bedeutet grossen Schritt, kleiner Fehler bedeutet kleinen Schritt. Ein vollständiger Durchlauf durch alle Trainingspunkte heisst Epoche. Mehrere Epochen verbessern die Trennlinie schrittweise.
+> [!summary] 
+> Das Wichtigste Der Fehler misst wie weit eine Vorhersage von der richtigen Antwort entfernt ist. Die Update-Regel passt das Gewicht `A` proportional zum Fehler an. Grosser Fehler bedeutet grossen Schritt, kleiner Fehler bedeutet kleinen Schritt. Ein vollständiger Durchlauf durch alle Trainingspunkte heisst Epoche. Mehrere Epochen verbessern die Trennlinie schrittweise.
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[B2 - Die Trennlinie als Gleichung]]|Die Formel hinter dem Fehler|
-|[[B4 - Mehr Daten, mehr Sicherheit]]|Warum mehr Trainingspunkte eine bessere Linie ergeben|
-|[[B5 - Die Lernrate]]|Was passiert wenn die Schrittgrösse falsch gewählt wird|
-|[[E4 - Gradient Descent]]|Die allgemeine Form der Update-Regel in tiefen Netzen|
+| Thema                                        | Verbindung                                              |
+| -------------------------------------------- | ------------------------------------------------------- |
+| [[Trennlinie\|Die Trennlinie als Gleichung]] | Die Formel hinter dem Fehler                            |
+| [[B4 - Mehr Daten, mehr Sicherheit]]         | Warum mehr Trainingspunkte eine bessere Linie ergeben   |
+| [[B5 - Die Lernrate]]                        | Was passiert wenn die Schrittgrösse falsch gewählt wird |
+| [[E4 - Gradient Descent]]                    | Die allgemeine Form der Update-Regel in tiefen Netzen   |
