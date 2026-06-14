@@ -36,7 +36,7 @@ Je mehr Insekten du misst und einträgst, desto weniger Spielraum hat die Linie.
 
 >Zwei Koordinatensysteme nebeneinander: links wenige Punkte mit einer unsicher liegenden Trennlinie, rechts viele Punkte mit einer stabil zwischen den Gruppen liegenden Trennlinie
 
-![[Unbenannt.png]]
+![[KI_Trainingsdaten.png]]
 >*Created with matplotlib*
 
 Mehr Daten bedeuten also nicht nur mehr Arbeit, sondern eine zuverlässigere Trennung. Das ist einer der Gründe warum moderne KI-Systeme mit riesigen Datenmengen trainiert werden.
@@ -45,15 +45,15 @@ Mehr Daten bedeuten also nicht nur mehr Arbeit, sondern eine zuverlässigere Tre
 
 Eine Linie die alle Trainingspunkte korrekt trennt, sieht erstmal gut aus. Aber das eigentliche Ziel ist, neue unbekannte Insekten richtig einzuordnen. Wie prüft man das?
 
-> [!info] 
-> Trainingsdaten und Testdaten Die gemessenen Insekten werden in zwei Gruppen geteilt. Mit den Trainingsdaten lernt die Linie ihre Lage. Die Testdaten hält man zurück und zeigt sie der Linie erst am Ende. Schneidet die Linie bei den Testdaten gut ab, hat sie das Muster wirklich gelernt. Schneidet sie schlecht ab, hat sie nur die Trainingspunkte auswendig gelernt.
+> [!info] Trainingsdaten und Testdaten 
+> Die gemessenen Insekten werden in zwei Gruppen geteilt. Mit den Trainingsdaten lernt die Linie ihre Lage. Die Testdaten hält man zurück und zeigt sie der Linie erst am Ende. Schneidet die Linie bei den Testdaten gut ab, hat sie das Muster wirklich gelernt. Schneidet sie schlecht ab, hat sie nur die Trainingspunkte auswendig gelernt.
 
 Die Testdaten sind der ehrliche Prüfstein. Sie zeigen ob die Linie verallgemeinert oder nur memoriert.
 
 ## Wenn die Linie auswendig lernt
 
-> [!warning] 
-> Overfitting Overfitting (Überanpassung) bedeutet, dass ein Modell die Trainingsdaten zu genau lernt, samt aller Zufälle und Messfehler. Es trennt die Trainingspunkte perfekt, versagt aber bei neuen Daten. Ein überangepasstes Modell hat die Beispiele auswendig gelernt statt das zugrunde liegende Muster zu verstehen. Mehr Trainingsdaten und einfachere Modelle helfen dagegen.
+> [!warning] Overfitting 
+> Overfitting (Überanpassung) bedeutet, dass ein Modell die Trainingsdaten zu genau lernt, samt aller Zufälle und Messfehler. Es trennt die Trainingspunkte perfekt, versagt aber bei neuen Daten. Ein überangepasstes Modell hat die Beispiele auswendig gelernt statt das zugrunde liegende Muster zu verstehen. Mehr Trainingsdaten und einfachere Modelle helfen dagegen.
 
 Bei der einfachen Trennlinie aus dem Insekten-Beispiel ist Overfitting kaum möglich, weil eine Gerade sehr einfach ist. Sobald Modelle komplexer werden, wird Overfitting zu einem der wichtigsten Probleme im maschinellen Lernen. Mehr dazu in [[F3 - Overfitting und Generalisierung]].
 
@@ -65,8 +65,8 @@ Was passiert wenn die Lernrate zu klein oder zu gross gewählt wird, ist das The
 
 ---
 
-> [!summary] 
-> Das Wichtigste Wenige Trainingspunkte ergeben eine unzuverlässige Linie, weil viele Linien zufällig passen. Mehr Daten zwingen die Linie in die richtige Lage. Mit Testdaten prüft man ob die Linie das Muster wirklich gelernt hat oder nur auswendig. Lernt ein Modell die Trainingsdaten zu genau und versagt bei neuen Daten, spricht man von Overfitting.
+> [!summary] Das Wichtigste 
+> Wenige Trainingspunkte ergeben eine unzuverlässige Linie, weil viele Linien zufällig passen. Mehr Daten zwingen die Linie in die richtige Lage. Mit Testdaten prüft man ob die Linie das Muster wirklich gelernt hat oder nur auswendig. Lernt ein Modell die Trainingsdaten zu genau und versagt bei neuen Daten, spricht man von Overfitting.
 
 ## Verbindungen zu anderen Themen
 
