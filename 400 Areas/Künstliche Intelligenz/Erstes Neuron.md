@@ -97,9 +97,9 @@ Was das Neuron mit dieser Summe macht, also ob am Ende eine 0, eine 1 oder ein Z
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[B2 - Die Trennlinie als Gleichung]]|Das Gewicht A als erster Spezialfall|
-|[[B3 - Lernen durch Fehler]]|Wie Gewichte beim Training angepasst werden|
-|[[D2 - Aktivierungsfunktionen]]|Was das Neuron aus der Summe macht|
-|[[D3 - Vom Neuron zum Netz]]|Mehrere Neuronen mit je eigenen Gewichten|
+| Thema                                        | Verbindung                                  |
+| -------------------------------------------- | ------------------------------------------- |
+| [[Trennlinie\|Die Trennlinie als Gleichung]] | Das Gewicht A als erster Spezialfall        |
+| [[Lernen durch Fehler]]                      | Wie Gewichte beim Training angepasst werden |
+| [[Aktivierungsfunktionen]]                   | Was das Neuron aus der Summe macht          |
+| [[Neuronennetz\|Vom Neuron zum Netz]]        | Mehrere Neuronen mit je eigenen Gewichten   |
