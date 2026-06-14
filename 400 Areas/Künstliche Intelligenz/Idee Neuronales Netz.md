@@ -49,7 +49,7 @@ Ihr Modell konnte nichts lernen. Es zeigte aber, dass sich Denkprozesse grundsä
 
 Frank Rosenblatt baute die Idee weiter aus. Er entwickelte den **Perceptron** (Wahrnehmungseinheit), das erste Modell das nicht nur rechnen, sondern auch lernen konnte.
 
-Das Perceptron bekommt Eingaben, gewichtet sie, und passt diese Gewichte schrittweise an — genau wie die Trennlinie aus [[B2 - Die Trennlinie als Gleichung]] ihre Steigung anpasst. Rosenblatt trainierte sein Modell darauf, einfache Bilder zu unterscheiden.
+Das Perceptron bekommt Eingaben, gewichtet sie, und passt diese Gewichte schrittweise an — genau wie die Trennlinie aus [[Trennlinie|Die Trennlinie als Gleichung]] ihre Steigung anpasst. Rosenblatt trainierte sein Modell darauf, einfache Bilder zu unterscheiden.
 
 Die Presse übertrieb stark: Die New York Times schrieb, die Marine habe eine Maschine erfunden die denken, sprechen und sich selbst reproduzieren könne. Die Forschung war davon weit entfernt.
 
