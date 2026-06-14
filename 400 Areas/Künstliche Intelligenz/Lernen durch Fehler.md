@@ -1,5 +1,4 @@
 ---
-
 title: "Lernen durch Fehler — Die Update-Regel" 
 description: "Wie ein Computer aus falschen Vorhersagen lernt und seine Trennlinie schrittweise verfeinert." 
 tags: [ki, konzept, schule] 
@@ -79,11 +78,14 @@ Die Lücke wird durch die Breite geteilt, weil die Lücke in y-Richtung gemessen
 > 
 > Die Linie wird also nicht sofort auf die perfekte Steigung 0.367 gesetzt, sondern rückt nur ein Stück näher: von 0.25 auf 0.3083.
 
-Klicke im Widget auf "Lernschritt" und beobachte wie sich die Steigung mit jedem Schritt der perfekten Linie annähert.
+Klicke im Widget auf "Nächsten Punkt prüfen". Das Widget prüft abwechselnd den Marienkäfer und die Raupe und passt die Steigung nach jedem Punkt an.
 
 ```widget
 widget_b3_update_regel
 ```
+
+> [!note] 
+> Warum wird die Linie nicht perfekt? Im Widget pendelt die Steigung: Der Marienkäfer zieht die Linie flacher, die Raupe zieht sie wieder steiler. Eine einzelne Linie durch den Ursprung kann diese beiden Punkte nicht beide perfekt treffen. Das ist kein Fehler, sondern eine ehrliche Eigenschaft des Verfahrens. Die Linie pendelt sich auf einen Kompromiss ein der beide Gruppen so gut wie möglich trennt. Wann eine einzelne Linie grundsätzlich nicht mehr reicht, ist das Thema von [[C2 - Lineare Trennbarkeit]].
 
 ![Koordinatensystem mit alter flacher Trennlinie gestrichelt und neuer steilerer Trennlinie durchgezogen, Marienkäfer-Punkt liegt über der alten Linie](https://claude.ai/chat/files/PLATZHALTER_update_schritt.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
 
@@ -93,13 +95,15 @@ Ein einzelner Schritt bringt die Linie näher an den Punkt, aber nicht ganz hin.
 
 Dieses schrittweise Vorgehen ist der Kern des Trainings. Die Lernrate steuert dabei das Tempo: Eine grosse Lernrate macht grosse Schritte, eine kleine Lernrate kleine.
 
-> [!info] Epoche (Epoch) Eine Epoche ist ein vollständiger Durchlauf durch alle Trainingspunkte. Nach jeder Epoche hat der Computer jeden Punkt einmal gesehen und `A` entsprechend angepasst. Mehrere Epochen hintereinander verfeinern die Linie. Wie viele Epochen nötig sind, hängt vom Problem ab.
+> [!info] 
+> Epoche (Epoch) Eine Epoche ist ein vollständiger Durchlauf durch alle Trainingspunkte. Nach jeder Epoche hat der Computer jeden Punkt einmal gesehen und `A` entsprechend angepasst. Mehrere Epochen hintereinander verfeinern die Linie. Wie viele Epochen nötig sind, hängt vom Problem ab.
 
 Was passiert wenn die Lernrate zu gross oder zu klein gewählt wird, kommt in [[B5 - Die Lernrate]]. Warum mehr Trainingspunkte eine zuverlässigere Linie ergeben, kommt in [[B4 - Mehr Daten, mehr Sicherheit]].
 
 ---
 
-> [!summary] Das Wichtigste Die Lücke misst den Abstand zwischen einem Punkt und der Trennlinie in y-Richtung. Die Update-Regel verfeinert die Steigung schrittweise: `neue Steigung = alte Steigung + Lernrate * (Lücke / Breite)`. Die Lernrate legt fest wie gross ein Schritt ist. Der Computer rechnet die Lösung bewusst nicht direkt aus, sondern nähert sich ihr durch Training in mehreren Schritten an.
+> [!summary] 
+> Das Wichtigste Die Lücke misst den Abstand zwischen einem Punkt und der Trennlinie in y-Richtung. Die Update-Regel verfeinert die Steigung schrittweise: `neue Steigung = alte Steigung + Lernrate * (Lücke / Breite)`. Die Lernrate legt fest wie gross ein Schritt ist. Der Computer rechnet die Lösung bewusst nicht direkt aus, sondern nähert sich ihr durch Training in mehreren Schritten an.
 
 ## Verbindungen zu anderen Themen
 
