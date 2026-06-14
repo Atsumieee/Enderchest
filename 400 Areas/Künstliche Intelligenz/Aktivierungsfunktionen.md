@@ -25,7 +25,7 @@ Nach diesem Artikel kannst du...
 
 ## Was nun mit der Summe?
 
-In [[D1 - Eingaben, Gewichte, Summe]] hat unser Neuron die gewichtete Summe `1.05` berechnet. Diese Zahl ist aber noch keine brauchbare Antwort. Wir wollten ja eine Entscheidung: Marienkäfer oder Raupe, 0 oder 1.
+In [[Erstes Neuron|Eingaben, Gewichte, Summe]] hat unser Neuron die gewichtete Summe `1.05` berechnet. Diese Zahl ist aber noch keine brauchbare Antwort. Wir wollten ja eine Entscheidung: Marienkäfer oder Raupe, 0 oder 1.
 
 Die Aktivierungsfunktion macht aus der Summe die Ausgabe.
 
@@ -66,8 +66,7 @@ Statt eines Schalters ist die Sigmoidfunktion ein Regler. Sie kann Ausgaben lief
 - `0.74` → eher ja
 - `0.95` → fast sicher ja
 
-![Zwei Kurven nebeneinander: links die Stufenfunktion mit einem harten senkrechten Sprung bei der Schwelle, rechts die Sigmoidfunktion als weicher S-förmiger Übergang von 0 nach 1](https://claude.ai/chat/files/PLATZHALTER_stufe_vs_sigmoid.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
-
+![[KI_Funktionen_vergleich.png|697]]
 ## Warum weich oft besser ist
 
 Eine weiche Ausgabe trägt mehr Information als eine harte. Sie sagt nicht nur ob, sondern wie sicher. Ein Wert von `0.95` bedeutet fast sicher ja, ein Wert von `0.55` bedeutet eher ja, aber knapp. Diese Abstufung geht bei der Stufenfunktion verloren, dort wäre beides einfach `1`.
