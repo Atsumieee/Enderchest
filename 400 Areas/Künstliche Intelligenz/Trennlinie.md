@@ -61,13 +61,13 @@ Ein Punkt liegt auf der Linie wenn `y = A * x` gilt. Liegt er darüber, ist sein
 Das lässt sich als Entscheidungsregel schreiben:
 
 ```
-A * x - y > 0   → Marienkäfer
-A * x - y < 0   → Raupe
+y - A * x > 0   → Raupe (Punkt liegt über der Linie)
+y - A * x < 0   → Marienkäfer (Punkt liegt unter der Linie)
 ```
 
 Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
 
-Du berechnest für jeden neuen Punkt den Wert `A × x - y`. Ist er grösser als 0, liegt der Punkt auf der Marienkäfer-Seite. Ist er kleiner als 0, auf der Raupen-Seite.
+Du berechnest für jeden neuen Punkt den Wert `y - A * x`. Ist er grösser als 0, liegt der Punkt auf der Marienkäfer-Seite. Ist er kleiner als 0, auf der Raupen-Seite.
 
 ## Gewicht
 
