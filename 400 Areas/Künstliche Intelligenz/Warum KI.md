@@ -53,7 +53,7 @@ Tausende Fotos, beschriftet mit "Katze" oder "keine Katze". Das Programm schaut 
 
 Dieser Ansatz heisst [[Maschinelles Lernen]]. Das Programm lernt aus Daten statt aus deinen Anweisungen.
 
-Das klingt einfach, wirft aber sofort eine Frage auf: Wie genau "findet" ein Programm Muster in Daten? Die Antwort führt direkt zu [[Neuronale Netze - Einführung]].
+Das klingt einfach, wirft aber sofort eine Frage auf: Wie genau "findet" ein Programm Muster in Daten? Die Antwort führt direkt zu [[Idee Neuronales Netz|Neuronale Netze - Einführung]].
 
 ## KI heute
 
@@ -70,7 +70,7 @@ Diesen Ansatz findest du überall:
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[Maschinelles Lernen]]|Vertiefung: Was "Lernen" für einen Computer konkret bedeutet|
-|[[Neuronale Netze - Einführung]]|Woher die Idee kommt, ein Gehirn nachzubauen|
+| Thema                                                   | Verbindung                                                   |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| [[Maschinelles Lernen]]                                 | Vertiefung: Was "Lernen" für einen Computer konkret bedeutet |
+| [[Idee Neuronales Netz \|Neuronale Netze - Einführung]] | Woher die Idee kommt, ein Gehirn nachzubauen                 |

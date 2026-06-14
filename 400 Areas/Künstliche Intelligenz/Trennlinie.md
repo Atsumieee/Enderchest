@@ -94,5 +94,5 @@ Das ist das Thema von [[Lernen durch Fehler]].
 | Thema                              | Verbindung                                 |
 | ---------------------------------- | ------------------------------------------ |
 | [[Klassifikation]]                 | Die Grundidee der Trennlinie ohne Formel   |
-| [[B3 - Lernen durch Fehler]]       | Wie der Computer selbst das beste A findet |
+| [[Lernen durch Fehler]]            | Wie der Computer selbst das beste A findet |
 | [[D1 - Eingaben, Gewichte, Summe]] | Gewichte in einem vollständigen Neuron     |
