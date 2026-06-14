@@ -64,7 +64,7 @@ Neuron 1 mit den Gewichten `0.9` und `0.3` achtet stark auf den ersten Eingang. 
 > 
 > **Neuron 2** (Gewichte 0.2 und 0.8): `1.0 * 0.2 = 0.20` `0.5 * 0.8 = 0.40` Summe: `0.20 + 0.40 = 0.60`
 
-Jedes Neuron hat jetzt seine gewichtete Summe: Neuron 1 hat `1.05`, Neuron 2 hat `0.60`. Auf beide wenden wir nun eine Aktivierungsfunktion an, wie in [[D2 - Aktivierungsfunktionen]].
+Jedes Neuron hat jetzt seine gewichtete Summe: Neuron 1 hat `1.05`, Neuron 2 hat `0.60`. Auf beide wenden wir nun eine Aktivierungsfunktion an, wie in [[Aktivierungsfunktionen]].
 
 **Mit der Stufenfunktion** (Schwelle 1.0): Neuron 1 liegt mit `1.05` über der Schwelle und gibt `1`. Neuron 2 liegt mit `0.60` darunter und gibt `0`. Die Ausgabe des Netzes ist also `1` und `0`.
 
@@ -78,11 +78,13 @@ Im Widget kannst du die Eingaben und alle vier Gewichte verändern und siehst so
 
 ```widget
 widget_d3_netz_spielwiese
+scale=1.2
+width=wide
 ```
 
 ## Das ist die Bauform für XOR
 
-Dieses 2x2 Netz ist fast die Architektur die XOR löst. In [[C2 - Zwei Linien kombinieren]] hatten wir zwei prüfende Neuronen, die OR und AND berechnen, genau wie unsere zwei Neuronen hier. Was noch fehlt, ist ein drittes Neuron das die zwei Ausgaben verknüpft, also eine zweite Schicht.
+Dieses 2x2 Netz ist fast die Architektur die XOR löst. In [[XOR|Zwei Linien kombinieren]] hatten wir zwei prüfende Neuronen, die OR und AND berechnen, genau wie unsere zwei Neuronen hier. Was noch fehlt, ist ein drittes Neuron das die zwei Ausgaben verknüpft, also eine zweite Schicht.
 
 Mit anderen Worten: Unsere zwei Neuronen wären die versteckte Schicht, und ein weiteres Neuron dahinter wäre die Ausgabeschicht. So entsteht ein Netz das nicht linear trennbare Probleme lösen kann.
 
@@ -90,7 +92,8 @@ Bis hierher haben wir die Gewichte von Hand gesetzt. Wie ein Netz diese Gewichte
 
 ---
 
-> [!summary] Das Wichtigste Ein Netz besteht aus mehreren Neuronen. In einem 2x2 Netz bekommen zwei Neuronen dieselben zwei Eingänge, jedes mit eigenen Gewichten. Verschiedene Gewichte bedeuten verschiedene Fragen an dieselben Daten. Jedes Neuron berechnet seine eigene gewichtete Summe und wendet darauf eine Aktivierungsfunktion an. Diese Bauform aus mehreren Neuronen in Schichten ist die Grundlage jedes neuronalen Netzes.
+> [!summary] Das Wichtigste 
+> Ein Netz besteht aus mehreren Neuronen. In einem 2x2 Netz bekommen zwei Neuronen dieselben zwei Eingänge, jedes mit eigenen Gewichten. Verschiedene Gewichte bedeuten verschiedene Fragen an dieselben Daten. Jedes Neuron berechnet seine eigene gewichtete Summe und wendet darauf eine Aktivierungsfunktion an. Diese Bauform aus mehreren Neuronen in Schichten ist die Grundlage jedes neuronalen Netzes.
 
 ## Schlüsselbegriffe
 
