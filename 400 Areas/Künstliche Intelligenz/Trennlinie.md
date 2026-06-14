@@ -31,9 +31,9 @@ In [[Klassifikation]] haben wir eine Linie zwischen Marienkäfer und Raupe gezog
 
 Die einfachste Gerade durch den Ursprung lautet:
 
-```
+$$
 y = A * x
-```
+$$
 
 `x` ist die Breite des Insekts, `y` ist die Länge, und `A` ist die Steigung der Linie. Mehr über `A` gibt es im nächsten Abschnitt.
 
@@ -45,8 +45,8 @@ Diese Formel beschreibt jeden Punkt der exakt auf der Linie liegt. Punkte die ni
 
 ![[Lernrate.png]]
 
-> [!example] 
-> Steigung konkret Wenn `A = 1` ist, steigt die Linie gleichmässig: Bei Breite 2 liegt die Linie bei Länge 2. Bei Breite 4 bei Länge 4. Wenn `A = 2` ist, steigt sie doppelt so schnell: Bei Breite 2 liegt die Linie bereits bei Länge 4. Die Steigung legt also fest wie die Linie das Koordinatensystem schneidet.
+> [!example] Steigung konkret 
+> Wenn `A = 1` ist, steigt die Linie gleichmässig: Bei Breite 2 liegt die Linie bei Länge 2. Bei Breite 4 bei Länge 4. Wenn `A = 2` ist, steigt sie doppelt so schnell: Bei Breite 2 liegt die Linie bereits bei Länge 4. Die Steigung legt also fest wie die Linie das Koordinatensystem schneidet.
 
 Versuche es selbst: Ziehe den Schieberegler und beobachte wie sich die Linie verändert.
 ```widget
@@ -56,14 +56,14 @@ width=wide
 ```
 ## Die Linie als Entscheidungsregel
 
-Ein Punkt liegt auf der Linie wenn `y = A * x` gilt. Liegt er darüber, ist seine Länge grösser als `A * x`. Liegt er darunter, ist sie kleiner.
+Ein Punkt liegt auf der Linie wenn $y = A * x$ gilt. Liegt er darüber, ist seine Länge grösser als $A * x$. Liegt er darunter, ist sie kleiner.
 
 Das lässt sich als Entscheidungsregel schreiben:
 
-```
-y - A * x > 0   → Raupe (Punkt liegt über der Linie)
-y - A * x < 0   → Marienkäfer (Punkt liegt unter der Linie)
-```
+
+$y - A * x > 0$   → Raupe (Punkt liegt über der Linie)
+$y - A * x < 0$   → Marienkäfer (Punkt liegt unter der Linie)
+
 
 Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
 

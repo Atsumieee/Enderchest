@@ -38,8 +38,8 @@ Breite und Länge lassen sich als Punkt in einem Koordinatensystem darstellen. D
 ![[Cords_system_insects.png]]
 >*Created with matplotlib*
 
-> [!example] 
-> Marienkäfer und Raupe im Koordinatensystem Der Marienkäfer hat Breite 3 und Länge 1, er landet unten rechts im Koordinatensystem. Die Raupe hat Breite 1 und Länge 3, sie landet oben links. Die beiden Punkte liegen weit auseinander. Genau das macht dieses Problem lösbar.
+> [!example] Marienkäfer und Raupe im Koordinatensystem 
+> Der Marienkäfer hat Breite 3 und Länge 1, er landet unten rechts im Koordinatensystem. Die Raupe hat Breite 1 und Länge 3, sie landet oben links. Die beiden Punkte liegen weit auseinander. Genau das macht dieses Problem lösbar.
 
 Mit mehr Messpunkten entsteht ein Muster: Marienkäfer sammeln sich in einer Ecke, Raupen in einer anderen.
 
@@ -55,7 +55,8 @@ Darum geht es in [[Trennlinie|Die Trennlinie als Gleichung]]: Die Linie bekommt 
 
 ## Klassifikation
 
-> [!info] Klassifikation Klassifikation (Einordnung) bedeutet: Ein Objekt einer von mehreren Gruppen zuordnen. Im Beispiel oben gibt es zwei Gruppen — Marienkäfer und Raupe. Das unbekannte Insekt wird klassifiziert indem man prüft auf welcher Seite der Trennlinie es liegt. Klassifikation ist eine der häufigsten Aufgaben in der KI, von Spam-Erkennung bis zur medizinischen Diagnose.
+> [!info] Klassifikation 
+> Klassifikation (Einordnung) bedeutet: Ein Objekt einer von mehreren Gruppen zuordnen. Im Beispiel oben gibt es zwei Gruppen: Marienkäfer und Raupe. Das unbekannte Insekt wird klassifiziert indem man prüft auf welcher Seite der Trennlinie es liegt. Klassifikation ist eine der häufigsten Aufgaben in der KI, von Spam-Erkennung bis zur medizinischen Diagnose.
 
 Im Alltag klassifiziert KI ständig:
 
@@ -67,8 +68,8 @@ In jedem Fall steckt dieselbe Grundidee dahinter: Merkmale messen, als Punkt dar
 
 ---
 
-> [!summary] 
-> Das Wichtigste Klassifikation ordnet ein Objekt einer Gruppe zu. Zwei Merkmale lassen sich als Punkt in einem Koordinatensystem darstellen. Eine Trennlinie teilt das Koordinatensystem in zwei Bereiche. Ein unbekanntes Objekt wird klassifiziert indem man prüft auf welcher Seite es liegt.
+> [!summary] Das Wichtigste 
+> Klassifikation ordnet ein Objekt einer Gruppe zu. Zwei Merkmale lassen sich als Punkt in einem Koordinatensystem darstellen. Eine Trennlinie teilt das Koordinatensystem in zwei Bereiche. Ein unbekanntes Objekt wird klassifiziert indem man prüft auf welcher Seite es liegt.
 
 ## Verbindungen zu anderen Themen
 
