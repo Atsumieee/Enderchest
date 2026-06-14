@@ -97,7 +97,7 @@ Eine Gerade teilt die Ebene in zwei Hälften. Egal wie du sie legst, du kannst n
 > [!important] Der Kernpunkt 
 > XOR ist nicht linear trennbar. Es gibt keine einzige Gerade die die beiden 1-Punkte von den beiden 0-Punkten trennt. Das ist kein Problem der richtigen Steigung oder des richtigen Trainings. Es ist grundsätzlich unmöglich, weil die Punkte über Kreuz liegen.
 
-Genau diese Erkenntnis stürzte die KI-Forschung 1969 in eine Krise, wie in [[Die Idee hinter neuronalen Netzen]] beschrieben. Ein einzelnes Neuron, das ja nichts anderes als eine Trennlinie ist, kann XOR nicht lernen.
+Genau diese Erkenntnis stürzte die KI-Forschung 1969 in eine Krise, wie in [[Idee Neuronales Netz|Die Idee hinter neuronalen Netzen]] beschrieben. Ein einzelnes Neuron, das ja nichts anderes als eine Trennlinie ist, kann XOR nicht lernen.
 
 Probier es selbst. Wähle eine Funktion und versuche die Linie so zu drehen und zu verschieben, dass alle 1-Punkte auf einer Seite liegen. Bei AND und OR schaffst du es. Bei XOR nicht, egal wie lange du probierst.
 
@@ -119,7 +119,7 @@ Lineare Trennbarkeit ist die Grenze dessen, was eine einzelne Trennlinie und dam
 
 XOR ist nicht mit einer Linie lösbar. Aber was wäre, wenn man zwei Linien kombiniert? Wenn ein erster Prüfer eine Linie zieht und ein zweiter eine andere, und ein dritter ihre Ergebnisse verknüpft?
 
-Genau das ist die Lösung, und sie führt direkt zum Aufbau eines mehrschichtigen Netzes. Das ist das Thema von [[C2 - Zwei Linien kombinieren]].
+Genau das ist die Lösung, und sie führt direkt zum Aufbau eines mehrschichtigen Netzes. Das ist das Thema von [[XOR|Zwei Linien kombinieren]].
 
 ---
 
@@ -139,6 +139,6 @@ Genau das ist die Lösung, und sie führt direkt zum Aufbau eines mehrschichtige
 | Thema                                                       | Verbindung                                            |
 | ----------------------------------------------------------- | ----------------------------------------------------- |
 | [[Klassifikation]]                                          | Das Koordinatensystem und die Trennlinie              |
-| [[C2 - Zwei Linien kombinieren]]                            | Wie man XOR mit mehreren Linien doch löst             |
+| [[XOR\|Zwei Linien kombinieren]]                            | Wie man XOR mit mehreren Linien doch löst             |
 | [[Idee Neuronales Netz\|Die Idee hinter neuronalen Netzen]] | Warum XOR die KI-Forschung in eine Krise stürzte      |
-| [[D3 - Vom Neuron zum Netz]]                                | Mehrere Neuronen lösen, woran ein einzelnes scheitert |
+| [[Neuronennetz\|Vom Neuron zum Netz]]                       | Mehrere Neuronen lösen, woran ein einzelnes scheitert |
