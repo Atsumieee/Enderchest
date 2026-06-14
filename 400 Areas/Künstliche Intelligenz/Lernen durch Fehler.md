@@ -86,7 +86,7 @@ width=wide
 > Im Widget pendelt die Steigung: Der Marienkäfer zieht die Linie flacher, die Raupe zieht sie wieder steiler. Eine einzelne Linie durch den Ursprung kann diese beiden Punkte nicht beide perfekt treffen. Das ist kein Fehler, sondern eine ehrliche Eigenschaft des Verfahrens. Die Linie pendelt sich auf einen Kompromiss ein der beide Gruppen so gut wie möglich trennt. Wann eine einzelne Linie grundsätzlich nicht mehr reicht, ist das Thema von [[Boolesche Funktionen|Lineare Trennbarkeit]].
 
 >Koordinatensystem mit alter flacher Trennlinie und neuer steilerer Trennlinie durchgezogen, Marienkäfer-Punkt liegt über der alten Linie
-![[Pasted image 20260614155312.png]]
+![[KI_Linien_vergleich.png]]
 > *Created with matplotlib*
 ## Schritt für Schritt statt auf einmal
 
@@ -94,15 +94,15 @@ Ein einzelner Schritt bringt die Linie näher an den Punkt, aber nicht ganz hin.
 
 Dieses schrittweise Vorgehen ist der Kern des Trainings. Die Lernrate steuert dabei das Tempo: Eine grosse Lernrate macht grosse Schritte, eine kleine Lernrate kleine.
 
-> [!info] 
-> Epoche (Epoch) Eine Epoche ist ein vollständiger Durchlauf durch alle Trainingspunkte. Nach jeder Epoche hat der Computer jeden Punkt einmal gesehen und `A` entsprechend angepasst. Mehrere Epochen hintereinander verfeinern die Linie. Wie viele Epochen nötig sind, hängt vom Problem ab.
+> [!info] Epoche (Epoch)
+> Eine Epoche ist ein vollständiger Durchlauf durch alle Trainingspunkte. Nach jeder Epoche hat der Computer jeden Punkt einmal gesehen und `A` entsprechend angepasst. Mehrere Epochen hintereinander verfeinern die Linie. Wie viele Epochen nötig sind, hängt vom Problem ab.
 
 Was passiert wenn die Lernrate zu gross oder zu klein gewählt wird, kommt in [[Lernrate|Die Lernrate]]. Warum mehr Trainingspunkte eine zuverlässigere Linie ergeben, kommt in [[Trainingsdaten|Mehr Daten, mehr Sicherheit]].
 
 ---
 
-> [!summary] 
-> Das Wichtigste Die Lücke misst den Abstand zwischen einem Punkt und der Trennlinie in y-Richtung. Die Update-Regel verfeinert die Steigung schrittweise: `neue Steigung = alte Steigung + Lernrate * (Lücke / Breite)`. Die Lernrate legt fest wie gross ein Schritt ist. Der Computer rechnet die Lösung bewusst nicht direkt aus, sondern nähert sich ihr durch Training in mehreren Schritten an.
+> [!summary] Das Wichtigste 
+> Die Lücke misst den Abstand zwischen einem Punkt und der Trennlinie in y-Richtung. Die Update-Regel verfeinert die Steigung schrittweise: $$\text{neue Steigung} = \text{alte Steigung} + \text{Lernrate} * \text{(Lücke / Breite)}$$ Die Lernrate legt fest wie gross ein Schritt ist. Der Computer rechnet die Lösung bewusst nicht direkt aus, sondern nähert sich ihr durch Training in mehreren Schritten an.
 
 ## Verbindungen zu anderen Themen
 
