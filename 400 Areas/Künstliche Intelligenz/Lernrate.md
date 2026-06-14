@@ -57,7 +57,7 @@ Probiere die drei Fälle selbst aus. Wähle eine Lernrate und starte das Auto-Tr
 
 ```widget
 widget_b5_lernrate
-scale=1.0
+scale=1.2
 width=wide
 ```
 
