@@ -82,6 +82,8 @@ Klicke im Widget auf "Nächsten Punkt prüfen". Das Widget prüft abwechselnd de
 
 ```widget
 widget_b3_update_regel
+scale=1.0
+width=wide
 ```
 
 > [!note] 
