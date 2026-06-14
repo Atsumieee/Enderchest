@@ -80,6 +80,13 @@ Die beiden Linien bilden einen diagonalen Streifen. Innerhalb dieses Streifens l
 
 Geh die Tabelle Zeile für Zeile durch. Der Punkt (1,1) ist der entscheidende: Er erfüllt OR (mindestens einer an), aber er erfüllt auch AND (beide an). Weil die Verknüpfung "nicht AND" verlangt, fällt er raus und bekommt eine 0. Genau das unterscheidet XOR von OR.
 
+Verschiebe die zwei Linien im Widget und beobachte den Streifen dazwischen. Nur wenn beide Linien richtig liegen, fallen genau die zwei 1-Punkte in die Streifen.
+
+```widget
+widget_c2_zwei_linien
+scale=1.2
+width=wide
+```
 ## Der dritte Schritt: Verknüpfen
 
 Die zwei Linien allein geben dir zwei Zwischenergebnisse: erfüllt der Punkt OR? Erfüllt er AND? Diese zwei Antworten müssen noch zusammengeführt werden zu einer einzigen XOR-Antwort.
