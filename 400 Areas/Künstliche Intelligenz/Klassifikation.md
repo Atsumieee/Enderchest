@@ -36,9 +36,10 @@ Jetzt kommt ein neues, unbekanntes Insekt. Du misst es. Kannst du allein aus Bre
 Breite und Länge lassen sich als Punkt in einem Koordinatensystem darstellen. Die x-Achse zeigt die Breite, die y-Achse die Länge. Jedes gemessene Insekt wird zu einem Punkt.
 
 ![[Cords_system_insects.png]]
+>*Created with matplotlib*
 
 > [!example] 
-> Marienkäfer und Raupe im Koordinatensystem Der Marienkäfer hat Breite 3 und Länge 1 — er landet unten rechts im Koordinatensystem. Die Raupe hat Breite 1 und Länge 3, sie landet oben links. Die beiden Punkte liegen weit auseinander. Genau das macht dieses Problem lösbar.
+> Marienkäfer und Raupe im Koordinatensystem Der Marienkäfer hat Breite 3 und Länge 1, er landet unten rechts im Koordinatensystem. Die Raupe hat Breite 1 und Länge 3, sie landet oben links. Die beiden Punkte liegen weit auseinander. Genau das macht dieses Problem lösbar.
 
 Mit mehr Messpunkten entsteht ein Muster: Marienkäfer sammeln sich in einer Ecke, Raupen in einer anderen.
 
@@ -50,12 +51,11 @@ Ein neues unbekanntes Insekt trägst du als Punkt ein. Du schaust auf welcher Se
 
 Das klingt fast zu einfach. Und für zwei Punkte ist es das auch. Die Frage ist: Wo genau ziehst du die Linie? Und was passiert wenn du zwanzig Messpunkte hast statt zwei?
 
-Darum geht es in [[B2 - Die Trennlinie als Gleichung]]: Die Linie bekommt eine Formel, und der Computer lernt selbst wo er sie hinzieht.
+Darum geht es in [[Trennlinie|Die Trennlinie als Gleichung]]: Die Linie bekommt eine Formel, und der Computer lernt selbst wo er sie hinzieht.
 
 ## Klassifikation
 
-> [!info] 
-> Klassifikation Klassifikation (Einordnung) bedeutet: Ein Objekt einer von mehreren Gruppen zuordnen. Im Beispiel oben gibt es zwei Gruppen — Marienkäfer und Raupe. Das unbekannte Insekt wird klassifiziert indem man prüft auf welcher Seite der Trennlinie es liegt. Klassifikation ist eine der häufigsten Aufgaben in der KI, von Spam-Erkennung bis zur medizinischen Diagnose.
+> [!info] Klassifikation Klassifikation (Einordnung) bedeutet: Ein Objekt einer von mehreren Gruppen zuordnen. Im Beispiel oben gibt es zwei Gruppen — Marienkäfer und Raupe. Das unbekannte Insekt wird klassifiziert indem man prüft auf welcher Seite der Trennlinie es liegt. Klassifikation ist eine der häufigsten Aufgaben in der KI, von Spam-Erkennung bis zur medizinischen Diagnose.
 
 Im Alltag klassifiziert KI ständig:
 
