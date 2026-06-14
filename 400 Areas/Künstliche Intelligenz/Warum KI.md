@@ -70,7 +70,7 @@ Diesen Ansatz findest du überall:
 
 ## Verbindungen zu anderen Themen
 
-| Thema                                                   | Verbindung                                                   |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| [[Maschinelles Lernen]]                                 | Vertiefung: Was "Lernen" für einen Computer konkret bedeutet |
-| [[Idee Neuronales Netz \|Neuronale Netze - Einführung]] | Woher die Idee kommt, ein Gehirn nachzubauen                 |
+| Thema                                                  | Verbindung                                                   |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| [[Maschinelles Lernen]]                                | Vertiefung: Was "Lernen" für einen Computer konkret bedeutet |
+| [[Idee Neuronales Netz\|Neuronale Netze - Einführung]] | Woher die Idee kommt, ein Gehirn nachzubauen                 |
