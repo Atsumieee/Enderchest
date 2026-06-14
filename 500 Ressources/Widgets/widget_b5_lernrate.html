@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lernrate — Interaktiv</title>
+<style>
+  :root {
+    --v1: #7400b8; --v2: #6930c3; --v3: #5e60ce; --c1: #56cfe1;
+    --bg: #fafaf9; --bg-surface: #f3f0fa; --bg-card: #ffffff;
+    --text: #1a1025; --text-muted: #4a3d6b; --text-dim: #9b94b8;
+    --border: rgba(116,0,184,0.10); --border-strong: rgba(116,0,184,0.20);
+    --grid: rgba(116,0,184,0.07); --axis: rgba(116,0,184,0.25);
+    --canvas-bg: #f3f0fa;
+    --status-success: #36a35a; --status-danger: #dc2626; --status-warning: #d4a017;
+    --shadow-md: 0 1px 2px rgba(26,16,37,0.04), 0 10px 26px -16px rgba(116,0,184,0.30);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --v2: #a78bfa; --v3: #5e60ce;
+      --bg: #0d0b14; --bg-surface: #13101e; --bg-card: #1a1628;
+      --text: #ede9ff; --text-muted: #9b94b8; --text-dim: #4a4460;
+      --border: rgba(116,0,184,0.20); --border-strong: rgba(94,96,206,0.35);
+      --grid: rgba(94,96,206,0.10); --axis: rgba(94,96,206,0.35);
+      --canvas-bg: #100d1a;
+    }
+  }
+  [data-theme="dark"] {
+    --v2: #a78bfa; --v3: #5e60ce;
+    --bg: #0d0b14; --bg-surface: #13101e; --bg-card: #1a1628;
+    --text: #ede9ff; --text-muted: #9b94b8; --text-dim: #4a4460;
+    --border: rgba(116,0,184,0.20); --border-strong: rgba(94,96,206,0.35);
+    --grid: rgba(94,96,206,0.10); --axis: rgba(94,96,206,0.35);
+    --canvas-bg: #100d1a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px; line-height: 1.75; padding: 1.5rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  .widget {
+    background: var(--bg-card); border: 1px solid var(--border-strong);
+    border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-md);
+    max-width: 580px; margin: 0 auto;
+  }
+  .widget-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--v2); margin-bottom: 1rem;
+  }
+  .canvas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .canvas-wrap { }
+  .canvas-title {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-dim); text-align: center; margin-bottom: 0.35rem;
+  }
+  canvas { display: block; width: 100%; border-radius: 6px; border: 1px solid var(--border); }
+  .presets { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  .preset-btn {
+    flex: 1; padding: 0.5rem 0.5rem; border-radius: 6px;
+    border: 1px solid var(--border-strong); background: var(--bg-surface);
+    color: var(--text-muted); font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.12s;
+    line-height: 1.3;
+  }
+  .preset-btn:hover { opacity: 0.85; }
+  .preset-btn.active { background: linear-gradient(90deg, var(--v1), var(--v3)); color: #fff; border-color: transparent; }
+  .control-row { margin-top: 1rem; display: flex; align-items: center; gap: 1rem; }
+  .control-row label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px; color: var(--text-muted); white-space: nowrap;
+  }
+  input[type="range"] { flex: 1; accent-color: var(--v2); height: 4px; cursor: pointer; }
+  .lr-val {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 14px; font-weight: 600; color: var(--v2);
+    min-width: 40px; text-align: right;
+  }
+  .btn-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  button.action {
+    flex: 1; padding: 0.6rem 1rem; border-radius: 6px; border: none;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    letter-spacing: 0.04em; transition: opacity 0.12s;
+  }
+  button.action:hover { opacity: 0.85; }
+  #btnAuto { background: linear-gradient(90deg, var(--v1), var(--v3)); color: #fff; }
+  #btnStep { background: var(--bg-surface); color: var(--v2); border: 1px solid var(--border-strong); }
+  #btnReset { background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--border-strong); }
+  .status-row {
+    margin-top: 0.75rem; font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px; color: var(--text-dim); text-align: center; min-height: 1.4em;
+  }
+  .verdict { font-weight: 600; }
+  .verdict.good { color: var(--status-success); }
+  .verdict.slow { color: var(--status-warning); }
+  .verdict.bad { color: var(--status-danger); }
+</style>
+</head>
+<body>
+<div class="widget">
+  <div class="widget-label">Widget — Lernrate im Vergleich</div>
+
+  <div class="canvas-grid">
+    <div class="canvas-wrap">
+      <div class="canvas-title">Trennlinie &amp; Punkt</div>
+      <canvas id="lineCanvas" width="280" height="240"></canvas>
+    </div>
+    <div class="canvas-wrap">
+      <div class="canvas-title">Fehler pro Schritt</div>
+      <canvas id="errCanvas" width="280" height="240"></canvas>
+    </div>
+  </div>
+
+  <div class="presets">
+    <button class="preset-btn" data-lr="0.05">0.05<br>zu klein</button>
+    <button class="preset-btn active" data-lr="0.5">0.5<br>passend</button>
+    <button class="preset-btn" data-lr="2.5">2.5<br>zu gross</button>
+  </div>
+
+  <div class="control-row">
+    <label>Lernrate =</label>
+    <input type="range" id="lrSlider" min="0.01" max="3" step="0.01" value="0.5">
+    <span class="lr-val" id="lrVal">0.50</span>
+  </div>
+
+  <div class="btn-row">
+    <button class="action" id="btnAuto">Auto-Training</button>
+    <button class="action" id="btnStep">Ein Schritt</button>
+    <button class="action" id="btnReset">Zurücksetzen</button>
+  </div>
+
+  <div class="status-row" id="statusRow">Lernrate 0.5 — klicke "Auto-Training"</div>
+</div>
+
+<script>
+  const lineCanvas = document.getElementById('lineCanvas');
+  const lctx = lineCanvas.getContext('2d');
+  const errCanvas = document.getElementById('errCanvas');
+  const ectx = errCanvas.getContext('2d');
+
+  const POINT = { x: 3, y: 1.1 };
+  const TARGET_A = POINT.y / POINT.x;
+  const START_A = 1.60;
+  const MAX_STEPS = 16;
+
+  let A = START_A;
+  let learningRate = 0.5;
+  let errorHistory = [];
+  let autoTimer = null;
+
+  function getCSSVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+  // ---- Linien-Canvas ----
+  const LX_MIN = 0, LX_MAX = 4, LY_MIN = 0, LY_MAX = 5;
+  function toLine(x, y) {
+    const cx = 40 + (x - LX_MIN) / (LX_MAX - LX_MIN) * (lineCanvas.width - 56);
+    const cy = lineCanvas.height - 32 - (y - LY_MIN) / (LY_MAX - LY_MIN) * (lineCanvas.height - 48);
+    return [cx, cy];
+  }
+  function drawLine() {
+    const W = lineCanvas.width, H = lineCanvas.height;
+    lctx.clearRect(0, 0, W, H);
+    const bg = getCSSVar('--canvas-bg') || '#f3f0fa';
+    const grid = getCSSVar('--grid') || 'rgba(116,0,184,0.07)';
+    const axis = getCSSVar('--axis') || 'rgba(116,0,184,0.25)';
+    const dim = getCSSVar('--text-dim') || '#9b94b8';
+    const accent = getCSSVar('--v2') || '#6930c3';
+
+    lctx.fillStyle = bg; lctx.fillRect(0, 0, W, H);
+
+    lctx.strokeStyle = grid; lctx.lineWidth = 1;
+    for (let i = LX_MIN; i <= LX_MAX; i++) {
+      const [x1, y1] = toLine(i, LY_MIN); const [x2, y2] = toLine(i, LY_MAX);
+      lctx.beginPath(); lctx.moveTo(x1, y1); lctx.lineTo(x2, y2); lctx.stroke();
+    }
+    for (let i = LY_MIN; i <= LY_MAX; i++) {
+      const [x3, y3] = toLine(LX_MIN, i); const [x4, y4] = toLine(LX_MAX, i);
+      lctx.beginPath(); lctx.moveTo(x3, y3); lctx.lineTo(x4, y4); lctx.stroke();
+    }
+
+    lctx.strokeStyle = axis; lctx.lineWidth = 1.3;
+    let [ax1, ay1] = toLine(LX_MIN, LY_MIN); let [ax2, ay2] = toLine(LX_MAX, LY_MIN);
+    lctx.beginPath(); lctx.moveTo(ax1, ay1); lctx.lineTo(ax2, ay2); lctx.stroke();
+    let [bx1, by1] = toLine(LX_MIN, LY_MIN); let [bx2, by2] = toLine(LX_MIN, LY_MAX);
+    lctx.beginPath(); lctx.moveTo(bx1, by1); lctx.lineTo(bx2, by2); lctx.stroke();
+
+    lctx.fillStyle = dim; lctx.font = '9px JetBrains Mono, monospace'; lctx.textAlign = 'center';
+    for (let i = LX_MIN; i <= LX_MAX; i++) { const [cx] = toLine(i, LY_MIN); lctx.fillText(i, cx, H - 18); }
+    for (let i = 1; i <= LY_MAX; i++) { const [, cy] = toLine(LX_MIN, i); lctx.textAlign = 'right'; lctx.fillText(i, 34, cy + 3); }
+
+    // Ziel-Linie gestrichelt
+    lctx.strokeStyle = dim; lctx.lineWidth = 1.3; lctx.setLineDash([4, 3]);
+    let tx2 = LX_MAX, ty2 = TARGET_A * LX_MAX;
+    if (ty2 > LY_MAX) { ty2 = LY_MAX; tx2 = LY_MAX / TARGET_A; }
+    let [tc1x, tc1y] = toLine(0, 0); let [tc2x, tc2y] = toLine(tx2, ty2);
+    lctx.beginPath(); lctx.moveTo(tc1x, tc1y); lctx.lineTo(tc2x, tc2y); lctx.stroke();
+    lctx.setLineDash([]);
+
+    // aktuelle Linie
+    let lx2 = LX_MAX, ly2 = A * LX_MAX;
+    if (ly2 > LY_MAX) { ly2 = LY_MAX; lx2 = LY_MAX / A; }
+    if (A < 0) { lx2 = 0; ly2 = 0; }
+    let [lc1x, lc1y] = toLine(0, 0); let [lc2x, lc2y] = toLine(lx2, ly2);
+    const grad = lctx.createLinearGradient(lc1x, lc1y, lc2x, lc2y);
+    grad.addColorStop(0, '#7400b8'); grad.addColorStop(1, '#56cfe1');
+    lctx.strokeStyle = grad; lctx.lineWidth = 2.5;
+    lctx.beginPath(); lctx.moveTo(lc1x, lc1y); lctx.lineTo(lc2x, lc2y); lctx.stroke();
+
+    // Lücke
+    const [px, py] = toLine(POINT.x, POINT.y);
+    let yLine = A * POINT.x;
+    if (yLine >= LY_MIN && yLine <= LY_MAX) {
+      const [lpx, lpy] = toLine(POINT.x, yLine);
+      lctx.strokeStyle = '#dc2626'; lctx.lineWidth = 1.3; lctx.setLineDash([3, 2]);
+      lctx.beginPath(); lctx.moveTo(px, py); lctx.lineTo(lpx, lpy); lctx.stroke();
+      lctx.setLineDash([]);
+    }
+
+    // Punkt
+    lctx.beginPath(); lctx.arc(px, py, 6, 0, Math.PI * 2);
+    lctx.fillStyle = '#dc2626'; lctx.fill();
+    lctx.strokeStyle = bg; lctx.lineWidth = 2; lctx.stroke();
+
+    lctx.fillStyle = accent; lctx.font = '600 10px JetBrains Mono, monospace'; lctx.textAlign = 'right';
+    lctx.fillText('A = ' + A.toFixed(3), W - 8, 16);
+  }
+
+  // ---- Fehler-Canvas ----
+  function drawError() {
+    const W = errCanvas.width, H = errCanvas.height;
+    ectx.clearRect(0, 0, W, H);
+    const bg = getCSSVar('--canvas-bg') || '#f3f0fa';
+    const grid = getCSSVar('--grid') || 'rgba(116,0,184,0.07)';
+    const axis = getCSSVar('--axis') || 'rgba(116,0,184,0.25)';
+    const dim = getCSSVar('--text-dim') || '#9b94b8';
+
+    ectx.fillStyle = bg; ectx.fillRect(0, 0, W, H);
+
+    const padL = 34, padB = 28, padT = 14, padR = 12;
+    const plotW = W - padL - padR, plotH = H - padT - padB;
+
+    // y-Skala: dynamisch, aber gedeckelt
+    let maxErr = Math.max(4, ...errorHistory);
+    maxErr = Math.min(maxErr, 50);
+
+    // Achsen
+    ectx.strokeStyle = axis; ectx.lineWidth = 1.3;
+    ectx.beginPath(); ectx.moveTo(padL, padT); ectx.lineTo(padL, padT + plotH); ectx.lineTo(padL + plotW, padT + plotH); ectx.stroke();
+
+    ectx.fillStyle = dim; ectx.font = '9px JetBrains Mono, monospace';
+    ectx.textAlign = 'right';
+    for (let g = 0; g <= 4; g++) {
+      const val = maxErr * g / 4;
+      const yy = padT + plotH - (g / 4) * plotH;
+      ectx.fillText(val.toFixed(0), padL - 5, yy + 3);
+      ectx.strokeStyle = grid; ectx.lineWidth = 1;
+      ectx.beginPath(); ectx.moveTo(padL, yy); ectx.lineTo(padL + plotW, yy); ectx.stroke();
+    }
+    ectx.textAlign = 'center';
+    ectx.fillText('Schritt', padL + plotW / 2, H - 8);
+    ectx.save(); ectx.translate(11, padT + plotH / 2); ectx.rotate(-Math.PI / 2);
+    ectx.fillText('Fehler', 0, 0); ectx.restore();
+
+    if (errorHistory.length === 0) return;
+
+    // Balken/Linie des Fehlerverlaufs
+    const n = Math.max(errorHistory.length, MAX_STEPS);
+    const stepW = plotW / n;
+
+    // Linie
+    ectx.strokeStyle = '#dc2626'; ectx.lineWidth = 2;
+    ectx.beginPath();
+    errorHistory.forEach((e, i) => {
+      const x = padL + (i + 0.5) * stepW;
+      const clamped = Math.min(e, maxErr);
+      const y = padT + plotH - (clamped / maxErr) * plotH;
+      if (i === 0) ectx.moveTo(x, y); else ectx.lineTo(x, y);
+    });
+    ectx.stroke();
+
+    // Punkte
+    errorHistory.forEach((e, i) => {
+      const x = padL + (i + 0.5) * stepW;
+      const clamped = Math.min(e, maxErr);
+      const y = padT + plotH - (clamped / maxErr) * plotH;
+      ectx.beginPath(); ectx.arc(x, y, 2.5, 0, Math.PI * 2);
+      ectx.fillStyle = e > maxErr ? '#d4a017' : '#dc2626';
+      ectx.fill();
+    });
+  }
+
+  function recordError() {
+    const gap = Math.abs(POINT.y - A * POINT.x);
+    errorHistory.push(gap);
+  }
+
+  function stepOnce() {
+    const gap = POINT.y - A * POINT.x;
+    A = A + learningRate * (gap / POINT.x);
+    recordError();
+    if (errorHistory.length > MAX_STEPS) { stopAuto(); }
+  }
+
+  function updateStatus() {
+    const lastErr = errorHistory.length ? errorHistory[errorHistory.length - 1] : Math.abs(POINT.y - A * POINT.x);
+    let verdict = '', cls = '';
+    if (learningRate < 2 && learningRate >= 0.3) { verdict = 'sinkt sauber'; cls = 'good'; }
+    else if (learningRate < 0.3) { verdict = 'sinkt sehr langsam'; cls = 'slow'; }
+    else if (learningRate > 2) { verdict = 'explodiert'; cls = 'bad'; }
+    else { verdict = 'sinkt'; cls = 'good'; }
+    document.getElementById('statusRow').innerHTML =
+      'Lernrate ' + learningRate.toFixed(2) + ' — Fehler <span class="verdict ' + cls + '">' + verdict + '</span> — Schritt ' + errorHistory.length;
+  }
+
+  function redraw() { drawLine(); drawError(); updateStatus(); }
+
+  function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; document.getElementById('btnAuto').textContent = 'Auto-Training'; } }
+
+  function reset() {
+    stopAuto();
+    A = START_A; errorHistory = [];
+    redraw();
+  }
+
+  document.getElementById('btnStep').addEventListener('click', () => {
+    stopAuto();
+    if (errorHistory.length < MAX_STEPS) { stepOnce(); redraw(); }
+  });
+
+  document.getElementById('btnAuto').addEventListener('click', () => {
+    if (autoTimer) { stopAuto(); return; }
+    if (errorHistory.length >= MAX_STEPS) reset();
+    document.getElementById('btnAuto').textContent = 'Stopp';
+    autoTimer = setInterval(() => {
+      if (errorHistory.length >= MAX_STEPS) { stopAuto(); return; }
+      stepOnce(); redraw();
+    }, 350);
+  });
+
+  document.getElementById('btnReset').addEventListener('click', reset);
+
+  document.getElementById('lrSlider').addEventListener('input', (e) => {
+    learningRate = parseFloat(e.target.value);
+    document.getElementById('lrVal').textContent = learningRate.toFixed(2);
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    reset();
+  });
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      learningRate = parseFloat(btn.dataset.lr);
+      document.getElementById('lrSlider').value = learningRate;
+      document.getElementById('lrVal').textContent = learningRate.toFixed(2);
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      reset();
+    });
+  });
+
+  const observer = new MutationObserver(() => { drawLine(); drawError(); });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { drawLine(); drawError(); });
+
+  reset();
+</script>
+</body>
+</html>
