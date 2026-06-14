@@ -96,7 +96,8 @@ Wir haben jetzt drei Prüfer:
 
 Jetzt kommt der Brückenschlag, der den Rest des Themas trägt.
 
-> [!info] Versteckte Schicht (Hidden Layer) Die zwei Prüfer die OR und AND berechnen sind nicht die Endausgabe, sondern ein Zwischenschritt. Sie bilden eine versteckte Schicht: eine Ebene von Recheneinheiten zwischen Eingabe und Ausgabe, deren Ergebnisse nicht direkt nach aussen gehen, sondern an die nächste Schicht weitergereicht werden. Der dritte Prüfer ist die Ausgabeschicht. Genau dieser Aufbau, Eingaben in eine versteckte Schicht und von dort in die Ausgabe, macht aus einzelnen Neuronen ein neuronales Netz.
+> [!info] Versteckte Schicht (Hidden Layer) 
+> Die zwei Prüfer die OR und AND berechnen sind nicht die Endausgabe, sondern ein Zwischenschritt. Sie bilden eine versteckte Schicht: eine Ebene von Recheneinheiten zwischen Eingabe und Ausgabe, deren Ergebnisse nicht direkt nach aussen gehen, sondern an die nächste Schicht weitergereicht werden. Der dritte Prüfer ist die Ausgabeschicht. Genau dieser Aufbau, Eingaben in eine versteckte Schicht und von dort in die Ausgabe, macht aus einzelnen Neuronen ein neuronales Netz.
 
 Jeder dieser Prüfer ist nichts anderes als das was wir in Block B trainiert haben: eine Trennlinie, also ein einzelnes Neuron. XOR braucht drei davon, in zwei Schichten angeordnet.
 
@@ -110,7 +111,8 @@ Wie ein einzelnes Neuron formal aufgebaut ist, mit Eingaben, Gewichten und einer
 
 ---
 
-> [!summary] Das Wichtigste XOR lässt sich in zwei linear trennbare Teilfragen zerlegen: mindestens einer an (OR) und nicht beide an (nicht AND). Jede Teilfrage ist eine eigene Linie. Ein dritter Schritt verknüpft die zwei Zwischenergebnisse zur XOR-Antwort. Diese Anordnung aus zwei prüfenden Neuronen und einem verknüpfenden Neuron ist eine versteckte Schicht plus Ausgabe, also der Grundaufbau eines neuronalen Netzes.
+> [!summary] Das Wichtigste 
+> XOR lässt sich in zwei linear trennbare Teilfragen zerlegen: mindestens einer an (OR) und nicht beide an (nicht AND). Jede Teilfrage ist eine eigene Linie. Ein dritter Schritt verknüpft die zwei Zwischenergebnisse zur XOR-Antwort. Diese Anordnung aus zwei prüfenden Neuronen und einem verknüpfenden Neuron ist eine versteckte Schicht plus Ausgabe, also der Grundaufbau eines neuronalen Netzes.
 
 ## Schlüsselbegriffe
 
@@ -119,9 +121,9 @@ Wie ein einzelnes Neuron formal aufgebaut ist, mit Eingaben, Gewichten und einer
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[C1 - Boolesche Funktionen und lineare Trennbarkeit]]|Warum eine Linie für XOR nicht reicht|
-|[[D1 - Eingaben, Gewichte, Summe]]|Wie ein einzelnes Neuron formal rechnet|
-|[[D3 - Vom Neuron zum Netz]]|Wie mehrere Neuronen zu einem Netz verschaltet werden|
-|[[E3 - Backpropagation]]|Wie ein Netz die Linien selbst lernt|
+| Thema                                                                   | Verbindung                                            |
+| ----------------------------------------------------------------------- | ----------------------------------------------------- |
+| [[Boolesche Funktionen\|Boolesche Funktionen und lineare Trennbarkeit]] | Warum eine Linie für XOR nicht reicht                 |
+| [[D1 - Eingaben, Gewichte, Summe]]                                      | Wie ein einzelnes Neuron formal rechnet               |
+| [[D3 - Vom Neuron zum Netz]]                                            | Wie mehrere Neuronen zu einem Netz verschaltet werden |
+| [[E3 - Backpropagation]]                                                | Wie ein Netz die Linien selbst lernt                  |
