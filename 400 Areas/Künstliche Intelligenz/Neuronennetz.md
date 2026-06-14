@@ -60,9 +60,9 @@ Neuron 1 mit den Gewichten `0.9` und `0.3` achtet stark auf den ersten Eingang. 
 ## Das Netz durchrechnen
 
 > [!example] Beide Neuronen Schritt für Schritt 
-> **Neuron 1** (Gewichte 0.9 und 0.3): `1.0 * 0.9 = 0.90` `0.5 * 0.3 = 0.15` Summe: `0.90 + 0.15 = 1.05`
+> **Neuron 1** (Gewichte 0.9 und 0.3): $1.0 * 0.9 = 0.90$ $0.5 * 0.3 = 0.15$ Summe: $0.90 + 0.15 = 1.05$
 > 
-> **Neuron 2** (Gewichte 0.2 und 0.8): `1.0 * 0.2 = 0.20` `0.5 * 0.8 = 0.40` Summe: `0.20 + 0.40 = 0.60`
+> **Neuron 2** (Gewichte 0.2 und 0.8): $1.0 * 0.2 = 0.20$ $0.5 * 0.8 = 0.40$ Summe: $0.20 + 0.40 = 0.60$
 
 Jedes Neuron hat jetzt seine gewichtete Summe: Neuron 1 hat `1.05`, Neuron 2 hat `0.60`. Auf beide wenden wir nun eine Aktivierungsfunktion an, wie in [[Aktivierungsfunktionen]].
 
@@ -102,9 +102,9 @@ Bis hierher haben wir die Gewichte von Hand gesetzt. Wie ein Netz diese Gewichte
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[D1 - Eingaben, Gewichte, Summe]]|Wie ein einzelnes Neuron rechnet|
-|[[D2 - Aktivierungsfunktionen]]|Wie aus jeder Summe eine Ausgabe wird|
-|[[C2 - Zwei Linien kombinieren]]|Warum Schichten nicht trennbare Probleme lösen|
-|[[E1 - Vorwärtsdurchlauf]]|Wie eine Eingabe durch ein ganzes Netz läuft|
+| Thema                              | Verbindung                                     |
+| ---------------------------------- | ---------------------------------------------- |
+| [[D1 - Eingaben, Gewichte, Summe]] | Wie ein einzelnes Neuron rechnet               |
+| [[D2 - Aktivierungsfunktionen]]    | Wie aus jeder Summe eine Ausgabe wird          |
+| [[C2 - Zwei Linien kombinieren]]   | Warum Schichten nicht trennbare Probleme lösen |
+| [[E1 - Vorwärtsdurchlauf]]         | Wie eine Eingabe durch ein ganzes Netz läuft   |

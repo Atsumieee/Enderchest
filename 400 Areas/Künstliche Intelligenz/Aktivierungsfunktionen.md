@@ -19,7 +19,7 @@ Nach diesem Artikel kannst du...
 
 ## Voraussetzungen
 
-- [[D1 - Eingaben, Gewichte, Summe]] — Die gewichtete Summe
+- [[Erstes Neuron|Eingaben, Gewichte, Summe]] — Die gewichtete Summe
 
 ---
 
