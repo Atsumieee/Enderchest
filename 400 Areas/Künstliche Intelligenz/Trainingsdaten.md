@@ -72,3 +72,7 @@ Was passiert wenn die Lernrate zu klein oder zu gross gewählt wird, ist das The
 | [[Lernen durch Fehler]]                  | Wie die Linie an einzelnen Punkten trainiert wird |
 | [[Lernrate\|Die Lernrate]]               | Wie schnell die Linie ihre Lage findet            |
 | [[F3 - Overfitting und Generalisierung]] | Overfitting bei komplexen Modellen                |
+
+
+
+
