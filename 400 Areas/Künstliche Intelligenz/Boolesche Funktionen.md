@@ -20,7 +20,7 @@ Nach diesem Artikel kannst du...
 
 ## Voraussetzungen
 
-- [[B1 - Klassifikation]] — Das Koordinatensystem und die Idee der Trennlinie
+- [[Klassifikation]] — Das Koordinatensystem und die Idee der Trennlinie
 
 ---
 
