@@ -95,6 +95,13 @@ Eine Gerade teilt die Ebene in zwei Hälften. Egal wie du sie legst, du kannst n
 
 Genau diese Erkenntnis stürzte die KI-Forschung 1969 in eine Krise, wie in [[Die Idee hinter neuronalen Netzen]] beschrieben. Ein einzelnes Neuron, das ja nichts anderes als eine Trennlinie ist, kann XOR nicht lernen.
 
+Probier es selbst. Wähle eine Funktion und versuche die Linie so zu drehen und zu verschieben, dass alle 1-Punkte auf einer Seite liegen. Bei AND und OR schaffst du es. Bei XOR nicht, egal wie lange du probierst.
+
+```widget
+widget_c1_trennbarkeit
+scale=1.2
+width=wide
+```
 ## Was lineare Trennbarkeit bedeutet
 
 Jetzt lässt sich der Begriff sauber fassen.
@@ -112,7 +119,8 @@ Genau das ist die Lösung, und sie führt direkt zum Aufbau eines mehrschichtige
 
 ---
 
-> [!summary] Das Wichtigste Boolesche Funktionen nehmen Eingaben aus 0 und 1 und geben 0 oder 1 zurück. AND und OR sind linear trennbar: eine einzige Gerade trennt die 1-Punkte von den 0-Punkten. XOR ist nicht linear trennbar, weil die 1-Punkte und 0-Punkte über Kreuz liegen und keine Gerade sie trennen kann. Lineare Trennbarkeit ist die Grenze eines einzelnen Neurons.
+> [!summary] Das Wichtigste 
+> Boolesche Funktionen nehmen Eingaben aus 0 und 1 und geben 0 oder 1 zurück. AND und OR sind linear trennbar: eine einzige Gerade trennt die 1-Punkte von den 0-Punkten. XOR ist nicht linear trennbar, weil die 1-Punkte und 0-Punkte über Kreuz liegen und keine Gerade sie trennen kann. Lineare Trennbarkeit ist die Grenze eines einzelnen Neurons.
 
 ## Schlüsselbegriffe
 
@@ -124,9 +132,9 @@ Genau das ist die Lösung, und sie führt direkt zum Aufbau eines mehrschichtige
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[B1 - Klassifikation]]|Das Koordinatensystem und die Trennlinie|
-|[[C2 - Zwei Linien kombinieren]]|Wie man XOR mit mehreren Linien doch löst|
-|[[Die Idee hinter neuronalen Netzen]]|Warum XOR die KI-Forschung in eine Krise stürzte|
-|[[D3 - Vom Neuron zum Netz]]|Mehrere Neuronen lösen, woran ein einzelnes scheitert|
+| Thema                                                       | Verbindung                                            |
+| ----------------------------------------------------------- | ----------------------------------------------------- |
+| [[Klassifikation]]                                          | Das Koordinatensystem und die Trennlinie              |
+| [[C2 - Zwei Linien kombinieren]]                            | Wie man XOR mit mehreren Linien doch löst             |
+| [[Idee Neuronales Netz\|Die Idee hinter neuronalen Netzen]] | Warum XOR die KI-Forschung in eine Krise stürzte      |
+| [[D3 - Vom Neuron zum Netz]]                                | Mehrere Neuronen lösen, woran ein einzelnes scheitert |
