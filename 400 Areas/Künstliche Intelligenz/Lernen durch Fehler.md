@@ -69,7 +69,7 @@ neue Steigung = alte Steigung + Lernrate * (Lücke / Breite)
 Die Lücke wird durch die Breite geteilt, weil die Lücke in y-Richtung gemessen wird, die Steigung sich aber auf das Verhältnis von y zu x bezieht. Geteilt durch die Breite wird aus der y-Lücke eine Steigungs-Korrektur.
 
 > [!example] 
-> Ein konkreter Schritt Gegeben: alte Steigung `A = 0.25`, Lücke `0.35`, Breite `x = 3`, Lernrate `0.5`.
+> >Ein konkreter Schritt Gegeben: alte Steigung `A = 0.25`, Lücke `0.35`, Breite `x = 3`, Lernrate `0.5`.
 > 
 > Korrektur: `0.35 / 3 = 0.1167`
 > 
