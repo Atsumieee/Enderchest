@@ -55,7 +55,7 @@ $x + y ≥ 0.5$   →   mindestens einer ist an
 
 $x + y ≥ 1.5$   →   beide sind an
 
-
+> Koordinatensystem mit den vier XOR-Eckpunkten und zwei parallelen Trennlinien, die einen diagonalen Streifen bilden in dem die beiden 1-Punkte liegen
 ![[Pasted image 20260614170610.png]]
 >*Created with matplotlib*
 
