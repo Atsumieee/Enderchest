@@ -84,7 +84,7 @@ Bei der Stufenfunktion ist das anders. Solange die Summe nicht über die Schwell
 
 Die Stufenfunktion ist einfach zu verstehen und gut um das Prinzip zu zeigen. Die Sigmoidfunktion ist das was man in der Praxis braucht, weil sie Zwischenwerte liefert und das Training ermöglicht.
 
-Jetzt haben wir alle Teile eines Neurons: Eingaben, Gewichte, Summe und Aktivierung. Im nächsten Schritt verschalten wir mehrere Neuronen zu einem kleinen Netz. Das ist das Thema von [[D3 - Vom Neuron zum Netz]].
+Jetzt haben wir alle Teile eines Neurons: Eingaben, Gewichte, Summe und Aktivierung. Im nächsten Schritt verschalten wir mehrere Neuronen zu einem kleinen Netz. Das ist das Thema von [[Neuronennetz|Vom Neuron zum Netz]].
 
 ---
 
