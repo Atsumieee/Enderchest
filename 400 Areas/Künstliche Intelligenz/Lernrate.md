@@ -75,8 +75,8 @@ Dieses Bild der Suche nach dem tiefsten Punkt kommt später wieder, bei [[E4 - G
 
 ## Verbindungen zu anderen Themen
 
-| Thema                                           | Verbindung                                     |
-| ----------------------------------------------- | ---------------------------------------------- |
-| [[Lernen durch Fehler]]                         | Die Update-Regel in der die Lernrate steht     |
-| [[Trainingsdaten\|Mehr Daten, mehr Sicherheit]] | Wie viele Daten die Linie braucht              |
-| [[E4 - Gradient Descent]]                       | Die Lernrate im allgemeinen Trainingsverfahren |
+| Verbindung                                     | Thema                                           |
+| ---------------------------------------------- | ----------------------------------------------- |
+| Die Update-Regel in der die Lernrate steht     | [[Lernen durch Fehler]]                         |
+| Wie viele Daten die Linie braucht              | [[Trainingsdaten\|Mehr Daten, mehr Sicherheit]] |
+| Die Lernrate im allgemeinen Trainingsverfahren | [[E4 - Gradient Descent]]                       |
