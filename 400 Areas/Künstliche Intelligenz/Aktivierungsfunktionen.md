@@ -66,8 +66,8 @@ Statt eines Schalters ist die Sigmoidfunktion ein Regler. Sie kann Ausgaben lief
 - `0.74` → eher ja
 - `0.95` → fast sicher ja
 #### Sigmoid Function vs Step Function
-![[KI_Funktionen_vergleich.png|697]]
-> Adiletta & Flanagan (2020), CC BY-SA 4.0 [ResearchGate](https://www.researchgate.net/figure/Sigmoid-Function-vs-Step-Function_fig3_347300422)
+![[KI_Funktionen_Vergleich.png]]
+>*Created with matplotlib*
 ## Warum weich oft besser ist
 
 Eine weiche Ausgabe trägt mehr Information als eine harte. Sie sagt nicht nur ob, sondern wie sicher. Ein Wert von `0.95` bedeutet fast sicher ja, ein Wert von `0.55` bedeutet eher ja, aber knapp. Diese Abstufung geht bei der Stufenfunktion verloren, dort wäre beides einfach `1`.
@@ -100,9 +100,9 @@ Jetzt haben wir alle Teile eines Neurons: Eingaben, Gewichte, Summe und Aktivier
 
 ## Verbindungen zu anderen Themen
 
-|Thema|Verbindung|
-|---|---|
-|[[D1 - Eingaben, Gewichte, Summe]]|Woher die gewichtete Summe kommt|
-|[[B3 - Lernen durch Fehler]]|Warum weiche Übergänge das Training ermöglichen|
-|[[D3 - Vom Neuron zum Netz]]|Aktivierung in einem Netz aus mehreren Neuronen|
-|[[F2 - Andere Aktivierungsfunktionen]]|ReLU und warum Sigmoid in tiefen Netzen Probleme macht|
+| Thema                                        | Verbindung                                             |
+| -------------------------------------------- | ------------------------------------------------------ |
+| [[Erstes Neuron\|Eingaben, Gewichte, Summe]] | Woher die gewichtete Summe kommt                       |
+| [[Lernen durch Fehler]]                      | Warum weiche Übergänge das Training ermöglichen        |
+| [[Neuronennetz\|Vom Neuron zum Netz]]        | Aktivierung in einem Netz aus mehreren Neuronen        |
+| [[F2 - Andere Aktivierungsfunktionen]]       | ReLU und warum Sigmoid in tiefen Netzen Probleme macht |
