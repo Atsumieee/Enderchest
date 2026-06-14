@@ -265,16 +265,11 @@
     ctx.lineTo(lcx2, lcy2);
     ctx.stroke();
 
-    // Formel-Label
-    const labelX = Math.min(2.5, X_MAX - 1);
-    const labelY = A * labelX;
-    if (labelY <= Y_MAX - 0.5) {
-      const [lx, ly] = toCanvas(labelX, labelY);
-      ctx.fillStyle = accentColor;
-      ctx.font = '600 13px JetBrains Mono, monospace';
-      ctx.textAlign = 'left';
-      ctx.fillText('y = ' + A.toFixed(1) + 'x', lx + 8, ly - 10);
-    }
+    // Formel-Label: fix in obere rechte Ecke
+    ctx.fillStyle = accentColor;
+    ctx.font = '600 13px JetBrains Mono, monospace';
+    ctx.textAlign = 'right';
+    ctx.fillText('y = ' + A.toFixed(1) + 'x', W - PAD - 8, PAD + 20);
 
     // Punkte
     const points = [
