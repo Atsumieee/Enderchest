@@ -29,7 +29,7 @@ Nach diesem Artikel kannst du...
 
 Dein Gehirn besteht aus etwa 86 Milliarden Nervenzellen, sogenannten Neuronen. Jedes Neuron ist mit tausenden anderen verbunden. Es empfängt Signale von seinen Nachbarn, summiert sie, und schickt ein Signal weiter, aber nur wenn die Summe gross genug ist.
 
-![[Biologisches_Neuron.png|680]]
+>{Picture of a Neuron...}
 
 Diese Eigenschaft ist der Kern: Ein Neuron feuert erst ab einer bestimmten Schwelle. Darunter passiert nichts, darüber wird das Signal weitergegeben. Aus diesem Prinzip entsteht, zusammengeschaltet mit Milliarden anderer Neuronen, die Fähigkeit zu denken und zu erinnern.
 
