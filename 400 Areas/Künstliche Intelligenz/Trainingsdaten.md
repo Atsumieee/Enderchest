@@ -37,6 +37,7 @@ Je mehr Insekten du misst und einträgst, desto weniger Spielraum hat die Linie.
 >Zwei Koordinatensysteme nebeneinander: links wenige Punkte mit einer unsicher liegenden Trennlinie, rechts viele Punkte mit einer stabil zwischen den Gruppen liegenden Trennlinie
 
 ![[KI_Trainingsdaten.png]]
+
 >*Created with matplotlib*
 
 Mehr Daten bedeuten also nicht nur mehr Arbeit, sondern eine zuverlässigere Trennung. Das ist einer der Gründe warum moderne KI-Systeme mit riesigen Datenmengen trainiert werden.
