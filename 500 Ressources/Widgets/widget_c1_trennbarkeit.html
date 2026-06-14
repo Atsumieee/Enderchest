@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lineare Trennbarkeit — Interaktiv</title>
+<style>
+  :root {
+    --v1: #7400b8; --v2: #6930c3; --v3: #5e60ce; --c1: #56cfe1;
+    --bg: #fafaf9; --bg-surface: #f3f0fa; --bg-card: #ffffff;
+    --text: #1a1025; --text-muted: #4a3d6b; --text-dim: #9b94b8;
+    --border: rgba(116,0,184,0.10); --border-strong: rgba(116,0,184,0.20);
+    --grid: rgba(116,0,184,0.07); --axis: rgba(116,0,184,0.25);
+    --canvas-bg: #f3f0fa;
+    --zone-one: rgba(94,96,206,0.12); --zone-zero: rgba(220,38,38,0.06);
+    --status-success: #36a35a; --status-danger: #dc2626;
+    --shadow-md: 0 1px 2px rgba(26,16,37,0.04), 0 10px 26px -16px rgba(116,0,184,0.30);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --v2: #a78bfa; --v3: #5e60ce;
+      --bg: #0d0b14; --bg-surface: #13101e; --bg-card: #1a1628;
+      --text: #ede9ff; --text-muted: #9b94b8; --text-dim: #4a4460;
+      --border: rgba(116,0,184,0.20); --border-strong: rgba(94,96,206,0.35);
+      --grid: rgba(94,96,206,0.10); --axis: rgba(94,96,206,0.35);
+      --canvas-bg: #100d1a;
+      --zone-one: rgba(94,96,206,0.18); --zone-zero: rgba(220,38,38,0.10);
+    }
+  }
+  [data-theme="dark"] {
+    --v2: #a78bfa; --v3: #5e60ce;
+    --bg: #0d0b14; --bg-surface: #13101e; --bg-card: #1a1628;
+    --text: #ede9ff; --text-muted: #9b94b8; --text-dim: #4a4460;
+    --border: rgba(116,0,184,0.20); --border-strong: rgba(94,96,206,0.35);
+    --grid: rgba(94,96,206,0.10); --axis: rgba(94,96,206,0.35);
+    --canvas-bg: #100d1a;
+    --zone-one: rgba(94,96,206,0.18); --zone-zero: rgba(220,38,38,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px; line-height: 1.75; padding: 1.5rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  .widget {
+    background: var(--bg-card); border: 1px solid var(--border-strong);
+    border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-md);
+    max-width: 480px; margin: 0 auto;
+  }
+  .widget-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--v2); margin-bottom: 1rem;
+  }
+  canvas { display: block; width: 100%; max-width: 360px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--border); }
+  .func-tabs { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  .func-tab {
+    flex: 1; padding: 0.5rem; border-radius: 6px;
+    border: 1px solid var(--border-strong); background: var(--bg-surface);
+    color: var(--text-muted); font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.12s;
+  }
+  .func-tab:hover { opacity: 0.85; }
+  .func-tab.active { background: linear-gradient(90deg, var(--v1), var(--v3)); color: #fff; border-color: transparent; }
+  .slider-block { margin-top: 1rem; }
+  .slider-row { display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem; }
+  .slider-row label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px; color: var(--text-muted); white-space: nowrap; min-width: 96px;
+  }
+  input[type="range"] { flex: 1; accent-color: var(--v2); height: 4px; cursor: pointer; }
+  .verdict-row {
+    margin-top: 1rem; padding: 0.7rem 1rem; border-radius: 6px;
+    background: var(--bg-surface); border-left: 3px solid var(--v3);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px; text-align: center; font-weight: 600;
+    color: var(--text-muted);
+  }
+  .verdict-row.solved { border-left-color: var(--status-success); color: var(--status-success); }
+  .verdict-row.failed { border-left-color: var(--status-danger); color: var(--status-danger); }
+  .hint {
+    margin-top: 0.75rem; font-size: 12px; color: var(--text-dim);
+    text-align: center; line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="widget">
+  <div class="widget-label">Widget — Kann eine Linie das trennen?</div>
+  <canvas id="canvas" width="360" height="360"></canvas>
+
+  <div class="func-tabs">
+    <button class="func-tab active" data-func="AND">AND</button>
+    <button class="func-tab" data-func="OR">OR</button>
+    <button class="func-tab" data-func="XOR">XOR</button>
+  </div>
+
+  <div class="slider-block">
+    <div class="slider-row">
+      <label>Winkel</label>
+      <input type="range" id="angleSlider" min="0" max="360" step="1" value="45">
+    </div>
+    <div class="slider-row">
+      <label>Verschiebung</label>
+      <input type="range" id="offsetSlider" min="-1.5" max="1.5" step="0.02" value="0">
+    </div>
+  </div>
+
+  <div class="verdict-row" id="verdict">Drehe und verschiebe die Linie</div>
+  <div class="hint" id="hint">Bringe alle blauen Punkte (1) auf eine Seite und alle roten Punkte (0) auf die andere.</div>
+</div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height, PAD = 50;
+  const X_MIN = -0.5, X_MAX = 1.5, Y_MIN = -0.5, Y_MAX = 1.5;
+
+  // boolesche Funktionen: Ausgabe je Eckpunkt
+  const FUNCS = {
+    AND: { '0,0': 0, '0,1': 0, '1,0': 0, '1,1': 1 },
+    OR:  { '0,0': 0, '0,1': 1, '1,0': 1, '1,1': 1 },
+    XOR: { '0,0': 0, '0,1': 1, '1,0': 1, '1,1': 0 },
+  };
+  const CORNERS = [[0,0],[0,1],[1,0],[1,1]];
+
+  let currentFunc = 'AND';
+  let angleDeg = 45;
+  let offset = 0;
+
+  function getCSSVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function toCanvas(x, y) {
+    const cx = PAD + (x - X_MIN) / (X_MAX - X_MIN) * (W - 2 * PAD);
+    const cy = H - PAD - (y - Y_MIN) / (Y_MAX - Y_MIN) * (H - 2 * PAD);
+    return [cx, cy];
+  }
+
+  // Linie definiert durch Winkel und Verschiebung.
+  // Normalenvektor n = (cos, sin). Linie: n·(p - center) = offset, center = (0.5, 0.5)
+  function signedSide(x, y) {
+    const a = angleDeg * Math.PI / 180;
+    const nx = Math.cos(a), ny = Math.sin(a);
+    return nx * (x - 0.5) + ny * (y - 0.5) - offset;
+  }
+
+  function checkSeparation() {
+    // alle 1-Punkte sollen gleiches Vorzeichen haben, alle 0-Punkte das andere
+    const fn = FUNCS[currentFunc];
+    let onesSide = [], zerosSide = [];
+    CORNERS.forEach(([x,y]) => {
+      const out = fn[x+','+y];
+      const s = signedSide(x,y);
+      if (out === 1) onesSide.push(s); else zerosSide.push(s);
+    });
+    const allOnesPos = onesSide.every(s => s > 0);
+    const allOnesNeg = onesSide.every(s => s < 0);
+    const allZerosPos = zerosSide.every(s => s > 0);
+    const allZerosNeg = zerosSide.every(s => s < 0);
+    // getrennt, wenn 1-Punkte alle auf einer Seite und 0-Punkte alle auf der anderen
+    return (allOnesPos && allZerosNeg) || (allOnesNeg && allZerosPos);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const bg = getCSSVar('--canvas-bg') || '#f3f0fa';
+    const grid = getCSSVar('--grid') || 'rgba(116,0,184,0.07)';
+    const axis = getCSSVar('--axis') || 'rgba(116,0,184,0.25)';
+    const dim = getCSSVar('--text-dim') || '#9b94b8';
+    const zoneOne = getCSSVar('--zone-one') || 'rgba(94,96,206,0.12)';
+    const zoneZero = getCSSVar('--zone-zero') || 'rgba(220,38,38,0.06)';
+
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    // Farbflächen: welche Seite ist "1"? Bestimme über Mehrheit der 1-Punkte
+    // Wir färben die Seite wo signedSide>0 in zoneOne, sonst zoneZero, aber
+    // didaktisch sinnvoller: feste Färbung der beiden Halbebenen.
+    const a = angleDeg * Math.PI / 180;
+    const nx = Math.cos(a), ny = Math.sin(a);
+    // Zwei grosse Polygone links/rechts der Linie über das ganze Canvas
+    // Wir rastern grob: für jede Ecke des sichtbaren Bereichs Seite bestimmen.
+    // Einfacher: clippen via großem Rechteck und Linie.
+    ctx.save();
+    // Halbebene n·(p-c) > offset  -> Seite A
+    // Zeichne als Polygon entlang Canvas-Rand
+    const corners = [
+      [X_MIN, Y_MIN], [X_MAX, Y_MIN], [X_MAX, Y_MAX], [X_MIN, Y_MAX]
+    ];
+    function sideVal(x,y){ return nx*(x-0.5)+ny*(y-0.5)-offset; }
+    // Polygon für Seite > 0
+    let polyPos = [], polyNeg = [];
+    for (let i=0;i<4;i++){
+      const [x1,y1]=corners[i], [x2,y2]=corners[(i+1)%4];
+      const s1=sideVal(x1,y1), s2=sideVal(x2,y2);
+      if (s1>=0) polyPos.push([x1,y1]); else polyNeg.push([x1,y1]);
+      if ((s1>0)!==(s2>0)){
+        const t=s1/(s1-s2);
+        const ix=x1+t*(x2-x1), iy=y1+t*(y2-y1);
+        polyPos.push([ix,iy]); polyNeg.push([ix,iy]);
+      }
+    }
+    function fillPoly(poly,color){
+      if(poly.length<3) return;
+      ctx.fillStyle=color; ctx.beginPath();
+      poly.forEach((p,i)=>{const [cx,cy]=toCanvas(p[0],p[1]); if(i===0)ctx.moveTo(cx,cy);else ctx.lineTo(cx,cy);});
+      ctx.closePath(); ctx.fill();
+    }
+    fillPoly(polyPos, zoneOne);
+    fillPoly(polyNeg, zoneZero);
+    ctx.restore();
+
+    // Grid bei 0 und 1
+    ctx.strokeStyle = grid; ctx.lineWidth = 1;
+    [0,1].forEach(v=>{
+      let [gx1,gy1]=toCanvas(v,Y_MIN), [gx2,gy2]=toCanvas(v,Y_MAX);
+      ctx.beginPath(); ctx.moveTo(gx1,gy1); ctx.lineTo(gx2,gy2); ctx.stroke();
+      let [hx1,hy1]=toCanvas(X_MIN,v), [hx2,hy2]=toCanvas(X_MAX,v);
+      ctx.beginPath(); ctx.moveTo(hx1,hy1); ctx.lineTo(hx2,hy2); ctx.stroke();
+    });
+
+    // Achsen
+    ctx.strokeStyle = axis; ctx.lineWidth = 1.3;
+    let [ax1,ay1]=toCanvas(X_MIN,0), [ax2,ay2]=toCanvas(X_MAX,0);
+    ctx.beginPath(); ctx.moveTo(ax1,ay1); ctx.lineTo(ax2,ay2); ctx.stroke();
+    let [bx1,by1]=toCanvas(0,Y_MIN), [bx2,by2]=toCanvas(0,Y_MAX);
+    ctx.beginPath(); ctx.moveTo(bx1,by1); ctx.lineTo(bx2,by2); ctx.stroke();
+
+    ctx.fillStyle = dim; ctx.font='10px JetBrains Mono, monospace'; ctx.textAlign='center';
+    [0,1].forEach(v=>{ const [cx]=toCanvas(v,0); ctx.fillText(v, cx, H-PAD+18); });
+    [0,1].forEach(v=>{ const [,cy]=toCanvas(0,v); ctx.textAlign='right'; ctx.fillText(v, PAD-8, cy+3); });
+
+    // Trennlinie zeichnen (Richtung senkrecht zur Normalen)
+    const dirx = -ny, diry = nx; // Richtungsvektor der Linie
+    // Linienpunkt: center + offset*normal
+    const lpx = 0.5 + offset*nx, lpy = 0.5 + offset*ny;
+    const L = 4;
+    let p1 = [lpx - dirx*L, lpy - diry*L];
+    let p2 = [lpx + dirx*L, lpy + diry*L];
+    let [c1x,c1y]=toCanvas(p1[0],p1[1]), [c2x,c2y]=toCanvas(p2[0],p2[1]);
+    const gradL = ctx.createLinearGradient(c1x,c1y,c2x,c2y);
+    gradL.addColorStop(0,'#7400b8'); gradL.addColorStop(1,'#56cfe1');
+    ctx.strokeStyle = gradL; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(c1x,c1y); ctx.lineTo(c2x,c2y); ctx.stroke();
+
+    // Punkte
+    const fn = FUNCS[currentFunc];
+    CORNERS.forEach(([x,y])=>{
+      const out = fn[x+','+y];
+      const [px,py]=toCanvas(x,y);
+      ctx.beginPath(); ctx.arc(px,py,11,0,Math.PI*2);
+      ctx.fillStyle = out===1 ? '#5e60ce' : '#dc2626';
+      ctx.fill();
+      ctx.strokeStyle = bg; ctx.lineWidth=2.5; ctx.stroke();
+      ctx.fillStyle='#fff'; ctx.font='600 12px JetBrains Mono, monospace';
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(out, px, py);
+      ctx.textBaseline='alphabetic';
+    });
+  }
+
+  function update() {
+    draw();
+    const solved = checkSeparation();
+    const v = document.getElementById('verdict');
+    if (solved) {
+      v.textContent = '✓ Getrennt! Die Linie trennt 1 von 0 sauber.';
+      v.className = 'verdict-row solved';
+    } else {
+      v.textContent = '✗ Noch nicht getrennt';
+      v.className = 'verdict-row failed';
+    }
+    const hint = document.getElementById('hint');
+    if (currentFunc === 'XOR') {
+      hint.textContent = 'Tipp: Probier so lange du willst. Bei XOR liegen die blauen Punkte über Kreuz, eine Gerade schafft es nie.';
+    } else {
+      hint.textContent = 'Bringe alle blauen Punkte (1) auf eine Seite und alle roten Punkte (0) auf die andere.';
+    }
+  }
+
+  document.querySelectorAll('.func-tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      currentFunc = tab.dataset.func;
+      document.querySelectorAll('.func-tab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      update();
+    });
+  });
+  document.getElementById('angleSlider').addEventListener('input', e=>{ angleDeg=parseFloat(e.target.value); update(); });
+  document.getElementById('offsetSlider').addEventListener('input', e=>{ offset=parseFloat(e.target.value); update(); });
+
+  const observer = new MutationObserver(draw);
+  observer.observe(document.documentElement, { attributes:true, attributeFilter:['data-theme','class'] });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+
+  update();
+</script>
+</body>
+</html>
