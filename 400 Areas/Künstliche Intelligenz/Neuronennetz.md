@@ -41,11 +41,11 @@ Das Besondere: Jedes der zwei Neuronen bekommt beide Eingänge. Damit braucht je
 
 Wir nehmen diese Werte:
 
-```
-Eingänge:              1.0  und  0.5
-Gewichte zu Neuron 1:  0.9  und  0.3
-Gewichte zu Neuron 2:  0.2  und  0.8
-```
+
+$\text{Eingänge: }              1.0  \text{ und }  0.5$
+$\text{Gewichte zu Neuron 1: }  0.9  \text{ und } 0.3$
+$\text{Gewichte zu Neuron 2: } 0.2  \text{ und } 0.8$
+
 
 Beide Neuronen sehen also dieselben Eingaben `1.0` und `0.5`, aber sie haben verschiedene Gewichte.
 
