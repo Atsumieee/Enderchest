@@ -34,7 +34,10 @@ Stell dir vor, du hast nur diese zwei Insekten gemessen. Die trainierte Linie tr
 
 Je mehr Insekten du misst und einträgst, desto weniger Spielraum hat die Linie. Mit zwanzig Marienkäfern und zwanzig Raupen gibt es nur noch wenige Linien die alle korrekt trennen. Die Linie wird in die Lage gezwungen die tatsächlich zwischen den beiden Gruppen liegt.
 
-![Zwei Koordinatensysteme nebeneinander: links wenige Punkte mit einer unsicher liegenden Trennlinie, rechts viele Punkte mit einer stabil zwischen den Gruppen liegenden Trennlinie](https://claude.ai/chat/files/PLATZHALTER_wenig_vs_viel_daten.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
+>Zwei Koordinatensysteme nebeneinander: links wenige Punkte mit einer unsicher liegenden Trennlinie, rechts viele Punkte mit einer stabil zwischen den Gruppen liegenden Trennlinie
+
+![[Unbenannt.png]]
+>*Created with matplotlib*
 
 Mehr Daten bedeuten also nicht nur mehr Arbeit, sondern eine zuverlässigere Trennung. Das ist einer der Gründe warum moderne KI-Systeme mit riesigen Datenmengen trainiert werden.
 
