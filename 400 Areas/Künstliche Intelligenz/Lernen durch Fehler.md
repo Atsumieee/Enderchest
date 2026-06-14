@@ -86,6 +86,7 @@ width=wide
 > Im Widget pendelt die Steigung: Der Marienkäfer zieht die Linie flacher, die Raupe zieht sie wieder steiler. Eine einzelne Linie durch den Ursprung kann diese beiden Punkte nicht beide perfekt treffen. Das ist kein Fehler, sondern eine ehrliche Eigenschaft des Verfahrens. Die Linie pendelt sich auf einen Kompromiss ein der beide Gruppen so gut wie möglich trennt. Wann eine einzelne Linie grundsätzlich nicht mehr reicht, ist das Thema von [[Boolesche Funktionen|Lineare Trennbarkeit]].
 
 >Koordinatensystem mit alter flacher Trennlinie und neuer steilerer Trennlinie durchgezogen, Marienkäfer-Punkt liegt über der alten Linie
+
 ![[KI_Linien_vergleich.png]]
 > *Created with matplotlib*
 ## Schritt für Schritt statt auf einmal
