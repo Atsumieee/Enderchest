@@ -100,7 +100,7 @@ Dieses schrittweise Vorgehen ist der Kern des Trainings. Die Lernrate steuert da
 > [!info] 
 > Epoche (Epoch) Eine Epoche ist ein vollständiger Durchlauf durch alle Trainingspunkte. Nach jeder Epoche hat der Computer jeden Punkt einmal gesehen und `A` entsprechend angepasst. Mehrere Epochen hintereinander verfeinern die Linie. Wie viele Epochen nötig sind, hängt vom Problem ab.
 
-Was passiert wenn die Lernrate zu gross oder zu klein gewählt wird, kommt in [[B5 - Die Lernrate]]. Warum mehr Trainingspunkte eine zuverlässigere Linie ergeben, kommt in [[B4 - Mehr Daten, mehr Sicherheit]].
+Was passiert wenn die Lernrate zu gross oder zu klein gewählt wird, kommt in [[Lernrate|Die Lernrate]]. Warum mehr Trainingspunkte eine zuverlässigere Linie ergeben, kommt in [[Trainingsdaten|Mehr Daten, mehr Sicherheit]].
 
 ---
 

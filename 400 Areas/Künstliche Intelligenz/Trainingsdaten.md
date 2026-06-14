@@ -58,7 +58,7 @@ Bei der einfachen Trennlinie aus dem Insekten-Beispiel ist Overfitting kaum mög
 
 Mit genug Daten findet die Linie eine gute Lage. Aber wie schnell sie das tut, hängt von der Lernrate ab, die wir in [[Lernen durch Fehler]] eingeführt haben.
 
-Was passiert wenn die Lernrate zu klein oder zu gross gewählt wird, ist das Thema von [[B5 - Die Lernrate]].
+Was passiert wenn die Lernrate zu klein oder zu gross gewählt wird, ist das Thema von [[Lernrate|Die Lernrate]].
 
 ---
 
@@ -70,5 +70,5 @@ Was passiert wenn die Lernrate zu klein oder zu gross gewählt wird, ist das The
 | Thema                                    | Verbindung                                        |
 | ---------------------------------------- | ------------------------------------------------- |
 | [[Lernen durch Fehler]]                  | Wie die Linie an einzelnen Punkten trainiert wird |
-| [[B5 - Die Lernrate]]                    | Wie schnell die Linie ihre Lage findet            |
+| [[Lernrate\|Die Lernrate]]               | Wie schnell die Linie ihre Lage findet            |
 | [[F3 - Overfitting und Generalisierung]] | Overfitting bei komplexen Modellen                |
