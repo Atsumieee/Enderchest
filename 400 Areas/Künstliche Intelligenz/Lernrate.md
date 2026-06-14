@@ -48,8 +48,8 @@ Diese Balance ist das Ziel: schnell genug um effizient zu sein, klein genug um s
 
 ## Zu gross: Überschiessen und Pendeln
 
-> [!warning] 
-> Viel hilft nicht viel Eine möglichst grosse Lernrate klingt verlockend, weil das Training schneller gehen sollte. Das Gegenteil ist der Fall. Bei einer zu grossen Lernrate, etwa 2.0, überspringt die Linie die richtige Lage bei jedem Schritt. Sie schiesst über das Ziel hinaus, korrigiert in die andere Richtung, schiesst wieder hinaus. Die Steigung pendelt immer stärker und das Training wird unbrauchbar.
+> [!warning] Viel hilft nicht viel  
+> Eine möglichst grosse Lernrate klingt verlockend, weil das Training schneller gehen sollte. Das Gegenteil ist der Fall. Bei einer zu grossen Lernrate, etwa 2.0, überspringt die Linie die richtige Lage bei jedem Schritt. Sie schiesst über das Ziel hinaus, korrigiert in die andere Richtung, schiesst wieder hinaus. Die Steigung pendelt immer stärker und das Training wird unbrauchbar.
 
 Ein zu grosser Schritt macht das Training also nicht schneller, sondern kaputt.
 
@@ -63,8 +63,8 @@ width=wide
 
 ## Es gibt keine universell beste Lernrate
 
-> [!tip] 
-> Lernrate finden Die richtige Lernrate hängt vom Problem ab. In der Praxis probiert man verschiedene Werte aus und beobachtet wie sich der Fehler über die Schritte entwickelt. Sinkt der Fehler stetig, passt die Lernrate. Sinkt er zu langsam, ist sie zu klein. Springt er wild, ist sie zu gross. Ein üblicher Startwert liegt zwischen 0.01 und 0.1.
+> [!tip] Lernrate finden 
+> Die richtige Lernrate hängt vom Problem ab. In der Praxis probiert man verschiedene Werte aus und beobachtet wie sich der Fehler über die Schritte entwickelt. Sinkt der Fehler stetig, passt die Lernrate. Sinkt er zu langsam, ist sie zu klein. Springt er wild, ist sie zu gross. Ein üblicher Startwert liegt zwischen 0.01 und 0.1.
 
 Stell dir vor du suchst den tiefsten Punkt in einem Tal, mit verbundenen Augen. Kleine Schritte bringen dich sicher ans Ziel, aber langsam. Riesige Sprünge katapultieren dich über das Tal hinweg auf die andere Seite, ohne den tiefsten Punkt je zu treffen. Die Lernrate ist die Schrittgrösse bei dieser Suche.
 
@@ -72,8 +72,8 @@ Dieses Bild der Suche nach dem tiefsten Punkt kommt später wieder, bei [[E4 - G
 
 ---
 
-> [!summary] 
-> Das Wichtigste Die Lernrate bestimmt die Schrittgrösse beim Training. Zu klein bedeutet sehr langsames Lernen. Zu gross bedeutet Überschiessen und Pendeln, das Training wird unbrauchbar. Eine passende Lernrate nähert sich zügig und stabil an. Die richtige Wahl hängt vom Problem ab und wird in der Praxis ausprobiert.
+> [!summary] Das Wichtigste
+> Die Lernrate bestimmt die Schrittgrösse beim Training. Zu klein bedeutet sehr langsames Lernen. Zu gross bedeutet Überschiessen und Pendeln, das Training wird unbrauchbar. Eine passende Lernrate nähert sich zügig und stabil an. Die richtige Wahl hängt vom Problem ab und wird in der Praxis ausprobiert.
 
 ## Verbindungen zu anderen Themen
 
