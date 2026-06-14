@@ -58,20 +58,19 @@ Genau dafür gibt es die Lernrate.
 
 Die Update-Regel lautet:
 
-
-$$\text{neue Steigung} = \text{alte Steigung} + \textLernrate * (Lücke / Breite)$$
-
+$$\text{neue Steigung} = \text{alte Steigung} + \text{Lernrate} * \text{(Lücke / Breite)}$$
 
 Die Lücke wird durch die Breite geteilt, weil die Lücke in y-Richtung gemessen wird, die Steigung sich aber auf das Verhältnis von y zu x bezieht. Geteilt durch die Breite wird aus der y-Lücke eine Steigungs-Korrektur.
 
 > [!example] 
-> >Ein konkreter Schritt Gegeben: alte Steigung `A = 0.25`, Lücke `0.35`, Breite `x = 3`, Lernrate `0.5`.
+> >Ein konkreter Schritt Gegeben: alte Steigung $A = 0.25$, Lücke $0.35$, Breite $x = 3$, Lernrate 
+> $0.5$.
 > 
-> Korrektur: `0.35 / 3 = 0.1167`
+> Korrektur: $0.35 / 3 = 0.1167$
 > 
-> Mit Lernrate: `0.5 * 0.1167 = 0.0583`
+> Mit Lernrate: $0.5 * 0.1167 = 0.0583$
 > 
-> Neue Steigung: `0.25 + 0.0583 = 0.3083`
+> Neue Steigung: $0.25 + 0.0583 = 0.3083$
 > 
 > Die Linie wird also nicht sofort auf die perfekte Steigung 0.367 gesetzt, sondern rückt nur ein Stück näher: von 0.25 auf 0.3083.
 
@@ -83,8 +82,8 @@ scale=1.2
 width=wide
 ```
 
-> [!note] 
-> Warum wird die Linie nicht perfekt? Im Widget pendelt die Steigung: Der Marienkäfer zieht die Linie flacher, die Raupe zieht sie wieder steiler. Eine einzelne Linie durch den Ursprung kann diese beiden Punkte nicht beide perfekt treffen. Das ist kein Fehler, sondern eine ehrliche Eigenschaft des Verfahrens. Die Linie pendelt sich auf einen Kompromiss ein der beide Gruppen so gut wie möglich trennt. Wann eine einzelne Linie grundsätzlich nicht mehr reicht, ist das Thema von [[C2 - Lineare Trennbarkeit]].
+> [!note] Warum wird die Linie nicht perfekt? 
+> Im Widget pendelt die Steigung: Der Marienkäfer zieht die Linie flacher, die Raupe zieht sie wieder steiler. Eine einzelne Linie durch den Ursprung kann diese beiden Punkte nicht beide perfekt treffen. Das ist kein Fehler, sondern eine ehrliche Eigenschaft des Verfahrens. Die Linie pendelt sich auf einen Kompromiss ein der beide Gruppen so gut wie möglich trennt. Wann eine einzelne Linie grundsätzlich nicht mehr reicht, ist das Thema von [[Boolesche Funktionen|Lineare Trennbarkeit]].
 
 ![Koordinatensystem mit alter flacher Trennlinie gestrichelt und neuer steilerer Trennlinie durchgezogen, Marienkäfer-Punkt liegt über der alten Linie](https://claude.ai/chat/files/PLATZHALTER_update_schritt.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
 
