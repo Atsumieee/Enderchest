@@ -39,9 +39,9 @@ Schau dir an wann XOR den Wert 1 hat: bei (0,1) und (1,0), also wenn genau einer
 
 XOR ist also: "mindestens einer an" UND "nicht beide an". In Kurzform:
 
-```
-XOR = OR und (nicht AND)
-```
+
+$XOR = OR \\text{{}}und (nicht AND)$
+
 
 Jede dieser beiden Teilbedingungen ist für sich linear trennbar, wie wir in [[Boolesche Funktionen|Boolesche Funktionen und lineare Trennbarkeit]] gesehen haben. Für jede gibt es also eine Linie.
 

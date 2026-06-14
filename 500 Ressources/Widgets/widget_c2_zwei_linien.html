@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zwei Linien lösen XOR — Interaktiv</title>
+<style>
+  :root {
+    --v1: #7400b8; --v2: #6930c3; --v3: #5e60ce; --c1: #56cfe1;
+    --bg: #fafaf9; --bg-surface: #f3f0fa; --bg-card: #ffffff;
+    --text: #1a1025; --text-muted: #4a3d6b; --text-dim: #9b94b8;
+    --border: rgba(116,0,184,0.10); --border-strong: rgba(116,0,184,0.20);
+    --grid: rgba(116,0,184,0.07); --axis: rgba(116,0,184,0.25);
+    --canvas-bg: #f3f0fa;
+    --zone-strip: rgba(94,96,206,0.15);
+    --status-success: #36a35a; --status-danger: #dc2626;
+    --shadow-md: 0 1px 2px rgba(26,16,37,0.04), 0 10px 26px -16px rgba(116,0,184,0.30);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --v2: #a78bfa; --v3: #5e60ce;
+      --bg: #0d0b14; --bg-surface: #13101e; --bg-card: #1a1628;
+      --text: #ede9ff; --text-muted: #9b94b8; --text-dim: #4a4460;
+      --border: rgba(116,0,184,0.20); --border-strong: rgba(94,96,206,0.35);
+      --grid: rgba(94,96,206,0.10); --axis: rgba(94,96,206,0.35);
+      --canvas-bg: #100d1a; --zone-strip: rgba(94,96,206,0.22);
+    }
+  }
+  [data-theme="dark"] {
+    --v2: #a78bfa; --v3: #5e60ce;
+    --bg: #0d0b14; --bg-surface: #13101e; --bg-card: #1a1628;
+    --text: #ede9ff; --text-muted: #9b94b8; --text-dim: #4a4460;
+    --border: rgba(116,0,184,0.20); --border-strong: rgba(94,96,206,0.35);
+    --grid: rgba(94,96,206,0.10); --axis: rgba(94,96,206,0.35);
+    --canvas-bg: #100d1a; --zone-strip: rgba(94,96,206,0.22);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px; line-height: 1.75; padding: 1.5rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  .widget {
+    background: var(--bg-card); border: 1px solid var(--border-strong);
+    border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-md);
+    max-width: 480px; margin: 0 auto;
+  }
+  .widget-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--v2); margin-bottom: 1rem;
+  }
+  canvas { display: block; width: 100%; max-width: 360px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--border); }
+  .slider-block { margin-top: 1rem; }
+  .slider-row { display: flex; align-items: center; gap: 1rem; margin-top: 0.6rem; }
+  .slider-row label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px; white-space: nowrap; min-width: 150px;
+  }
+  .lbl-or { color: var(--status-success); }
+  .lbl-and { color: var(--status-danger); }
+  input[type="range"] { flex: 1; accent-color: var(--v2); height: 4px; cursor: pointer; }
+  .val { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 600; color: var(--v2); min-width: 34px; text-align: right; }
+  .verdict-row {
+    margin-top: 1rem; padding: 0.7rem 1rem; border-radius: 6px;
+    background: var(--bg-surface); border-left: 3px solid var(--v3);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px; text-align: center; font-weight: 600; color: var(--text-muted);
+  }
+  .verdict-row.solved { border-left-color: var(--status-success); color: var(--status-success); }
+  .verdict-row.failed { border-left-color: var(--status-danger); color: var(--status-danger); }
+  .btn-reset {
+    margin-top: 0.75rem; width: 100%; padding: 0.5rem; border-radius: 6px;
+    border: 1px solid var(--border-strong); background: var(--bg-surface);
+    color: var(--text-muted); font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .btn-reset:hover { opacity: 0.85; }
+  .hint { margin-top: 0.75rem; font-size: 12px; color: var(--text-dim); text-align: center; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="widget">
+  <div class="widget-label">Widget — Zwei Linien schliessen XOR ein</div>
+  <canvas id="canvas" width="360" height="360"></canvas>
+
+  <div class="slider-block">
+    <div class="slider-row">
+      <label class="lbl-or">Linie 1 (OR): x+y ≥</label>
+      <input type="range" id="orSlider" min="0" max="2" step="0.05" value="0.5">
+      <span class="val" id="orVal">0.50</span>
+    </div>
+    <div class="slider-row">
+      <label class="lbl-and">Linie 2 (AND): x+y ≥</label>
+      <input type="range" id="andSlider" min="0" max="2" step="0.05" value="1.5">
+      <span class="val" id="andVal">1.50</span>
+    </div>
+  </div>
+
+  <div class="verdict-row" id="verdict">Stelle die Linien so ein dass nur die 1-Punkte im Streifen liegen</div>
+  <button class="btn-reset" id="btnReset">Auf Lösung zurücksetzen (0.5 / 1.5)</button>
+  <div class="hint">Der Streifen zwischen den Linien ist der XOR-Bereich: mindestens einer an (über Linie 1), aber nicht beide (unter Linie 2).</div>
+</div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height, PAD = 50;
+  const X_MIN = -0.5, X_MAX = 1.5, Y_MIN = -0.5, Y_MAX = 1.5;
+
+  const CORNERS = [[0,0],[0,1],[1,0],[1,1]];
+  const XOR = { '0,0':0, '0,1':1, '1,0':1, '1,1':0 };
+
+  let orThresh = 0.5;   // x+y >= orThresh  -> OR erfüllt
+  let andThresh = 1.5;  // x+y >= andThresh -> AND erfüllt
+
+  function getCSSVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function toCanvas(x, y) {
+    const cx = PAD + (x - X_MIN) / (X_MAX - X_MIN) * (W - 2 * PAD);
+    const cy = H - PAD - (y - Y_MIN) / (Y_MAX - Y_MIN) * (H - 2 * PAD);
+    return [cx, cy];
+  }
+
+  // Punkt ist "im Streifen" wenn OR erfüllt und AND nicht erfüllt
+  function inStrip(x, y) {
+    const s = x + y;
+    return s >= orThresh && s < andThresh;
+  }
+
+  function checkSolved() {
+    return CORNERS.every(([x,y]) => (inStrip(x,y) ? 1 : 0) === XOR[x+','+y]);
+  }
+
+  // Linie x+y = c  ->  y = c - x. Zeichnen über sichtbaren Bereich.
+  function drawThreshLine(c, color, dash) {
+    // Schnittpunkte mit dem sichtbaren Rechteck
+    let pts = [];
+    // y = c - x
+    for (const x of [X_MIN, X_MAX]) {
+      const y = c - x;
+      if (y >= Y_MIN - 0.001 && y <= Y_MAX + 0.001) pts.push([x, y]);
+    }
+    for (const y of [Y_MIN, Y_MAX]) {
+      const x = c - y;
+      if (x >= X_MIN - 0.001 && x <= X_MAX + 0.001) pts.push([x, y]);
+    }
+    if (pts.length < 2) return;
+    const [p1, p2] = pts;
+    const [c1x, c1y] = toCanvas(p1[0], p1[1]);
+    const [c2x, c2y] = toCanvas(p2[0], p2[1]);
+    ctx.strokeStyle = color; ctx.lineWidth = 2.5;
+    if (dash) ctx.setLineDash([6,4]); else ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(c1x, c1y); ctx.lineTo(c2x, c2y); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const bg = getCSSVar('--canvas-bg') || '#f3f0fa';
+    const grid = getCSSVar('--grid') || 'rgba(116,0,184,0.07)';
+    const axis = getCSSVar('--axis') || 'rgba(116,0,184,0.25)';
+    const dim = getCSSVar('--text-dim') || '#9b94b8';
+    const stripColor = getCSSVar('--zone-strip') || 'rgba(94,96,206,0.15)';
+
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    // Streifen einfärben: Bereich wo lo <= x+y <= hi.
+    // Sauber via Polygon-Clipping (Sutherland-Hodgman) des sichtbaren
+    // Rechtecks gegen die zwei Halbebenen x+y>=lo und x+y<=hi.
+    ctx.fillStyle = stripColor;
+    const lo = Math.min(orThresh, andThresh);
+    const hi = Math.max(orThresh, andThresh);
+
+    // Startpolygon = sichtbares Rechteck (im Uhrzeigersinn konsistent)
+    let poly = [[X_MIN,Y_MIN],[X_MAX,Y_MIN],[X_MAX,Y_MAX],[X_MIN,Y_MAX]];
+
+    // Clip gegen eine Halbebene definiert durch f(p) >= 0 (keep wenn >=0)
+    function clipHalfplane(polygon, fval){
+      const out=[];
+      const n=polygon.length;
+      for(let i=0;i<n;i++){
+        const cur=polygon[i], nxt=polygon[(i+1)%n];
+        const fc=fval(cur), fn=fval(nxt);
+        const curIn = fc>=0, nxtIn = fn>=0;
+        if(curIn) out.push(cur);
+        if(curIn!==nxtIn){
+          const t=fc/(fc-fn);
+          out.push([cur[0]+t*(nxt[0]-cur[0]), cur[1]+t*(nxt[1]-cur[1])]);
+        }
+      }
+      return out;
+    }
+
+    // Halbebene 1: x+y >= lo  ->  f = (x+y) - lo
+    poly = clipHalfplane(poly, p => (p[0]+p[1]) - lo);
+    // Halbebene 2: x+y <= hi  ->  f = hi - (x+y)
+    poly = clipHalfplane(poly, p => hi - (p[0]+p[1]));
+
+    if(poly.length>=3){
+      ctx.beginPath();
+      poly.forEach((p,i)=>{ const [cx,cy]=toCanvas(p[0],p[1]); if(i===0)ctx.moveTo(cx,cy);else ctx.lineTo(cx,cy); });
+      ctx.closePath(); ctx.fill();
+    }
+
+    // Grid bei 0 und 1
+    ctx.strokeStyle = grid; ctx.lineWidth = 1;
+    [0,1].forEach(v=>{
+      let [gx1,gy1]=toCanvas(v,Y_MIN), [gx2,gy2]=toCanvas(v,Y_MAX);
+      ctx.beginPath(); ctx.moveTo(gx1,gy1); ctx.lineTo(gx2,gy2); ctx.stroke();
+      let [hx1,hy1]=toCanvas(X_MIN,v), [hx2,hy2]=toCanvas(X_MAX,v);
+      ctx.beginPath(); ctx.moveTo(hx1,hy1); ctx.lineTo(hx2,hy2); ctx.stroke();
+    });
+
+    // Achsen
+    ctx.strokeStyle = axis; ctx.lineWidth = 1.3;
+    let [ax1,ay1]=toCanvas(X_MIN,0), [ax2,ay2]=toCanvas(X_MAX,0);
+    ctx.beginPath(); ctx.moveTo(ax1,ay1); ctx.lineTo(ax2,ay2); ctx.stroke();
+    let [bx1,by1]=toCanvas(0,Y_MIN), [bx2,by2]=toCanvas(0,Y_MAX);
+    ctx.beginPath(); ctx.moveTo(bx1,by1); ctx.lineTo(bx2,by2); ctx.stroke();
+
+    ctx.fillStyle = dim; ctx.font='10px JetBrains Mono, monospace'; ctx.textAlign='center';
+    [0,1].forEach(v=>{ const [cx]=toCanvas(v,0); ctx.fillText(v, cx, H-PAD+18); });
+    [0,1].forEach(v=>{ const [,cy]=toCanvas(0,v); ctx.textAlign='right'; ctx.fillText(v, PAD-8, cy+3); });
+
+    // die zwei Linien
+    drawThreshLine(orThresh, '#36a35a', false);   // OR grün
+    drawThreshLine(andThresh, '#dc2626', false);   // AND rot
+
+    // Punkte
+    CORNERS.forEach(([x,y])=>{
+      const out = XOR[x+','+y];
+      const [px,py]=toCanvas(x,y);
+      ctx.beginPath(); ctx.arc(px,py,11,0,Math.PI*2);
+      ctx.fillStyle = out===1 ? '#5e60ce' : '#dc2626';
+      ctx.fill();
+      ctx.strokeStyle = bg; ctx.lineWidth=2.5; ctx.stroke();
+      ctx.fillStyle='#fff'; ctx.font='600 12px JetBrains Mono, monospace';
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(out, px, py);
+      ctx.textBaseline='alphabetic';
+    });
+  }
+
+  function update() {
+    draw();
+    const solved = checkSolved();
+    const v = document.getElementById('verdict');
+    if (solved) {
+      v.textContent = '✓ Gelöst! Nur die beiden 1-Punkte liegen im Streifen.';
+      v.className = 'verdict-row solved';
+    } else {
+      v.textContent = '✗ Noch nicht: nicht genau die 1-Punkte im Streifen';
+      v.className = 'verdict-row failed';
+    }
+  }
+
+  document.getElementById('orSlider').addEventListener('input', e=>{
+    orThresh = parseFloat(e.target.value);
+    document.getElementById('orVal').textContent = orThresh.toFixed(2);
+    update();
+  });
+  document.getElementById('andSlider').addEventListener('input', e=>{
+    andThresh = parseFloat(e.target.value);
+    document.getElementById('andVal').textContent = andThresh.toFixed(2);
+    update();
+  });
+  document.getElementById('btnReset').addEventListener('click', ()=>{
+    orThresh = 0.5; andThresh = 1.5;
+    document.getElementById('orSlider').value = 0.5;
+    document.getElementById('andSlider').value = 1.5;
+    document.getElementById('orVal').textContent = '0.50';
+    document.getElementById('andVal').textContent = '1.50';
+    update();
+  });
+
+  const observer = new MutationObserver(draw);
+  observer.observe(document.documentElement, { attributes:true, attributeFilter:['data-theme','class'] });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+
+  update();
+</script>
+</body>
+</html>
