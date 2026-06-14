@@ -66,6 +66,14 @@ Warum multipliziert mit `x`? Weil `x` bestimmt wie stark eine Änderung von `A` 
 > 
 > Das neue Gewicht `A = 2.0` ergibt eine steilere Linie. Der Marienkäfer-Punkt landet jetzt auf der richtigen Seite.
 
+Klicke "Update-Schritt" und beobachte wie sich A und die Trennlinie nach jedem Punkt verändern:
+
+```widget
+widget_b3_update_regel
+scale=1.0
+width=wide
+```
+
 ![Koordinatensystem mit alter Trennlinie gestrichelt und neuer Trennlinie durchgezogen, Marienkäfer-Punkt liegt nach dem Update auf der richtigen Seite](https://claude.ai/chat/files/PLATZHALTER_update_schritt.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
 
 ## Warum proportional?
