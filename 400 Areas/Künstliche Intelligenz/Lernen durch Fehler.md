@@ -109,9 +109,9 @@ Was passiert wenn die Lernrate zu gross oder zu klein gewählt wird, kommt in [[
 
 ## Verbindungen zu anderen Themen
 
-| Thema                                        | Verbindung                                            |
-| -------------------------------------------- | ----------------------------------------------------- |
-| [[Trennlinie\|Die Trennlinie als Gleichung]] | Die Formel hinter der Lücke                           |
-| [[B4 - Mehr Daten, mehr Sicherheit]]         | Warum mehr Trainingspunkte eine bessere Linie ergeben |
-| [[B5 - Die Lernrate]]                        | Was passiert wenn die Lernrate falsch gewählt wird    |
-| [[E4 - Gradient Descent]]                    | Die allgemeine Form der Update-Regel in tiefen Netzen |
+| Thema                                           | Verbindung                                            |
+| ----------------------------------------------- | ----------------------------------------------------- |
+| [[Trennlinie\|Die Trennlinie als Gleichung]]    | Die Formel hinter der Lücke                           |
+| [[Trainingsdaten\|Mehr Daten, mehr Sicherheit]] | Warum mehr Trainingspunkte eine bessere Linie ergeben |
+| [[Lernrate\|Die Lernrate]]                      | Was passiert wenn die Lernrate falsch gewählt wird    |
+| [[E4 - Gradient Descent]]                       | Die allgemeine Form der Update-Regel in tiefen Netzen |
