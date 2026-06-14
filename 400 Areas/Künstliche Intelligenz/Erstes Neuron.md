@@ -73,17 +73,16 @@ Diese Zahl, die gewichtete Summe, fasst alle Eingaben zu einem einzigen Wert zus
 
 Allgemein, bei beliebig vielen Eingaben, lautet die Rechnung:
 
-
-$$\text{gewichtete Summe }= \text{Eingabe }1 * \text{Gewicht }1 + \text{Eingabe 2} * Gewicht2 + ...$$
-
-
+$$\text{gewichtete Summe }= \text{Eingabe }1 * \text{Gewicht }1 + \text{Eingabe 2} * \text{Gewicht }2 + \text{...}$$
 ## Was die Summe bedeutet
 
 Die gewichtete Summe ist noch nicht die Ausgabe des Neurons. Sie ist eine Zwischengrösse. Ein hoher Wert bedeutet, dass die wichtigen Eingaben stark aktiv waren. Ein niedriger Wert bedeutet das Gegenteil.
 
-Was das Neuron mit dieser Summe macht, also ob am Ende eine 0, eine 1 oder ein Zwischenwert herauskommt, entscheidet die Aktivierungsfunktion. Das ist das Thema von [[D2 - Aktivierungsfunktionen]].
+Was das Neuron mit dieser Summe macht, also ob am Ende eine 0, eine 1 oder ein Zwischenwert herauskommt, entscheidet die Aktivierungsfunktion. Das ist das Thema von [[Aktivierungsfunktionen]]
 
-![Diagramm eines Neurons mit zwei Eingängen 1.0 und 0.5, die über Gewichte 0.9 und 0.3 in eine gewichtete Summe von 1.05 fliessen](https://claude.ai/chat/files/PLATZHALTER_neuron_summe.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
+>Diagramm eines Neurons mit zwei Eingängen 1.0 und 0.5, die über Gewichte 0.9 und 0.3 in eine gewichtete Summe von 1.05 fliessen
+![[Pasted image 20260614171306.png]]
+>*Created with matplotlib*
 
 ---
 
