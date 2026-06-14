@@ -63,7 +63,7 @@ Die Funktion OR (oder) gibt 1 zurück, sobald mindestens eine Eingabe 1 ist.
 
 Jetzt ist es umgekehrt: Nur die Ecke unten links (0,0) ist 0, die anderen drei sind 1. Auch hier reicht eine Linie: Eine Diagonale die (0,0) abtrennt, lässt die drei 1-Punkte auf der anderen Seite. OR ist ebenfalls mit einer Linie trennbar.
 
-
+> Drei kleine Koordinatensysteme nebeneinander für AND, OR und XOR, jeweils mit vier Eckpunkten markiert als 0 oder 1 und einer versuchten Trennlinie
 ![[Pasted image 20260614165632.png]]
 ![[Pasted image 20260614165646.png]]
 ![[Pasted image 20260614165703.png]]
