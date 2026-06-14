@@ -34,15 +34,12 @@ Nimm einen Marienkäfer-Punkt mit Breite `x = 3` und Länge `y = 1.1`. Die aktue
 
 Wo liegt die Linie bei `x = 3`? Setze ein:
 
-```
-$text{Linie bei x = 3:  A * x = 0.25 * 3 = 0.75
-```
+$\text{Linie bei } x = 3\text{: }  A * x = 0.25 * 3 = 0.75$
 
 Der Punkt liegt bei `y = 1.1`, die Linie bei `0.75`. Die Lücke ist der Abstand dazwischen:
 
-```
-Lücke = y - A * x = 1.1 - 0.75 = 0.35
-```
+$\text{Lücke }= y - A * x = 1.1 - 0.75 = 0.35$
+
 
 Die Lücke sagt: Der Punkt liegt 0.35 über der Linie. Die Linie müsste also steiler werden um näher an den Punkt zu kommen.
 
@@ -56,14 +53,14 @@ Genau dafür gibt es die Lernrate.
 
 ## Die Update-Regel mit Lernrate
 
-> [!info] 
-> Lernrate (Learning Rate) Die Lernrate ist eine Zahl die festlegt wie gross ein einzelner Lernschritt ist. Sie sorgt dafür, dass der Computer den Fehler nicht auf einmal korrigiert, sondern in kleinen kontrollierten Schritten. Im Beispiel verwenden wir die Lernrate `0.5`.
+> [!info] Lernrate (Learning Rate) 
+> Die Lernrate ist eine Zahl die festlegt wie gross ein einzelner Lernschritt ist. Sie sorgt dafür, dass der Computer den Fehler nicht auf einmal korrigiert, sondern in kleinen kontrollierten Schritten. Im Beispiel verwenden wir die Lernrate `0.5`.
 
 Die Update-Regel lautet:
 
-```
-neue Steigung = alte Steigung + Lernrate * (Lücke / Breite)
-```
+
+$$\text{neue Steigung} = \text{alte Steigung} + \textLernrate * (Lücke / Breite)$$
+
 
 Die Lücke wird durch die Breite geteilt, weil die Lücke in y-Richtung gemessen wird, die Steigung sich aber auf das Verhältnis von y zu x bezieht. Geteilt durch die Breite wird aus der y-Lücke eine Steigungs-Korrektur.
 
