@@ -42,7 +42,7 @@ Der Neurologe Warren McCulloch und der Mathematiker Walter Pitts stellten sich 1
 
 Ihr Modell konnte nichts lernen. Es zeigte aber, dass sich Denkprozesse grundsätzlich in Mathematik übersetzen lassen und das war der entscheidende Schritt.
 
-![[mcculloch_pitt_neuron.webp|696]]
+![[Pasted image 20260614152309.png]]
 
 
 ## 1958: Das erste lernende Modell
