@@ -60,19 +60,18 @@ Ein Punkt liegt auf der Linie wenn $y = A * x$ gilt. Liegt er darüber, ist sein
 
 Das lässt sich als Entscheidungsregel schreiben:
 
-
 $y - A * x > 0$   → Raupe (Punkt liegt über der Linie)
 $y - A * x < 0$   → Marienkäfer (Punkt liegt unter der Linie)
 
 
 Bild anzeigen _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
 
-Du berechnest für jeden neuen Punkt den Wert `y - A * x`. Ist er grösser als 0, liegt der Punkt auf der Marienkäfer-Seite. Ist er kleiner als 0, auf der Raupen-Seite.
+Du berechnest für jeden neuen Punkt den Wert $y - A * x$. Ist er grösser als 0, liegt der Punkt auf der Marienkäfer-Seite. Ist er kleiner als 0, auf der Raupen-Seite.
 
 ## Gewicht
 
-> [!info] 
-> Gewicht (Weight) In der KI nennt man den Faktor `A` ein Gewicht. Ein Gewicht gibt an wie stark eine Eingabe die Entscheidung beeinflusst. Ein grosses Gewicht bedeutet: Diese Eingabe zählt viel. Ein kleines Gewicht bedeutet: Diese Eingabe spielt kaum eine Rolle. Der Begriff taucht in jedem neuronalen Netz wieder auf, in [[D1 - Eingaben, Gewichte, Summe]] lernst du wie mehrere Gewichte zusammenspielen.
+> [!info] Gewicht (Weight) 
+> In der KI nennt man den Faktor `A` ein Gewicht. Ein Gewicht gibt an wie stark eine Eingabe die Entscheidung beeinflusst. Ein grosses Gewicht bedeutet: Diese Eingabe zählt viel. Ein kleines Gewicht bedeutet: Diese Eingabe spielt kaum eine Rolle. Der Begriff taucht in jedem neuronalen Netz wieder auf, in [[Erstes Neuron|Eingaben, Gewichte, Summe]] lernst du wie mehrere Gewichte zusammenspielen.
 
 Im Insekten-Beispiel gibt es ein einziges Gewicht `A`. Es legt fest wie stark die Breite die Entscheidung beeinflusst.
 
@@ -86,13 +85,13 @@ Das ist das Thema von [[Lernen durch Fehler]].
 
 ---
 
-> [!summary] 
-> Das Wichtigste Die Trennlinie hat die Formel `y = A * x`. Der Faktor `A` heisst Steigung und bestimmt wie steil die Linie ist. Mit der Entscheidungsregel `y - A * x` prüft man auf welcher Seite der Linie ein Punkt liegt. `A` ist das erste Gewicht: Es legt fest wie stark die Breite die Klassifikation beeinflusst.
+> [!summary] Das Wichtigste 
+> Die Trennlinie hat die Formel $y = A * x$. Der Faktor `A` heisst Steigung und bestimmt wie steil die Linie ist. Mit der Entscheidungsregel $y - A * x$ prüft man auf welcher Seite der Linie ein Punkt liegt. `A` ist das erste Gewicht: Es legt fest wie stark die Breite die Klassifikation beeinflusst.
 
 ## Verbindungen zu anderen Themen
 
-| Thema                              | Verbindung                                 |
-| ---------------------------------- | ------------------------------------------ |
-| [[Klassifikation]]                 | Die Grundidee der Trennlinie ohne Formel   |
-| [[Lernen durch Fehler]]            | Wie der Computer selbst das beste A findet |
-| [[D1 - Eingaben, Gewichte, Summe]] | Gewichte in einem vollständigen Neuron     |
+| Thema                                        | Verbindung                                 |
+| -------------------------------------------- | ------------------------------------------ |
+| [[Klassifikation]]                           | Die Grundidee der Trennlinie ohne Formel   |
+| [[Lernen durch Fehler]]                      | Wie der Computer selbst das beste A findet |
+| [[Erstes Neuron\|Eingaben, Gewichte, Summe]] | Gewichte in einem vollständigen Neuron     |

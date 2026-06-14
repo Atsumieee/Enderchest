@@ -34,9 +34,9 @@ Nimm einen Marienkäfer-Punkt mit Breite `x = 3` und Länge `y = 1.1`. Die aktue
 
 Wo liegt die Linie bei `x = 3`? Setze ein:
 
-```
+
 Linie bei x = 3:  A * x = 0.25 * 3 = 0.75
-```
+
 
 Der Punkt liegt bei `y = 1.1`, die Linie bei `0.75`. Die Lücke ist der Abstand dazwischen:
 
