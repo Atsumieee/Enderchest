@@ -28,7 +28,7 @@ Nach diesem Artikel kannst du...
 
 In Block B haben wir eine Trennlinie trainiert. Diese Linie war bereits ein Neuron, nur in einfacher Form. Jetzt schauen wir uns den allgemeinen Aufbau an, mit mehreren Eingaben statt nur einer.
 
-Ein künstliches Neuron ist ein kleiner Rechner. Es sammelt Eingaben und macht daraus eine Entscheidung. Der Weg dahin hat drei Stufen: Eingaben, Gewichte, Summe. Die vierte Stufe, die eigentliche Entscheidung, kommt in [[D2 - Aktivierungsfunktionen]].
+Ein künstliches Neuron ist ein kleiner Rechner. Es sammelt Eingaben und macht daraus eine Entscheidung. Der Weg dahin hat drei Stufen: Eingaben, Gewichte, Summe. Die vierte Stufe, die eigentliche Entscheidung, kommt in [[Aktivierungsfunktionen]].
 
 ## Eingaben
 
@@ -36,10 +36,8 @@ Die Eingaben sind die Zahlen die in das Neuron hereinkommen. Bei den Insekten wa
 
 In unserem Beispiel hat das Neuron zwei Eingänge:
 
-
-Eingabe 1 = 1.0
-Eingabe 2 = 0.5
-```
+$\text{Eingabe } 1 = 1.0$
+$\text{Eingabe }2 = 0.5$
 
 ## Gewichte
 
@@ -52,10 +50,8 @@ Jede Eingabe bekommt ein Gewicht. Das Gewicht legt fest wie stark diese Eingabe 
 
 In unserem Beispiel haben die zwei Eingänge diese Gewichte:
 
-```
-Gewicht 1 = 0.9
-Gewicht 2 = 0.3
-```
+$\text{Gewicht }1 = 0.9$
+$\text{Gewicht }2 = 0.3$
 
 Eingabe 1 zählt also stark (Gewicht 0.9), Eingabe 2 zählt schwächer (Gewicht 0.3).
 
@@ -65,21 +61,21 @@ Jetzt verrechnet das Neuron Eingaben und Gewichte. Jede Eingabe wird mit ihrem G
 
 > [!example] Die gewichtete Summe berechnen 
 > 
-> Eingabe 1 mal Gewicht 1: `1.0 * 0.9 = 0.90`
+> Eingabe 1 mal Gewicht 1: $1.0 * 0.9 = 0.90$
 > 
-> Eingabe 2 mal Gewicht 2: `0.5 * 0.3 = 0.15`
+> Eingabe 2 mal Gewicht 2: $0.5 * 0.3 = 0.15$
 > 
-> Summe: `0.90 + 0.15 = 1.05`
+> Summe: $0.90 + 0.15 = 1.05$
 > 
-> Die gewichtete Summe ist also `1.05`.
+> Die gewichtete Summe ist also $1.05$.
 
 Diese Zahl, die gewichtete Summe, fasst alle Eingaben zu einem einzigen Wert zusammen. Sie sagt: Wie stark wird das Neuron insgesamt angeregt?
 
 Allgemein, bei beliebig vielen Eingaben, lautet die Rechnung:
 
-```
-gewichtete Summe = Eingabe1 * Gewicht1 + Eingabe2 * Gewicht2 + ...
-```
+
+$$\text{gewichtete Summe }= \text{Eingabe }1 * \text{Gewicht }1 + \text{Eingabe 2} * Gewicht2 + ...$$
+
 
 ## Was die Summe bedeutet
 
