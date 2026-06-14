@@ -56,7 +56,7 @@ Die Presse übertrieb stark: Die New York Times schrieb, die Marine habe eine Ma
 ## Der erste KI-Winter
 
 > [!warning] 
-> KI ist kein linearer Fortschritt 1969 zeigten Marvin Minsky und Seymour Papert mathematisch, dass ein einzelnes Perceptron grundlegende Probleme nicht lösen kann — zum Beispiel das [[XOR-Problem]], das du in [[C2 - Lineare Trennbarkeit]] kennenlernst. Die Forschungsgelder wurden gestrichen. Dieser Einbruch dauerte über ein Jahrzehnt und wird heute als "erster KI-Winter" bezeichnet.
+> KI ist kein linearer Fortschritt 1969 zeigten Marvin Minsky und Seymour Papert mathematisch, dass ein einzelnes Perceptron grundlegende Probleme nicht lösen kann — zum Beispiel das [[XOR|XOR-Problem]], das du in [[Boolesche Funktionen|Lineare Trennbarkeit]] kennenlernst. Die Forschungsgelder wurden gestrichen. Dieser Einbruch dauerte über ein Jahrzehnt und wird heute als "erster KI-Winter" bezeichnet.
 
 Das Problem war nicht die Grundidee. Ein einzelnes Neuron kann schlicht zu wenig. Mehrere Schichten übereinander hätten geholfen, aber die Methode um solche Netze zu trainieren fehlte noch.
 
@@ -79,12 +79,12 @@ Ab diesem Punkt investierten Forschung und Industrie massiv in neuronale Netze. 
 
 ## Verbindungen zu anderen Themen
 
-| Thema                                        | Verbindung                                                    |
-| -------------------------------------------- | ------------------------------------------------------------- |
-| [[Warum KI\|Warum KI?]]                      | Motivation: Warum klassische Programme versagen               |
-| [[Trennlinie\|Die Trennlinie als Gleichung]] | Das Perceptron ist die mathematische Grundlage der Trennlinie |
-| [[C2 - Lineare Trennbarkeit]]                | Der Schwachpunkt des einzelnen Perceptrons                    |
-| [[Backpropagation]]                          | Die Methode die tiefe Netze trainierbar machte                |
+| Thema                                          | Verbindung                                                    |
+| ---------------------------------------------- | ------------------------------------------------------------- |
+| [[Warum KI\|Warum KI?]]                        | Motivation: Warum klassische Programme versagen               |
+| [[Trennlinie\|Die Trennlinie als Gleichung]]   | Das Perceptron ist die mathematische Grundlage der Trennlinie |
+| [[Boolesche Funktionen\|Lineare Trennbarkeit]] | Der Schwachpunkt des einzelnen Perceptrons                    |
+| [[Backpropagation]]                            | Die Methode die tiefe Netze trainierbar machte                |
 
 ## Quellen & Links
 
