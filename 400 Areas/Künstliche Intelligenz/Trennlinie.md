@@ -51,7 +51,7 @@ Diese Formel beschreibt jeden Punkt der exakt auf der Linie liegt. Punkte die ni
 Versuche es selbst: Ziehe den Schieberegler und beobachte wie sich die Linie verändert.
 ```widget
 widget_b2_steigung
-scale=1.5
+scale=1.3
 ```
 ## Die Linie als Entscheidungsregel
 
