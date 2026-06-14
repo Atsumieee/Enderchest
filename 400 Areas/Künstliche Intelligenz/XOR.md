@@ -38,30 +38,26 @@ Schau dir an wann XOR den Wert 1 hat: bei (0,1) und (1,0), also wenn genau einer
 2. Nicht beide sind an. Das ist genau die Funktion AND, aber verneint.
 
 XOR ist also: "mindestens einer an" UND "nicht beide an". In Kurzform:
-
-
-$XOR = OR \\text{{}}und (nicht AND)$
-
+$XOR = OR \text{ und (nicht AND)}$
 
 Jede dieser beiden Teilbedingungen ist für sich linear trennbar, wie wir in [[Boolesche Funktionen|Boolesche Funktionen und lineare Trennbarkeit]] gesehen haben. Für jede gibt es also eine Linie.
 
 ## Die zwei Linien
 
-Wir legen zwei Linien fest. Statt mit der Form `y = A * x` arbeiten wir hier mit der Summe der Eingaben `x + y`, weil das die booleschen Funktionen direkt abbildet.
+Wir legen zwei Linien fest. Statt mit der Form $y = A * x$ arbeiten wir hier mit der Summe der Eingaben $x + y$, weil das die booleschen Funktionen direkt abbildet.
 
 **Linie 1 (OR):** Sie prüft ob die Summe der Eingaben mindestens 0.5 erreicht.
 
-```
-x + y ≥ 0.5   →   mindestens einer ist an
-```
+$x + y ≥ 0.5$   →   mindestens einer ist an
+
 
 **Linie 2 (AND):** Sie prüft ob die Summe mindestens 1.5 erreicht, also ob beide an sind.
 
-```
-x + y ≥ 1.5   →   beide sind an
-```
+$x + y ≥ 1.5$   →   beide sind an
 
-![Koordinatensystem mit den vier XOR-Eckpunkten und zwei parallelen Trennlinien, die einen diagonalen Streifen bilden in dem die beiden 1-Punkte liegen](https://claude.ai/chat/files/PLATZHALTER_zwei_linien_xor.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
+
+![[Pasted image 20260614170610.png]]
+>*Created with matplotlib*
 
 Die beiden Linien bilden einen diagonalen Streifen. Innerhalb dieses Streifens liegt genau das, was wir suchen: die Punkte bei denen einer an ist, aber nicht beide.
 
@@ -131,6 +127,6 @@ Wie ein einzelnes Neuron formal aufgebaut ist, mit Eingaben, Gewichten und einer
 | Thema                                                                   | Verbindung                                            |
 | ----------------------------------------------------------------------- | ----------------------------------------------------- |
 | [[Boolesche Funktionen\|Boolesche Funktionen und lineare Trennbarkeit]] | Warum eine Linie für XOR nicht reicht                 |
-| [[D1 - Eingaben, Gewichte, Summe]]                                      | Wie ein einzelnes Neuron formal rechnet               |
-| [[D3 - Vom Neuron zum Netz]]                                            | Wie mehrere Neuronen zu einem Netz verschaltet werden |
+| [[Erstes Neuron\|Eingaben, Gewichte, Summe]]                            | Wie ein einzelnes Neuron formal rechnet               |
+| [[Neuronennetz\|Vom Neuron zum Netz]]                                   | Wie mehrere Neuronen zu einem Netz verschaltet werden |
 | [[E3 - Backpropagation]]                                                | Wie ein Netz die Linien selbst lernt                  |

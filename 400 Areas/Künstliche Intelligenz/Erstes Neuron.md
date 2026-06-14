@@ -36,7 +36,7 @@ Die Eingaben sind die Zahlen die in das Neuron hereinkommen. Bei den Insekten wa
 
 In unserem Beispiel hat das Neuron zwei Eingänge:
 
-```
+
 Eingabe 1 = 1.0
 Eingabe 2 = 0.5
 ```
