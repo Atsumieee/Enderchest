@@ -2,9 +2,9 @@
 Description: Wie eine einfache Formel eine Linie beschreibt und wie diese Linie als Entscheidungsregel funktioniert.
 Title: Die Trennlinie als Gleichung
 Tags:
-- ki
-- konzept
-- schule
+  - ki
+  - konzept
+  - schule
 Created: 2026-06-12
 Status: permanent
 publish: true
@@ -52,6 +52,7 @@ Versuche es selbst: Ziehe den Schieberegler und beobachte wie sich die Linie ver
 ```widget
 widget_b2_steigung
 scale=1.3
+width=wide
 ```
 ## Die Linie als Entscheidungsregel
 
