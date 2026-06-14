@@ -79,12 +79,12 @@ Ab diesem Punkt investierten Forschung und Industrie massiv in neuronale Netze. 
 
 ## Verbindungen zu anderen Themen
 
-| Thema                                 | Verbindung                                                    |
-| ------------------------------------- | ------------------------------------------------------------- |
-| [[Warum KI\|Warum KI?]]               | Motivation: Warum klassische Programme versagen               |
-| [[B2 - Die Trennlinie als Gleichung]] | Das Perceptron ist die mathematische Grundlage der Trennlinie |
-| [[C2 - Lineare Trennbarkeit]]         | Der Schwachpunkt des einzelnen Perceptrons                    |
-| [[Backpropagation]]                   | Die Methode die tiefe Netze trainierbar machte                |
+| Thema                                        | Verbindung                                                    |
+| -------------------------------------------- | ------------------------------------------------------------- |
+| [[Warum KI\|Warum KI?]]                      | Motivation: Warum klassische Programme versagen               |
+| [[Trennlinie\|Die Trennlinie als Gleichung]] | Das Perceptron ist die mathematische Grundlage der Trennlinie |
+| [[C2 - Lineare Trennbarkeit]]                | Der Schwachpunkt des einzelnen Perceptrons                    |
+| [[Backpropagation]]                          | Die Methode die tiefe Netze trainierbar machte                |
 
 ## Quellen & Links
 
