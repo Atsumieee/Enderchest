@@ -63,7 +63,9 @@ Eingabe 1 zählt also stark (Gewicht 0.9), Eingabe 2 zählt schwächer (Gewicht 
 
 Jetzt verrechnet das Neuron Eingaben und Gewichte. Jede Eingabe wird mit ihrem Gewicht multipliziert, und die Ergebnisse werden zusammengezählt.
 
-> [!example] Die gewichtete Summe berechnen Eingabe 1 mal Gewicht 1: `1.0 * 0.9 = 0.90`
+> [!example] Die gewichtete Summe berechnen 
+> 
+> Eingabe 1 mal Gewicht 1: `1.0 * 0.9 = 0.90`
 > 
 > Eingabe 2 mal Gewicht 2: `0.5 * 0.3 = 0.15`
 > 
@@ -89,7 +91,8 @@ Was das Neuron mit dieser Summe macht, also ob am Ende eine 0, eine 1 oder ein Z
 
 ---
 
-> [!summary] Das Wichtigste Ein Neuron bekommt Eingaben, also Zahlen die hereinkommen. Jede Eingabe hat ein Gewicht das festlegt wie stark sie zählt, vergleichbar mit einem Lautstärkeregler. Jede Eingabe wird mit ihrem Gewicht multipliziert und alles wird zusammengezählt: das ist die gewichtete Summe. Im Beispiel ergibt sich aus den Eingaben 1.0 und 0.5 mit den Gewichten 0.9 und 0.3 die Summe 1.05.
+> [!summary] Das Wichtigste 
+> Ein Neuron bekommt Eingaben, also Zahlen die hereinkommen. Jede Eingabe hat ein Gewicht das festlegt wie stark sie zählt, vergleichbar mit einem Lautstärkeregler. Jede Eingabe wird mit ihrem Gewicht multipliziert und alles wird zusammengezählt: das ist die gewichtete Summe. Im Beispiel ergibt sich aus den Eingaben 1.0 und 0.5 mit den Gewichten 0.9 und 0.3 die Summe 1.05.
 
 ## Schlüsselbegriffe
 
