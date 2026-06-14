@@ -85,8 +85,9 @@ width=wide
 > [!note] Warum wird die Linie nicht perfekt? 
 > Im Widget pendelt die Steigung: Der Marienkäfer zieht die Linie flacher, die Raupe zieht sie wieder steiler. Eine einzelne Linie durch den Ursprung kann diese beiden Punkte nicht beide perfekt treffen. Das ist kein Fehler, sondern eine ehrliche Eigenschaft des Verfahrens. Die Linie pendelt sich auf einen Kompromiss ein der beide Gruppen so gut wie möglich trennt. Wann eine einzelne Linie grundsätzlich nicht mehr reicht, ist das Thema von [[Boolesche Funktionen|Lineare Trennbarkeit]].
 
-![Koordinatensystem mit alter flacher Trennlinie gestrichelt und neuer steilerer Trennlinie durchgezogen, Marienkäfer-Punkt liegt über der alten Linie](https://claude.ai/chat/files/PLATZHALTER_update_schritt.png) _Quelle: [Quelle einfügen] — Lizenz: [z.B. CC BY 4.0 / eigene Erstellung]_
-
+>Koordinatensystem mit alter flacher Trennlinie und neuer steilerer Trennlinie durchgezogen, Marienkäfer-Punkt liegt über der alten Linie
+![[Pasted image 20260614155312.png]]
+> *Created with matplotlib*
 ## Schritt für Schritt statt auf einmal
 
 Ein einzelner Schritt bringt die Linie näher an den Punkt, aber nicht ganz hin. Erst nach mehreren Schritten nähert sich die Steigung der guten Lösung an.
