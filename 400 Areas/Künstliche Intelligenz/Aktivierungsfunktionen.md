@@ -65,8 +65,9 @@ Statt eines Schalters ist die Sigmoidfunktion ein Regler. Sie kann Ausgaben lief
 - `0.48` → unklar, mittel
 - `0.74` → eher ja
 - `0.95` → fast sicher ja
-
+#### Sigmoid Function vs Step Function
 ![[KI_Funktionen_vergleich.png|697]]
+> Adiletta & Flanagan (2020), CC BY-SA 4.0 
 ## Warum weich oft besser ist
 
 Eine weiche Ausgabe trägt mehr Information als eine harte. Sie sagt nicht nur ob, sondern wie sicher. Ein Wert von `0.95` bedeutet fast sicher ja, ein Wert von `0.55` bedeutet eher ja, aber knapp. Diese Abstufung geht bei der Stufenfunktion verloren, dort wäre beides einfach `1`.
