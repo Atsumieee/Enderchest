@@ -82,12 +82,12 @@ Ein zufällig gewähltes `A` ergibt eine Linie die wahrscheinlich falsch liegt. 
 
 Der nächste Schritt ist deshalb: Wie findet der Computer selbst das beste `A`? Wie lernt er aus Fehlern?
 
-Das ist das Thema von [[B3 - Lernen durch Fehler]].
+Das ist das Thema von [[Lernen durch Fehler]].
 
 ---
 
 > [!summary] 
-> Das Wichtigste Die Trennlinie hat die Formel `y = A × x`. Der Faktor `A` heisst Steigung und bestimmt wie steil die Linie ist. Mit der Entscheidungsregel `A × x - y` prüft man auf welcher Seite der Linie ein Punkt liegt. `A` ist das erste Gewicht: Es legt fest wie stark die Breite die Klassifikation beeinflusst.
+> Das Wichtigste Die Trennlinie hat die Formel `y = A * x`. Der Faktor `A` heisst Steigung und bestimmt wie steil die Linie ist. Mit der Entscheidungsregel `y - A * x` prüft man auf welcher Seite der Linie ein Punkt liegt. `A` ist das erste Gewicht: Es legt fest wie stark die Breite die Klassifikation beeinflusst.
 
 ## Verbindungen zu anderen Themen
 
