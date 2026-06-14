@@ -37,8 +37,8 @@ Diese Eigenschaft ist der Kern: Ein Neuron feuert erst ab einer bestimmten Schwe
 
 Der Neurologe Warren McCulloch und der Mathematiker Walter Pitts stellten sich 1943 eine Frage: Was wenn man dieses Prinzip auf dem Papier nachbaut, ohne die Biologie?
 
-> [!info] 
-> McCulloch & Pitts (1943) Die beiden beschrieben das erste mathematische Modell eines Neurons. Eine Recheneinheit bekommt mehrere Eingaben, summiert sie, und gibt eine Ausgabe,  aber nur wenn die Summe eine Schwelle überschreitet. Kein Blut, keine Chemie, nur Zahlen.
+> [!info] McCulloch & Pitts (1943) 
+> Die beiden beschrieben das erste mathematische Modell eines Neurons. Eine Recheneinheit bekommt mehrere Eingaben, summiert sie, und gibt eine Ausgabe,  aber nur wenn die Summe eine Schwelle überschreitet. Kein Blut, keine Chemie, nur Zahlen.
 
 Ihr Modell konnte nichts lernen. Es zeigte aber, dass sich Denkprozesse grundsätzlich in Mathematik übersetzen lassen und das war der entscheidende Schritt.
 
