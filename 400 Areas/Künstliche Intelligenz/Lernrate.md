@@ -26,9 +26,7 @@ Nach diesem Artikel kannst du...
 
 In [[Lernen durch Fehler]] haben wir die Lernrate eingeführt. Sie steht in der Update-Regel:
 
-```
-neue Steigung = alte Steigung + Lernrate * (Lücke / Breite)
-```
+$$\text{neue Steigung} = \text{alte Steigung} + \text{Lernrate} * \text{(Lücke / Breite)}$$
 
 Die Lernrate legt fest wie gross ein einzelner Lernschritt ist. Sie ist ein Faktor zwischen der reinen Korrektur und dem was tatsächlich an der Steigung verändert wird. Ein kleiner Wert macht kleine Schritte, ein grosser Wert grosse.
 
