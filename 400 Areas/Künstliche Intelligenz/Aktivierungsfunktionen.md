@@ -66,7 +66,7 @@ Statt eines Schalters ist die Sigmoidfunktion ein Regler. Sie kann Ausgaben lief
 - `0.74` → eher ja
 - `0.95` → fast sicher ja
 #### Sigmoid Function vs Step Function
-![[KI_Funktionen_Vergleich.png]]
+![[KI_Funktionen_vergleich.png]]
 >*Created with matplotlib*
 ## Warum weich oft besser ist
 
