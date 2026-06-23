@@ -1,0 +1,31 @@
+{
+	"nodes":[
+		{"id":"a1b2c3d4e5f60001","type":"group","x":-30,"y":-70,"width":760,"height":830,"color":"4","label":"Neue Note"},
+		{"id":"a1b2c3d4e5f60002","type":"group","x":830,"y":-70,"width":660,"height":830,"color":"5","label":"Daily Note"},
+		{"id":"a1b2c3d4e5f60003","type":"group","x":1590,"y":-70,"width":660,"height":830,"color":"6","label":"Projekt / Auftrag"},
+		{"id":"a1b2c3d4e5f60011","type":"text","text":"# Neue Note schreiben","x":0,"y":0,"width":700,"height":60,"color":"4"},
+		{"id":"a1b2c3d4e5f60012","type":"text","text":"**Wann lohnt es sich?**\n- Habe ich das gegoogelt?\n- War es aufwändig zu lösen?\n- Würde ich es dem Oberstift erklären müssen?\n\n→ Ja: schreiben. Banales weglassen.","x":0,"y":80,"width":700,"height":200},
+		{"id":"a1b2c3d4e5f60021","type":"text","text":"# Daily Note","x":860,"y":0,"width":600,"height":60,"color":"5"},
+		{"id":"a1b2c3d4e5f60022","type":"text","text":"**Morgens**\n→ Fokus: Was ist das Wichtigste heute?\n→ Tasks eintragen (Arbeit + Privat/Schule)","x":860,"y":80,"width":600,"height":140},
+		{"id":"a1b2c3d4e5f60023","type":"text","text":"**Tagsüber**\n→ Tasks abhaken wenn erledigt\n→ Neue Tasks hinzufügen\n→ Notizen direkt reinschreiben","x":860,"y":250,"width":600,"height":140},
+		{"id":"a1b2c3d4e5f60024","type":"text","text":"**Abends**\n→ Gemacht: Was habe ich erledigt?\n→ Morgen: Was bleibt offen?\n→ Learnings: Was Neues gelernt?","x":860,"y":420,"width":600,"height":150},
+		{"id":"a1b2c3d4e5f60031","type":"text","text":"# Projekt / Auftrag","x":1620,"y":0,"width":600,"height":60,"color":"6"},
+		{"id":"a1b2c3d4e5f60032","type":"text","text":"**Warum**\nWer hat den Auftrag gegeben?\nWelches Problem wird gelöst?","x":1620,"y":80,"width":600,"height":110},
+		{"id":"a1b2c3d4e5f60033","type":"text","text":"**Möglichkeiten**\nWelche Optionen gibt es?\nVor- und Nachteile abwägen.","x":1620,"y":220,"width":600,"height":110},
+		{"id":"a1b2c3d4e5f60034","type":"text","text":"**Umsetzung**\nWie wird es konkret gemacht?\nWichtige Entscheide dokumentieren.\nTasks → Kanban","x":1620,"y":360,"width":600,"height":130},
+		{"id":"a1b2c3d4e5f60035","type":"text","text":"**Ergebnis**\nHat es geklappt?\nWas lief gut, was nicht?","x":1620,"y":520,"width":600,"height":110},
+		{"id":"a1b2c3d4e5f60015","type":"text","text":"**3. Fertig** — Lücken füllen, `status: permanent` setzen.","x":0,"y":640,"width":700,"height":80,"color":"4"},
+		{"id":"a1b2c3d4e5f60014","type":"text","text":"**2. Template drüberlegen**\n→ Warum existiert das?\n→ Wie funktioniert es?\n→ Wann benutze ich es?\n→ Beispiele","x":0,"y":440,"width":700,"height":160},
+		{"id":"a1b2c3d4e5f60013","type":"text","text":"**1. Draft schreiben**\nAlles raus — chaotisch ist okay.\nKein Format, kein Template, einfach alle Gedanken.","x":0,"y":310,"width":700,"height":110,"color":"3"}
+	],
+	"edges":[
+		{"id":"a1b2c3d4e5f60101","fromNode":"a1b2c3d4e5f60012","fromSide":"bottom","toNode":"a1b2c3d4e5f60013","toSide":"top"},
+		{"id":"a1b2c3d4e5f60102","fromNode":"a1b2c3d4e5f60013","fromSide":"bottom","toNode":"a1b2c3d4e5f60014","toSide":"top"},
+		{"id":"a1b2c3d4e5f60103","fromNode":"a1b2c3d4e5f60014","fromSide":"bottom","toNode":"a1b2c3d4e5f60015","toSide":"top"},
+		{"id":"a1b2c3d4e5f60201","fromNode":"a1b2c3d4e5f60022","fromSide":"bottom","toNode":"a1b2c3d4e5f60023","toSide":"top"},
+		{"id":"a1b2c3d4e5f60202","fromNode":"a1b2c3d4e5f60023","fromSide":"bottom","toNode":"a1b2c3d4e5f60024","toSide":"top"},
+		{"id":"a1b2c3d4e5f60301","fromNode":"a1b2c3d4e5f60032","fromSide":"bottom","toNode":"a1b2c3d4e5f60033","toSide":"top"},
+		{"id":"a1b2c3d4e5f60302","fromNode":"a1b2c3d4e5f60033","fromSide":"bottom","toNode":"a1b2c3d4e5f60034","toSide":"top"},
+		{"id":"a1b2c3d4e5f60303","fromNode":"a1b2c3d4e5f60034","fromSide":"bottom","toNode":"a1b2c3d4e5f60035","toSide":"top"}
+	]
+}
